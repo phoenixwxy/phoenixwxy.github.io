@@ -13,6 +13,8 @@ sudo apt install npm
 
 检查版本：`node -v, npm -v`。
 
+<!-- more -->
+
 ## 安装Hexo
 
 Hexo是一个基于nodw.js的快速、简介且高效的博客框架，支持Markdown解析文章。简言之，hexo将Markdown编写的文章生成为静态html页面，然后部署到github。
@@ -132,6 +134,7 @@ npm install hexo-deployer-git --save
 
 ```shell
 hexo clean
+hexo generate
 hexo g
 hexo d
 ```

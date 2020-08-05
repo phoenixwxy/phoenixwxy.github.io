@@ -5,7 +5,9 @@ tags: backup
 categories: 查询
 ---
 
+**记录一下常用的命令和设置**
 
+<!-- more -->
 
 # Linux 命令
 
