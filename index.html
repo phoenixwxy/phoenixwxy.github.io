@@ -74,10 +74,19 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/05/Hexo-blog/">Hexo-Blog 搭建</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="title-Hexo-Blog-搭建"><a href="#title-Hexo-Blog-搭建" class="headerlink" title="title:Hexo-Blog 搭建"></a>title:Hexo-Blog 搭建</h2><h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h2><p>Node.js是基于Chrome V8引擎的JavaScript运行环境，npm是随Node.js一起安装的包管理工具，新版的Node.js集成了npm。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure></p>
+        <h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h2><p>Node.js是基于Chrome V8引擎的JavaScript运行环境，npm是随Node.js一起安装的包管理工具，新版的Node.js集成了npm。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure></p>
 <p>检查版本：<code>node -v, npm -v</code>。</p>
 <h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>Hexo是一个基于nodw.js的快速、简介且高效的博客框架，支持Markdown解析文章。简言之，hexo将Markdown编写的文章生成为静态html页面，然后部署到github。</p>
 <p>安装hexo：<code>sudo npm install -g hexo</code>。</p>
@@ -159,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/05/Hexo-blog/" data-id="ckdgqrni00000xxmrabrvgfp8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/05/Hexo-blog/" data-id="ckdgqynzy00002jmr8ydg5hxm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -205,7 +214,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/04/hello-world/" data-id="ckdgqrni40001xxmrg8sj76e3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/04/hello-world/" data-id="ckdgqyo0200012jmr5bclbj9w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -246,7 +255,7 @@
       <ul>
         
           <li>
-            <a href="/2020/08/05/Hexo-blog/">(no title)</a>
+            <a href="/2020/08/05/Hexo-blog/">Hexo-Blog 搭建</a>
           </li>
         
           <li>
@@ -298,5 +307,20 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
