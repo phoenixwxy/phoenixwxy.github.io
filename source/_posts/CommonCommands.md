@@ -1,26 +1,11 @@
 ---
 title:  常用命令备份
 time:  2020-08-05 10:00
+tags: backup
+categories: 查询
 ---
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
-- [Linux 命令](#linux-%E5%91%BD%E4%BB%A4)
-- [Shell 脚本](#shell-%E8%84%9A%E6%9C%AC)
-- [Git 命令](#git-%E5%91%BD%E4%BB%A4)
-- [Camera 命令](#camera-%E5%91%BD%E4%BB%A4)
-- [MarkDown 命令](#markdown-%E5%91%BD%E4%BB%A4)
-- [Log 关键位置](#log-%E5%85%B3%E9%94%AE%E4%BD%8D%E7%BD%AE)
-- [Docker](#docker)
-- [Qcom 相关](#qcom-%E7%9B%B8%E5%85%B3)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-
-
-[toc]
 
 # Linux 命令
 
