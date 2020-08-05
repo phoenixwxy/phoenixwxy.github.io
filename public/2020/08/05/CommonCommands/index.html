@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Linux 命令 Shell 脚本 Git 命令 Camera 命令 MarkDown 命令 Log 关键位置 Docker Qcom 相关   [toc] Linux 命令 For search and replace  grep “&#x2F;***&#x2F;“ -rl .&#x2F;* | xargs sed -i ‘s&#x2F;&#x2F;mm-camerasdk&#x2F;&#x2F;&#x2F;mm-camerasdk-xxx&#x2F;&#x2F;g’  查看共享库.so">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用命令备份">
+<meta property="og:url" content="http://yoursite.com/2020/08/05/CommonCommands/index.html">
+<meta property="og:site_name" content="Phoenix">
+<meta property="og:description" content="Linux 命令 Shell 脚本 Git 命令 Camera 命令 MarkDown 命令 Log 关键位置 Docker Qcom 相关   [toc] Linux 命令 For search and replace  grep “&#x2F;***&#x2F;“ -rl .&#x2F;* | xargs sed -i ‘s&#x2F;&#x2F;mm-camerasdk&#x2F;&#x2F;&#x2F;mm-camerasdk-xxx&#x2F;&#x2F;g’  查看共享库.so">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-05T02:27:22.493Z">
+<meta property="article:modified_time" content="2020-08-05T03:59:20.508Z">
+<meta property="article:author" content="Phoenix">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/08/05/CommonCommands/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>常用命令备份 | Phoenix</title>
+  
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoenix</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/CommonCommands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常用命令备份
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-05 10:27:22 / Modified: 11:59:20" itemprop="dateCreated datePublished" datetime="2020-08-05T10:27:22+08:00">2020-08-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<ul>
+<li><a href="#linux-%E5%91%BD%E4%BB%A4">Linux 命令</a></li>
+<li><a href="#shell-%E8%84%9A%E6%9C%AC">Shell 脚本</a></li>
+<li><a href="#git-%E5%91%BD%E4%BB%A4">Git 命令</a></li>
+<li><a href="#camera-%E5%91%BD%E4%BB%A4">Camera 命令</a></li>
+<li><a href="#markdown-%E5%91%BD%E4%BB%A4">MarkDown 命令</a></li>
+<li><a href="#log-%E5%85%B3%E9%94%AE%E4%BD%8D%E7%BD%AE">Log 关键位置</a></li>
+<li><a href="#docker">Docker</a></li>
+<li><a href="#qcom-%E7%9B%B8%E5%85%B3">Qcom 相关</a></li>
+</ul>
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<p>[toc]</p>
+<h1 id="Linux-命令"><a href="#Linux-命令" class="headerlink" title="Linux 命令"></a>Linux 命令</h1><ul>
+<li>For search and replace</li>
+</ul>
+<p>grep “/***/“ -rl ./* | xargs sed -i ‘s//mm-camerasdk///mm-camerasdk-xxx//g’</p>
+<ul>
+<li>查看共享库.so 依赖的其他库</li>
+</ul>
+<p><code>readelf -a out/target/product/umi/vendor/lib64/hw/com.qti.chi.override.so | grep NEEDED</code></p>
+<ul>
+<li>查看共享库 .so 的信息</li>
+</ul>
+<p><code>string xxx.so</code></p>
+<h1 id="Shell-脚本"><a href="#Shell-脚本" class="headerlink" title="Shell 脚本"></a>Shell 脚本</h1><ul>
+<li>杀死camera相关进程</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">alias killcam=&#x27;killcameraserver&#x27;</span><br><span class="line">killcameraserver()&#123; </span><br><span class="line">    adb shell killall cameraserver</span><br><span class="line">    adb shell killall android.hardware.camera.provider@2.4-service &#125;</span><br><span class="line">添加到~/.bashrc中，减少复杂操作</span><br></pre></td></tr></table></figure>
+<h1 id="Git-命令"><a href="#Git-命令" class="headerlink" title="Git 命令"></a>Git 命令</h1><ul>
+<li>出现git log丢失问题</li>
+</ul>
+<p><code>git fetch &lt;origen&gt; &lt;branch-name&gt; --unshallow</code></p>
+<h1 id="Camera-命令"><a href="#Camera-命令" class="headerlink" title="Camera 命令"></a>Camera 命令</h1><h1 id="MarkDown-命令"><a href="#MarkDown-命令" class="headerlink" title="MarkDown 命令"></a>MarkDown 命令</h1><ul>
+<li>添加目录</li>
+</ul>
+<p>使用 <code>[toc]</code>来显示目录</p>
+<p><code>npm i doctoc -g</code> 安装doctoc 命令，在对应目录下使用 <code>doctoc filename.md</code></p>
+<h1 id="Log-关键位置"><a href="#Log-关键位置" class="headerlink" title="Log 关键位置"></a>Log 关键位置</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">log</td>
+<td style="text-align:left">含义</td>
+<td style="text-align:left">备注</td>
+</tr>
+<tr>
+<td style="text-align:left">CAM_FragmentBottomActio: onSnapClick</td>
+<td style="text-align:left">点击拍照按钮</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">mCaptureStartTime</td>
+<td style="text-align:left">记录底层返回YUV/JPEG数据点</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">ImageLoader</td>
+<td style="text-align:left">记录image相关log</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Start display image</td>
+<td style="text-align:left">开始执行对应图片处理</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">watermark</td>
+<td style="text-align:left">水印</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Subsample</td>
+<td style="text-align:left">采样</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Subsample original</td>
+<td style="text-align:left">对原图采样</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">Display image in ImageAware</td>
+<td style="text-align:left">在图库显示</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">update exif</td>
+<td style="text-align:left">更新exif信息</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">isRemosaic</td>
+<td style="text-align:left">是否走的是remosaic模式</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">imagesaver][ end</td>
+<td style="text-align:left">图像处理完成</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p><code>docker commit -m=&quot;update some&quot; -a=&quot;Phoenix&quot; 4cfd1849b2fe phoenix</code></p>
+<p><code>docker run -t -v /home/mi:/phoenix -u phoenix -i phoenix /bin/bash</code></p>
+<h1 id="Qcom-相关"><a href="#Qcom-相关" class="headerlink" title="Qcom 相关"></a>Qcom 相关</h1><ul>
+<li>固定 AF</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb shell setprop vendor.debug.camera.af.manual 2</span><br><span class="line">adb shell setprop vendor.debug.camera.af.ctrl.lenspos 222</span><br></pre></td></tr></table></figure>
+<p>第一个指令将手机设置为手动对焦模式<br>        第二个指令把lens推到想要的位置，222可以随意替换成0-899之间的整数</p>
+<ul>
+<li>添加调用栈</li>
+</ul>
+<p>.mk中添加添加LOCAL_SHARED_LIBRARIES += libutilscallstack</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">diff --git a/build/infrastructure/android/common.mk b/build/infrastructure/android/common.mk</span><br><span class="line">index <span class="number">731</span>cae4.<span class="number">.4444</span>b0e <span class="number">100755</span></span><br><span class="line">--- a/build/infrastructure/android/common.mk</span><br><span class="line">+++ b/build/infrastructure/android/common.mk</span><br><span class="line">@@ <span class="number">-160</span>,<span class="number">6</span> +<span class="number">160</span>,<span class="number">8</span> @@ LOCAL_SHARED_LIBRARIES += libhardware</span><br><span class="line"> </span><br><span class="line"> LOCAL_STATIC_LIBRARIES += libcamxgenerated</span><br><span class="line"> </span><br><span class="line">+LOCAL_SHARED_LIBRARIES += libutilscallstack</span><br><span class="line">+</span><br><span class="line"> LOCAL_WHINER_RULESET := camx</span><br><span class="line"> CAMX_CHECK_WHINER := $(CAMX_BUILD_PATH)/check-whiner.mk</span><br><span class="line"><span class="number">2</span>、在需要打调用栈的函数中添加接口</span><br><span class="line">#include &lt;utils/CallStack.h&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> android::CallStack cs(<span class="string">&quot;zoom-smooth-m_pState&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SimplPerf 使用</li>
+</ul>
+<p>1、记录数据（提前把<code>system/extras/simpleperf/scripts/bin/android/arm64</code>下文件push到手机里）<br>执行<br><code>simpleperf record -p pid --duration 5 -o sdcard/perf.data --call-graph fp</code><br>2、导出sdcard/perf.data，在sdcard/perf.data下执行<br><code>python report_html.py -i perf.data -o test.html</code></p>
+<ul>
+<li>打印 FPS</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell setprop persist.vendor.camera.logPerfInfoMask 0x10000</span><br><span class="line">adb shell setprop persist.vendor.camera.enableFPSLog 1</span><br><span class="line">camxoverridesettings.txt 里enableFPSLog=TRUE</span><br></pre></td></tr></table></figure>
+<p><code>adb logcat |grep -Ei &quot;CalculateResultFPS&quot;</code> 每10秒打印一次log~</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/05/Hexo-blog/" rel="prev" title="Hexo-Blog 搭建">
+      <i class="fa fa-chevron-left"></i> Hexo-Blog 搭建
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Linux 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-%E8%84%9A%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">Shell 脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">Git 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Camera-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">Camera 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MarkDown-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">MarkDown 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Log-%E5%85%B3%E9%94%AE%E4%BD%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">Log 关键位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">7.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Qcom-%E7%9B%B8%E5%85%B3"><span class="nav-number">8.</span> <span class="nav-text">Qcom 相关</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Phoenix</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoenix</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
