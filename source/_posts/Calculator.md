@@ -1,5 +1,5 @@
 ---
-title:  常用命令备份
+title:  Calculator
 time:  2020-08-05 10:00
 tags: C
 categories: 编程
@@ -8,6 +8,8 @@ categories: 编程
 # Calculator
 
 使用C语言实现计算器，最初版本可能会比较简单和幼稚，需要持续更新迭代
+
+<!-- more -->
 
 # 需求
 
@@ -53,6 +55,10 @@ categories: 编程
 ![](Calculator.assets/log1.jpg)
 
 
+
+#### 可变参数输出
+
+可以通过可变参数输出
 
 # 编译
 

@@ -78,6 +78,12 @@ killcameraserver(){
 
 `docker run -t -v /home/mi:/phoenix -u phoenix -i phoenix /bin/bash`
 
+# Android
+
+```shel
+systrace gfx input view wm am sm video camera hal bionic aidl sched irq i2c freq idle sync workq pagecache -b 50960 -o test1304.html
+```
+
 # Qcom 相关
 
 - 固定 AF
