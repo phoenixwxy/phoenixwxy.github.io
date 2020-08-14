@@ -93,40 +93,33 @@ buffer max = 2MB
 # zlog会在zlog_init()时候以读写权限打开这个文件。确认你执行程序的用户有权限创建和读写这个文件。
 rotate lock file = /tmp/zlog.lock
 # 这个参数是缺省的日志格式，默认值为："%d %V [%p:%F:%L] %m%n"
+# 这种格式产生的输出类似这样：
+# 2012-02-14 17:03:12 INFO [3758:test_hello.c:39] hello, zlog
 default format = "%d.%us %-6V (%c:%F:%L) - %m%n"
-
+# 这个指定了创建日志文件的缺省访问权限。
+# 必须注意的是最后的产生的日志文件的权限为"file perms"& ~umask。默认为600，只允许当前用户读写。
 file perms = 600
 
- 
-
+# 这一节以[levels]开始。用于定义用户自己的日志等级，建议和用户自定义的日志记录宏一起使用。
+# 语法为：(level string) = (level int), (syslog level, optional)
 [levels]
-
 TRACE = 10
-
 CRIT = 130, LOG_CRIT
-
- 
-
+# 这一节以[formats]开始。用来定义日志的格式。语法为：(name) = "(actual formats)"
 [formats]
+# simple = "%m%n"
+default = "%d.%us %-6V (%c:%F:%L) - %m%n"
+# normal = "%d %m%n"
 
-simple = "%m%n"
-
-normal = "%d %m%n"
-
- 
-
+# 这一节以[rules]开头。这个描述了日志是怎么被过滤、格式化以及被输出的。
+# (category).(level)    (output), (options, optional); (format name, optional)
 [rules]
-
+*.*						"./log"
 default.*               >stdout; simple
-
 *.*                     "%12.2E(HOME)/log/%c.log", 1MB*12; simple
-
 my_.INFO                >stderr;
-
 my_cat.!ERROR           "/var/log/aa.log"
-
 my_dog.=DEBUG           >syslog, LOG_LOCAL0; simple
-
 my_mice.*               $user_define;
 ```
 

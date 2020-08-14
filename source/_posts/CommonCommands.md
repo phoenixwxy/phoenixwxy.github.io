@@ -78,11 +78,33 @@ killcameraserver(){
 
 `docker run -t -v /home/mi:/phoenix -u phoenix -i phoenix /bin/bash`
 
+`docker save -o rocketmq.tar rocketmq    ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过"docker images"查看`
+
 # Android
 
 ```shel
 systrace gfx input view wm am sm video camera hal bionic aidl sched irq i2c freq idle sync workq pagecache -b 50960 -o test1304.html
 ```
+
+2.  筛选trace信息
+
+```shel
+HAL3ProcessCaptureResult :|HAL3ProcessCaptureRequest :|ProcessFenceCallback RequestId |ProcessRequest 
+```
+
+```shell
+CAMX_TRACE_ASYNC_END_F(CamxLogGroupDRQ, id, "Deferred Node %s RequestId: %d SequenceId %d %s",
+                         pDependency->pNode->Name(), pDependency->requestId, 
+                         pDependency->processSequenceId, pDependency->pNode->NodeIdentifierString());
+```
+
+
+
+# ffmpeg 使用
+
+ffprobe -show_frames -select_streams V -i '.\J11(12.0.1.0.QJKCNXM).mp4' -print_format xml > 10.xml
+
+ffpmeg -i
 
 # Qcom 相关
 
@@ -123,11 +145,19 @@ index 731cae4..4444b0e 100755
 
 - SimplPerf 使用
 
-1、记录数据（提前把`system/extras/simpleperf/scripts/bin/android/arm64`下文件push到手机里）
-执行
-`simpleperf record -p pid --duration 5 -o sdcard/perf.data --call-graph fp `
-2、导出sdcard/perf.data，在sdcard/perf.data下执行
-`python report_html.py -i perf.data -o test.html`
+    1、记录数据（提前把`system/extras/simpleperf/scripts/bin/android/arm64`下文件push到手机里）
+    执行
+    `simpleperf record -p pid --duration 5 -o sdcard/perf.data -g --call-graph fp `
+    2、导出sdcard/perf.data，在sdcard/perf.data下执行
+    `python report_html.py -i perf.data -o test.html`
+
+    ```shell
+    adb shell "/system/bin/simpleperf record -p <pid of cameraprovider> -g -o /data/misc/perf.data"
+    adb shell "/system/bin/simpleperf report -i /data/misc/perf.data > /data/misc/report.txt"
+    adb shell "/system/bin/simpleperf report -i /data/misc/perf.data -g --full-callgraph > /data/misc/report_callgraph.txt"
+    ```
+
+    
 
 - 打印 FPS
 
