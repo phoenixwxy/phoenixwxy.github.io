@@ -98,7 +98,7 @@ CAMX_TRACE_ASYNC_END_F(CamxLogGroupDRQ, id, "Deferred Node %s RequestId: %d Sequ
                          pDependency->processSequenceId, pDependency->pNode->NodeIdentifierString());
 ```
 
-
+`debuggerd` 可以打印backtrace
 
 # ffmpeg 使用
 
@@ -169,3 +169,36 @@ camxoverridesettings.txt 里enableFPSLog=TRUE
 ```
 
 `adb logcat |grep -Ei "CalculateResultFPS"` 每10秒打印一次log~
+
+```
+offlinelog的抓取方法
+方法1：
+需要查看kenerl中的log时，通过以下方法打开log开关：
+终端执行：
+adb shell setprop persist.sys.offlinelog.kernel ture
+adb shell setprop persist.sys.offlinelog.logcat ture
+log存储在手机系统的路径为：data/local/log
+终端执行：
+adb pull /data/local/log
+将log文件拉取到本地进行查看。
+开关关闭，则是将ture更改为false即可。
+方法2：
+手机拨号界面输入：*#*#6335463#*#*
+分别将"kernel log"和"Logcat log"勾选即可，关闭时则将勾掉即可。
+注：
+确定offlinelog是否已经关闭，用过以下方法进行查询：
+终端执行：
+adb shell
+getprop | grep offlinelog
+显示：
+[persist.sys.offlinelog.kernel]: [false]
+[persist.sys.offlinelog.logcat]: [false]
+```
+
+
+
+
+
+# Plantuml
+
+java -DPLANTUML_LIMIT_SIZE=8192 -jar E:\Soft\plantuml.jar -charset UTF-8 .\init.puml
