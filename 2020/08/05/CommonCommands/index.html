@@ -28,7 +28,7 @@
 <meta property="og:description" content="记录一下常用的命令和设置">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-05T08:19:59.048Z">
-<meta property="article:modified_time" content="2020-08-13T07:01:45.189Z">
+<meta property="article:modified_time" content="2020-09-14T02:58:39.908Z">
 <meta property="article:author" content="Phoenix">
 <meta property="article:tag" content="backup">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-13 15:01:45" itemprop="dateModified" datetime="2020-08-13T15:01:45+08:00">2020-08-13</time>
+                <time title="Modified: 2020-09-14 10:58:39" itemprop="dateModified" datetime="2020-09-14T10:58:39+08:00">2020-09-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,11 +325,16 @@
 </div>
 <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p><code>docker commit -m=&quot;update some&quot; -a=&quot;Phoenix&quot; 4cfd1849b2fe phoenix</code></p>
 <p><code>docker run -t -v /home/mi:/phoenix -u phoenix -i phoenix /bin/bash</code></p>
+<p><code>docker save -o rocketmq.tar rocketmq    ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过&quot;docker images&quot;查看</code></p>
 <h1 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systrace gfx input view wm am sm video camera hal bionic aidl sched irq i2c freq idle sync workq pagecache -b 50960 -o test1304.html</span><br></pre></td></tr></table></figure>
 <ol>
 <li>筛选trace信息</li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HAL3ProcessCaptureResult :|HAL3ProcessCaptureRequest :|ProcessFenceCallback RequestId |ProcessRequest </span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CAMX_TRACE_ASYNC_END_F(CamxLogGroupDRQ, id, &quot;Deferred Node %s RequestId: %d SequenceId %d %s&quot;,</span><br><span class="line">                         pDependency-&gt;pNode-&gt;Name(), pDependency-&gt;requestId, </span><br><span class="line">                         pDependency-&gt;processSequenceId, pDependency-&gt;pNode-&gt;NodeIdentifierString());</span><br></pre></td></tr></table></figure>
+<p><code>debuggerd</code> 可以打印backtrace</p>
+<h1 id="ffmpeg-使用"><a href="#ffmpeg-使用" class="headerlink" title="ffmpeg 使用"></a>ffmpeg 使用</h1><p>ffprobe -show_frames -select_streams V -i ‘.\J11(12.0.1.0.QJKCNXM).mp4’ -print_format xml &gt; 10.xml</p>
+<p>ffpmeg -i</p>
 <h1 id="Qcom-相关"><a href="#Qcom-相关" class="headerlink" title="Qcom 相关"></a>Qcom 相关</h1><ul>
 <li>固定 AF</li>
 </ul>
@@ -351,6 +356,8 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb shell setprop persist.vendor.camera.logPerfInfoMask 0x10000</span><br><span class="line">adb shell setprop persist.vendor.camera.enableFPSLog 1</span><br><span class="line">camxoverridesettings.txt 里enableFPSLog=TRUE</span><br></pre></td></tr></table></figure>
 <p><code>adb logcat |grep -Ei &quot;CalculateResultFPS&quot;</code> 每10秒打印一次log~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">offlinelog的抓取方法</span><br><span class="line">方法1：</span><br><span class="line">需要查看kenerl中的log时，通过以下方法打开log开关：</span><br><span class="line">终端执行：</span><br><span class="line">adb shell setprop persist.sys.offlinelog.kernel ture</span><br><span class="line">adb shell setprop persist.sys.offlinelog.logcat ture</span><br><span class="line">log存储在手机系统的路径为：data&#x2F;local&#x2F;log</span><br><span class="line">终端执行：</span><br><span class="line">adb pull &#x2F;data&#x2F;local&#x2F;log</span><br><span class="line">将log文件拉取到本地进行查看。</span><br><span class="line">开关关闭，则是将ture更改为false即可。</span><br><span class="line">方法2：</span><br><span class="line">手机拨号界面输入：*#*#6335463#*#*</span><br><span class="line">分别将&quot;kernel log&quot;和&quot;Logcat log&quot;勾选即可，关闭时则将勾掉即可。</span><br><span class="line">注：</span><br><span class="line">确定offlinelog是否已经关闭，用过以下方法进行查询：</span><br><span class="line">终端执行：</span><br><span class="line">adb shell</span><br><span class="line">getprop | grep offlinelog</span><br><span class="line">显示：</span><br><span class="line">[persist.sys.offlinelog.kernel]: [false]</span><br><span class="line">[persist.sys.offlinelog.logcat]: [false]</span><br></pre></td></tr></table></figure>
+<h1 id="Plantuml"><a href="#Plantuml" class="headerlink" title="Plantuml"></a>Plantuml</h1><p>java -DPLANTUML_LIMIT_SIZE=8192 -jar E:\Soft\plantuml.jar -charset UTF-8 .\init.puml</p>
 
     </div>
 
@@ -434,7 +441,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Linux 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-%E8%84%9A%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">Shell 脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">Git 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Camera-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">Camera 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MarkDown-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">MarkDown 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Log-%E5%85%B3%E9%94%AE%E4%BD%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">Log 关键位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">7.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android"><span class="nav-number">8.</span> <span class="nav-text">Android</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Qcom-%E7%9B%B8%E5%85%B3"><span class="nav-number">9.</span> <span class="nav-text">Qcom 相关</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">Linux 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell-%E8%84%9A%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">Shell 脚本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git-%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">Git 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Camera-%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">Camera 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MarkDown-%E5%91%BD%E4%BB%A4"><span class="nav-number">5.</span> <span class="nav-text">MarkDown 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Log-%E5%85%B3%E9%94%AE%E4%BD%8D%E7%BD%AE"><span class="nav-number">6.</span> <span class="nav-text">Log 关键位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Docker"><span class="nav-number">7.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android"><span class="nav-number">8.</span> <span class="nav-text">Android</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ffmpeg-%E4%BD%BF%E7%94%A8"><span class="nav-number">9.</span> <span class="nav-text">ffmpeg 使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Qcom-%E7%9B%B8%E5%85%B3"><span class="nav-number">10.</span> <span class="nav-text">Qcom 相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Plantuml"><span class="nav-number">11.</span> <span class="nav-text">Plantuml</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -447,7 +454,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
