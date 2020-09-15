@@ -23,6 +23,16 @@ grep "/\*\*\*/" -rl ./* | xargs sed -i 's//mm-camerasdk///mm-camerasdk-xxx//g'
 
 `string xxx.so`
 
+- git 自动提示
+
+```shell
+source /etc/bash_completion.d/git
+# or
+source /usr/share/bash-completion/completions/git
+```
+
+
+
 # Shell 脚本
 
 - 杀死camera相关进程

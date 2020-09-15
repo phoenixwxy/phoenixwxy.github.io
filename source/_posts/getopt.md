@@ -11,6 +11,10 @@ categories: 编程
 
 原文地址： [https://www.yanbinghu.com/2019/08/17/57486.html](https://link.zhihu.com/?target=https%3A//www.yanbinghu.com/2019/08/17/57486.html)
 
+
+
+<!-- more -->
+
 ## **前言**
 
 我们在Linux用到的命令常常支持很多参数，那么如何写一个程序，也像Linux命令一样支持很多参数呢？有什么什么优雅的处理方法？
