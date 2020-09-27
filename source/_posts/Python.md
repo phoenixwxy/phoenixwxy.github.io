@@ -1,7 +1,7 @@
 ---
 title:  Python学习
 time:  2020-08-13
-tags: learn，program
+tags: [learn,program]
 categories: program
 ---
 
