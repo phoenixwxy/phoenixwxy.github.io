@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="各种输出函数的比较（printf&#x2F;fprintf&#x2F;sprintf&#x2F;snprintf&#x2F;vprintf&#x2F;vfprintf&#x2F;vsprintf&#x2F;vsnprintf）首先列出全部的函数申明，以供参考。 12345678910111213#include &lt;stdio.h&gt;int printf(const char *format, ...);int fprintf(FILE *stream, c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输出函数比较">
+<meta property="og:url" content="http://yoursite.com/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/index.html">
+<meta property="og:site_name" content="Phoenix">
+<meta property="og:description" content="各种输出函数的比较（printf&#x2F;fprintf&#x2F;sprintf&#x2F;snprintf&#x2F;vprintf&#x2F;vfprintf&#x2F;vsprintf&#x2F;vsnprintf）首先列出全部的函数申明，以供参考。 12345678910111213#include &lt;stdio.h&gt;int printf(const char *format, ...);int fprintf(FILE *stream, c">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-27T08:50:55.324Z">
+<meta property="article:modified_time" content="2020-09-27T08:54:26.247Z">
+<meta property="article:author" content="Phoenix">
+<meta property="article:tag" content="c,c++,Program">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>输出函数比较 | Phoenix</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoenix</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-博客">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-日历">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日历</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          输出函数比较
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-27 16:50:55 / Modified: 16:54:26" itemprop="dateCreated datePublished" datetime="2020-09-27T16:50:55+08:00">2020-09-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="各种输出函数的比较（printf-fprintf-sprintf-snprintf-vprintf-vfprintf-vsprintf-vsnprintf）"><a href="#各种输出函数的比较（printf-fprintf-sprintf-snprintf-vprintf-vfprintf-vsprintf-vsnprintf）" class="headerlink" title="各种输出函数的比较（printf/fprintf/sprintf/snprintf/vprintf/vfprintf/vsprintf/vsnprintf）"></a>各种输出函数的比较（printf/fprintf/sprintf/snprintf/vprintf/vfprintf/vsprintf/vsnprintf）</h1><p>首先列出全部的函数申明，以供参考。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int printf(const char *format, ...);</span><br><span class="line">int fprintf(FILE *stream, const char *format, ...);</span><br><span class="line">int sprintf(char *str, const char *format, ...);</span><br><span class="line">int snprintf(char *str, size_t size, const char *format, ...);</span><br><span class="line"></span><br><span class="line">#include &lt;stdarg.h&gt;</span><br><span class="line"></span><br><span class="line">int vprintf(const char *format, va_list ap);</span><br><span class="line">int vfprintf(FILE *stream, const char *format, va_list ap);</span><br><span class="line">int vsprintf(char *str, const char *format, va_list ap);</span><br><span class="line">int vsnprintf(char *str, size_t size, const char *format, va_list ap);12345678910111213</span><br></pre></td></tr></table></figure>
+<p>怎么样，是不是看的有点晕？没关系，我们可以先用一个表格来大致区分一下上述这些函数的异同点，就不会那么晕了。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数类型</th>
+<th>输出到设备</th>
+<th>输出到文件</th>
+<th>输出到字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可变参数</td>
+<td>printf</td>
+<td>fprintf</td>
+<td>sprintf、snprintf</td>
+</tr>
+<tr>
+<td>固定参数</td>
+<td>vprintf</td>
+<td>vfprintf</td>
+<td>vsprintf、vsnprintf</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<a id="more"></a>
+<p>OK，下面我们就来逐个进行详细的介绍和比对。</p>
+<p><strong>一、printf和vprintf</strong></p>
+<p>多数情况下使用printf() 。只有当你需要自己写一个printf()那样的专有函数的时候才需要vprintf()。比如你写一个自己专门的错误输出函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">error</span><span class="params">(<span class="keyword">char</span> *fmt, ...)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    va_list args;</span><br><span class="line"></span><br><span class="line">    va_start(args, fmt);</span><br><span class="line">    <span class="comment">// 一些内容</span></span><br><span class="line">    va_end(args);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;<span class="number">1234567891011</span></span><br></pre></td></tr></table></figure>
+<p>应当注意到，你不能转发参数给printf，因为printf是变长参数的，而不是vprintf的单独一个va_list。然而vprintf() 函数, 只取一个合并的va_list 参数, 所以完整的版本是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">error</span><span class="params">(<span class="keyword">char</span> *fmt, ...)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result;</span><br><span class="line">    va_list args;</span><br><span class="line"></span><br><span class="line">    va_start(args, fmt);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;Error: &quot;</span>, <span class="built_in">stderr</span>);</span><br><span class="line"></span><br><span class="line">    result = <span class="built_in">vfprintf</span>(<span class="built_in">stderr</span>, fmt, args);</span><br><span class="line"></span><br><span class="line">    va_end(args);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;<span class="number">123456789101112131415</span></span><br></pre></td></tr></table></figure>
+<p><strong>二、fprintf和vfprintf</strong></p>
+<p>两个函数从声明看，第三个参数有区别，这样就形成了两个函数不同的作用。比如，你要写一个日志函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">log</span><span class="params">(FILE *file, <span class="keyword">const</span> <span class="keyword">char</span>* format, ... )</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    va_list args;</span><br><span class="line"></span><br><span class="line">    va_start (args, format);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(file, <span class="string">&quot;%s: &quot;</span>, getTimestamp());</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vfprintf</span> (file, format, args);      <span class="comment">//在这个地方用vfprintf函数就很合适，因为第三个参数可以直接得到</span></span><br><span class="line"></span><br><span class="line">    va_end (args);</span><br><span class="line">&#125;<span class="number">123456789101112</span></span><br></pre></td></tr></table></figure>
+<p>vfprintf适合参数可变列表传递。</p>
+<p><strong>三、sprintf和vsprintf</strong></p>
+<p>先看一个例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdafx.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> _tmain(<span class="keyword">int</span> argc, _TCHAR* argv[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> *p1=<span class="string">&quot;China&quot;</span>;</span><br><span class="line">    <span class="keyword">char</span>  a[<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">sprintf</span>(a,<span class="string">&quot;%s&quot;</span>,p1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,a);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span>(a));</span><br><span class="line">    <span class="built_in">snprintf</span>(a,<span class="number">3</span>,<span class="string">&quot;%s&quot;</span>,p1);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="built_in">strlen</span>(a));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;<span class="number">123456789101112131415161718</span></span><br></pre></td></tr></table></figure>
+<p>结果输出：</p>
+<blockquote>
+<p>China<br>Chi<br>3</p>
+</blockquote>
+<p>过程分析：<br>sprintf(a,”%s”,p1) 把p1字符串拷贝到数组a中(‘\0’也拷贝过去了)。<br>snprintf(a,3,”%s”,p1) 拷贝P1中前3个字符到数组a中，并在末尾自动添加’\0’。</p>
+<p>sprintf属于I/O库函数，snprintf函数并不是标准c/c++中规定的函数，但是在许多编译器中，厂商提供了其实现的版本。在gcc中，该函数名称就snprintf，而在VC中称为_snprintf。 如果你在VC中使用snprintf（），会提示此函数未声明，改成_snprintf（）即可。</p>
+<p>注意点：<br>1 sprintf是一个不安全函数，src串的长度应该小于dest缓冲区的大小，（如果src串的长度大于或等于dest缓冲区的大小，将会出现内存溢出。）<br>2 snprintf中源串长度应该小于目标dest缓冲区的大小，且size等于目标dest缓冲区的大小。（如果源串长度大于或等于目标dest缓冲区的大小，且size等于目标dest缓冲区的大小，则只会拷贝目标dest缓冲区的大小减1个字符，后加’\0’；该情况下，如果size大于目标dest缓冲区的大小则溢出。）<br>3 snprintf ()函数返回值问题, 如果输出因为size的限制而被截断，返回值将是“如果有足够空间存储，所应能输出的字符数(不包括字符串结尾的’\0’)”，这个值和size相等或者比size大！也就是说，如果可以写入的字符串是”0123456789ABCDEF”共16位，但是size限制了是10，这样 snprintf() 的返回值将会是16 而不是10！</p>
+<p><strong>四、snprintf和vsnprintf</strong></p>
+<p>同样来看一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> snprintf _snprintf  </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">10</span>] = &#123;<span class="number">0</span>&#125;;  </span><br><span class="line">    <span class="keyword">char</span> *data = <span class="string">&quot;abcdefg&quot;</span>;  </span><br><span class="line">    <span class="built_in">sprintf</span>(str, <span class="string">&quot;debug : %s&quot;</span>, data);  </span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="built_in">endl</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;   <span class="number">1234567891011121314</span></span><br></pre></td></tr></table></figure>
+<p>该程序可以编译过，但是在运行期间会崩溃，原因相信大家都能看的出来。那么，应该如何处理呢？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;  </span><br><span class="line">#include &lt;cstring&gt;  </span><br><span class="line">#define snprintf _snprintf  </span><br><span class="line">using namespace std;  </span><br><span class="line"></span><br><span class="line">int main()  </span><br><span class="line">&#123;  </span><br><span class="line">    char str[10] &#x3D; &#123;0&#125;;  </span><br><span class="line">    char *data &#x3D; &quot;abcdefg&quot;;  </span><br><span class="line">    snprintf(str, sizeof(str) - 1, &quot;debug : %s&quot;, data);  </span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; str &lt;&lt; endl;  </span><br><span class="line">    return 0;  </span><br><span class="line">&#125;  1234567891011121314</span><br></pre></td></tr></table></figure>
+<p>这样就安全了，和strncpy非常类似。</p>
+<p>另外，需要特别注意的是： Windows和Linux中的snprintf函数有区别, 在linux代码中，经常见到snprintf(str, sizeof(str), “…”)这样的用法， 为什么这里不是sizof(str) - 1呢？</p>
+<p>我们看看Windows下这么用会怎样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;  </span><br><span class="line">#include &lt;cstring&gt;  </span><br><span class="line">#define snprintf _snprintf  </span><br><span class="line">using namespace std;  </span><br><span class="line"></span><br><span class="line">int main()  </span><br><span class="line">&#123;  </span><br><span class="line">    char str[10] &#x3D; &#123;0&#125;;  </span><br><span class="line">    char *data &#x3D; &quot;abcdefgddddddddddddddddddddd&quot;;  </span><br><span class="line">    snprintf(str, sizeof(str), &quot;debug : %s&quot;, data);  </span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; str &lt;&lt; endl;  </span><br><span class="line">    return 0;  </span><br><span class="line">&#125;  1234567891011121314</span><br></pre></td></tr></table></figure>
+<p>我运行的时候，程序没有崩溃，算是万幸。 但结果乱码。看来，没有自动在str最后加’\0’, 在linux中， 就安全了， 会自动补哈， 所以永远不会越界。</p>
+<p>总结一下：</p>
+<ol>
+<li>Linux中, 对于snprintf, 用sizeof(str), 最后会自动加’\0’, 比strncpy更安全省事。</li>
+<li>Windows中, 就把snprintf和strncpy理解为类似的， 要用sizeof(str) - 1, 需要注意最后的’\0’, 当然啦，你可以在每次用strncpy之前，利用memset将串清零, 这样比较好。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/c-c-Program/" rel="tag"># c,c++,Program</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/31/getopt/" rel="prev" title="getopt">
+      <i class="fa fa-chevron-left"></i> getopt
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E7%9A%84%E6%AF%94%E8%BE%83%EF%BC%88printf-fprintf-sprintf-snprintf-vprintf-vfprintf-vsprintf-vsnprintf%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">各种输出函数的比较（printf&#x2F;fprintf&#x2F;sprintf&#x2F;snprintf&#x2F;vprintf&#x2F;vfprintf&#x2F;vsprintf&#x2F;vsnprintf）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Phoenix</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoenix</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
