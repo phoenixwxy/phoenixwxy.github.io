@@ -20,28 +20,35 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Phoenix">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="string 类是 STL 中 basic_string 模板实例化得到的模板类。其定义如下： typedef basic_string  string; basic_string 此处可以不必深究。 string 类的成员函数有很多，同一个名字的函数也常会有五六个重载的版本。篇幅所限，不能将这些原型一一列出并加以解释。这里仅对常用成员函数按功能进行分类，并直接给出应用的例子，通过例子，读者可以基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String">
+<meta property="og:url" content="http://yoursite.com/2020/09/27/C++%20string/index.html">
 <meta property="og:site_name" content="Phoenix">
+<meta property="og:description" content="string 类是 STL 中 basic_string 模板实例化得到的模板类。其定义如下： typedef basic_string  string; basic_string 此处可以不必深究。 string 类的成员函数有很多，同一个名字的函数也常会有五六个重载的版本。篇幅所限，不能将这些原型一一列出并加以解释。这里仅对常用成员函数按功能进行分类，并直接给出应用的例子，通过例子，读者可以基">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-27T09:08:21.509Z">
+<meta property="article:modified_time" content="2020-09-27T09:09:44.742Z">
 <meta property="article:author" content="Phoenix">
+<meta property="article:tag" content="learn">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="c++">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/09/27/C++%20string/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Phoenix</title>
+  <title>String | Phoenix</title>
   
 
 
@@ -159,9 +166,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -177,10 +185,9 @@
       <meta itemprop="name" content="Phoenix">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/27/C++%20string/" class="post-title-link" itemprop="url">String</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          String
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -213,7 +220,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>string 类是 <a target="_blank" rel="noopener" href="http://c.biancheng.net/stl/">STL</a> 中 basic_string 模板实例化得到的模板类。其定义如下：</p>
+        <p>string 类是 <a target="_blank" rel="noopener" href="http://c.biancheng.net/stl/">STL</a> 中 basic_string 模板实例化得到的模板类。其定义如下：</p>
 <p>typedef basic_string <char> string;</p>
 <p>basic_string 此处可以不必深究。</p>
 <p>string 类的成员函数有很多，同一个名字的函数也常会有五六个重载的版本。篇幅所限，不能将这些原型一一列出并加以解释。这里仅对常用成员函数按功能进行分类，并直接给出应用的例子，通过例子，读者可以基本掌握这些成员函数的用法。</p>
@@ -270,601 +277,35 @@
 <p>第 12 行，将变量的值输出到流 ostrStream。输出结果不会出现在屏幕上，而是被保存在 ostrStream 对象管理的某处。用 ostringstream 类的 str 成员函数能将输出到 ostringstream 对象中的内容提取出来。</p>
 <h2 id="13-用-STL-算法操作-string-对象"><a href="#13-用-STL-算法操作-string-对象" class="headerlink" title="13. 用 STL 算法操作 string 对象"></a>13. 用 STL 算法操作 string 对象</h2><p>string 对象也可以看作一个顺序容器，它支持随机访问迭代器，也有 begin 和 end 等成员函数。STL 中的许多算法也适用于 string 对象。下面是用 STL 算法操作 string 对象的程序示例。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">纯文本复制</span><br><span class="line">#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;string&gt;using namespace std;int main()&#123;    string s(&quot;afgcbed&quot;);    string::iterator p &#x3D; find(s.begin(), s.end(), &#39;c&#39;);    if (p!&#x3D; s.end())        cout &lt;&lt; p - s.begin() &lt;&lt; endl;  &#x2F;&#x2F;输出 3    sort(s.begin(), s.end());    cout &lt;&lt; s &lt;&lt; endl;  &#x2F;&#x2F;输出 abcdefg    next_permutation(s.begin(), s.end());    cout &lt;&lt; s &lt;&lt; endl; &#x2F;&#x2F;输出 abcdegf    return 0;&#125;</span><br></pre></td></tr></table></figure>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/learn/" rel="tag"># learn</a>
+              <a href="/tags/Program/" rel="tag"># Program</a>
+              <a href="/tags/c/" rel="tag"># c++</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">输出函数比较</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-09-27 16:50:55 / Modified: 17:02:57" itemprop="dateCreated datePublished" datetime="2020-09-27T16:50:55+08:00">2020-09-27</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="各种输出函数的比较（printf-fprintf-sprintf-snprintf-vprintf-vfprintf-vsprintf-vsnprintf）"><a href="#各种输出函数的比较（printf-fprintf-sprintf-snprintf-vprintf-vfprintf-vsprintf-vsnprintf）" class="headerlink" title="各种输出函数的比较（printf/fprintf/sprintf/snprintf/vprintf/vfprintf/vsprintf/vsnprintf）"></a>各种输出函数的比较（printf/fprintf/sprintf/snprintf/vprintf/vfprintf/vsprintf/vsnprintf）</h1><p>首先列出全部的函数申明，以供参考。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int printf(const char *format, ...);</span><br><span class="line">int fprintf(FILE *stream, const char *format, ...);</span><br><span class="line">int sprintf(char *str, const char *format, ...);</span><br><span class="line">int snprintf(char *str, size_t size, const char *format, ...);</span><br><span class="line"></span><br><span class="line">#include &lt;stdarg.h&gt;</span><br><span class="line"></span><br><span class="line">int vprintf(const char *format, va_list ap);</span><br><span class="line">int vfprintf(FILE *stream, const char *format, va_list ap);</span><br><span class="line">int vsprintf(char *str, const char *format, va_list ap);</span><br><span class="line">int vsnprintf(char *str, size_t size, const char *format, va_list ap);12345678910111213</span><br></pre></td></tr></table></figure>
-<p>怎么样，是不是看的有点晕？没关系，我们可以先用一个表格来大致区分一下上述这些函数的异同点，就不会那么晕了。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>参数类型</th>
-<th>输出到设备</th>
-<th>输出到文件</th>
-<th>输出到字符串</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>可变参数</td>
-<td>printf</td>
-<td>fprintf</td>
-<td>sprintf、snprintf</td>
-</tr>
-<tr>
-<td>固定参数</td>
-<td>vprintf</td>
-<td>vfprintf</td>
-<td>vsprintf、vsnprintf</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/31/getopt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/31/getopt/" class="post-title-link" itemprop="url">getopt</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-31 20:38:25" itemprop="dateCreated datePublished" datetime="2020-08-31T20:38:25+08:00">2020-08-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-15 14:35:44" itemprop="dateModified" datetime="2020-09-15T14:35:44+08:00">2020-09-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="如何优雅地处理命令行参数？"><a href="#如何优雅地处理命令行参数？" class="headerlink" title="如何优雅地处理命令行参数？"></a>如何优雅地处理命令行参数？</h1><p>原文地址： <a href="https://link.zhihu.com/?target=https%3A//www.yanbinghu.com/2019/08/17/57486.html">https://www.yanbinghu.com/2019/08/17/57486.html</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/31/getopt/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/" rel="prev" title="输出函数比较">
+      <i class="fa fa-chevron-left"></i> 输出函数比较
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/regex/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/13/regex/" class="post-title-link" itemprop="url">Regex 正则表达式</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-13 15:53:47" itemprop="dateCreated datePublished" datetime="2020-08-13T15:53:47+08:00">2020-08-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-27 17:05:15" itemprop="dateModified" datetime="2020-09-27T17:05:15+08:00">2020-09-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/program/" itemprop="url" rel="index"><span itemprop="name">program</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Regex-正则表达式"><a href="#Regex-正则表达式" class="headerlink" title="Regex 正则表达式"></a>Regex 正则表达式</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/13/regex/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/Python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/13/Python/" class="post-title-link" itemprop="url">Python学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-13 11:13:20" itemprop="dateCreated datePublished" datetime="2020-08-13T11:13:20+08:00">2020-08-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-27 17:05:08" itemprop="dateModified" datetime="2020-09-27T17:05:08+08:00">2020-09-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/program/" itemprop="url" rel="index"><span itemprop="name">program</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>一种解释性编程语言</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/13/Python/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Calculator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/Calculator/" class="post-title-link" itemprop="url">Calculator</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-05 17:35:47" itemprop="dateCreated datePublished" datetime="2020-08-05T17:35:47+08:00">2020-08-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-10 15:47:59" itemprop="dateModified" datetime="2020-08-10T15:47:59+08:00">2020-08-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Calculator"><a href="#Calculator" class="headerlink" title="Calculator"></a>Calculator</h1><p>使用C语言实现计算器，最初版本可能会比较简单和幼稚，需要持续更新迭代</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/05/Calculator/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/CommonCommands/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/CommonCommands/" class="post-title-link" itemprop="url">常用命令备份</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-05 16:19:59" itemprop="dateCreated datePublished" datetime="2020-08-05T16:19:59+08:00">2020-08-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-16 17:55:55" itemprop="dateModified" datetime="2020-09-16T17:55:55+08:00">2020-09-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9F%A5%E8%AF%A2/" itemprop="url" rel="index"><span itemprop="name">查询</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>记录一下常用的命令和设置</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/05/CommonCommands/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Hexo-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/Hexo-blog/" class="post-title-link" itemprop="url">Hexo-Blog 搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-05 16:19:59 / Modified: 17:29:08" itemprop="dateCreated datePublished" datetime="2020-08-05T16:19:59+08:00">2020-08-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h2><p>Node.js是基于Chrome V8引擎的JavaScript运行环境，npm是随Node.js一起安装的包管理工具，新版的Node.js集成了npm。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure></p>
-<p>检查版本：<code>node -v, npm -v</code>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/05/Hexo-blog/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -917,6 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">1. 构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%AF%B9-string-%E5%AF%B9%E8%B1%A1%E8%B5%8B%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">2. 对 string 对象赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%B1%82%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="nav-number">3.</span> <span class="nav-text">3. 求字符串的长度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-string%E5%AF%B9%E8%B1%A1%E4%B8%AD%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">4. string对象中字符串的连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-string%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">5.</span> <span class="nav-text">5. string对象的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%B1%82-string-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AD%90%E4%B8%B2"><span class="nav-number">6.</span> <span class="nav-text">6. 求 string 对象的子串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E4%BA%A4%E6%8D%A2%E4%B8%A4%E4%B8%AAstring%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">7.</span> <span class="nav-text">7. 交换两个string对象的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2%E5%92%8C%E5%AD%97%E7%AC%A6"><span class="nav-number">8.</span> <span class="nav-text">8. 查找子串和字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%9B%BF%E6%8D%A2%E5%AD%90%E4%B8%B2"><span class="nav-number">9.</span> <span class="nav-text">9. 替换子串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%88%A0%E9%99%A4%E5%AD%90%E4%B8%B2"><span class="nav-number">10.</span> <span class="nav-text">10. 删除子串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E6%8F%92%E5%85%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">11.</span> <span class="nav-text">11. 插入字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%B0%86-string-%E5%AF%B9%E8%B1%A1%E4%BD%9C%E4%B8%BA%E6%B5%81%E5%A4%84%E7%90%86"><span class="nav-number">12.</span> <span class="nav-text">12. 将 string 对象作为流处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E7%94%A8-STL-%E7%AE%97%E6%B3%95%E6%93%8D%E4%BD%9C-string-%E5%AF%B9%E8%B1%A1"><span class="nav-number">13.</span> <span class="nav-text">13. 用 STL 算法操作 string 对象</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
