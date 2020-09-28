@@ -28,7 +28,7 @@
 <meta property="og:description" content="记录一下常用的命令和设置">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-05T08:19:59.048Z">
-<meta property="article:modified_time" content="2020-09-16T09:55:55.644Z">
+<meta property="article:modified_time" content="2020-09-28T07:12:09.510Z">
 <meta property="article:author" content="Phoenix">
 <meta property="article:tag" content="backup">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-16 17:55:55" itemprop="dateModified" datetime="2020-09-16T17:55:55+08:00">2020-09-16</time>
+                <time title="Modified: 2020-09-28 15:12:09" itemprop="dateModified" datetime="2020-09-28T15:12:09+08:00">2020-09-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,6 +242,10 @@
 <li>git 自动提示</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source /etc/bash_completion.d/git</span><br><span class="line"><span class="meta">#</span><span class="bash"> or</span></span><br><span class="line">source /usr/share/bash-completion/completions/git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>udev设置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SUBSYSTEM&#x3D;&#x3D;&quot;usb&quot;, ENV&#123;DEVTYPE&#125;&#x3D;&#x3D;&quot;usb_device&quot;, MODE&#x3D;&quot;0666&quot;</span><br></pre></td></tr></table></figure>
 <h1 id="Shell-脚本"><a href="#Shell-脚本" class="headerlink" title="Shell 脚本"></a>Shell 脚本</h1><ul>
 <li>杀死camera相关进程</li>
 </ul>
