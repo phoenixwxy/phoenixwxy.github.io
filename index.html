@@ -165,6 +165,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/28/c++%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/28/c++%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" class="post-title-link" itemprop="url">c++进制转换</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-28 14:16:44 / Modified: 14:21:57" itemprop="dateCreated datePublished" datetime="2020-09-28T14:16:44+08:00">2020-09-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/" itemprop="url" rel="index"><span itemprop="name">program</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h1 id="十进制和二进制相互转换"><a href="#十进制和二进制相互转换" class="headerlink" title="十进制和二进制相互转换"></a>十进制和二进制相互转换</h1><p><strong>（1）十进制转二进制</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 10;</span><br><span class="line">bitset&lt;10&gt; bit(a);</span><br><span class="line">cout &lt;&lt; bit &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：0000001010</span><br></pre></td></tr></table></figure>
+<p><strong>（2）二进制转十进制</strong></p>
+<p>   第一种方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;10&gt; bit(&quot;010101&quot;);</span><br><span class="line">int a &#x3D; bit.to_ullong(); &#x2F;&#x2F;这里为unsigned long long</span><br><span class="line">cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：21</span><br></pre></td></tr></table></figure>
+<p>  第二种方法： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string out &#x3D; &quot;0101&quot;;</span><br><span class="line">int x &#x3D; stoi(out, nullptr, 2);</span><br><span class="line">cout &lt;&lt; x &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：5</span><br></pre></td></tr></table></figure>
+<h1 id="字符串和二进制相互转换"><a href="#字符串和二进制相互转换" class="headerlink" title="字符串和二进制相互转换"></a>字符串和二进制相互转换</h1><p><strong>（1）二进制转字符串</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;10&gt; bit(&quot;010101&quot;);</span><br><span class="line">string str &#x3D; bit.to_string();</span><br><span class="line">cout &lt;&lt; str &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：0000010101</span><br></pre></td></tr></table></figure>
+<p><strong>（2）字符串转二进制</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string str &#x3D; &quot;010101&quot;;</span><br><span class="line">bitset&lt;10&gt; bit(str);    </span><br><span class="line">cout &lt;&lt; bit &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：0000010101</span><br></pre></td></tr></table></figure>
+<h1 id="字符串和十进制相互转换"><a href="#字符串和十进制相互转换" class="headerlink" title="字符串和十进制相互转换"></a>字符串和十进制相互转换</h1><p><strong>（1）十进制转字符串</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 345;</span><br><span class="line">string str &#x3D; to_string(a);</span><br><span class="line">cout &lt;&lt;str &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：345</span><br></pre></td></tr></table></figure>
+<p><strong>（2）字符串转十进制</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string str &#x3D; &quot;3456&quot;;</span><br><span class="line">int a &#x3D; stoi(str);</span><br><span class="line">cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：3456</span><br></pre></td></tr></table></figure>
+<h1 id="十进制和十六进制相互转换"><a href="#十进制和十六进制相互转换" class="headerlink" title="十进制和十六进制相互转换"></a>十进制和十六进制相互转换</h1><p><strong>（1）十六进制转十进制</strong></p>
+<p>  第一种方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sstream&gt;</span><br><span class="line">int x;</span><br><span class="line">stringstream ss;</span><br><span class="line">ss &lt;&lt; std::hex &lt;&lt; &quot;1A&quot;;  &#x2F;&#x2F;std::oct（八进制）、std::dec（十进制）</span><br><span class="line">ss &gt;&gt; x;</span><br><span class="line">cout &lt;&lt; x&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：26</span><br></pre></td></tr></table></figure>
+<p>  第二种方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string out &#x3D; &quot;1A&quot;;</span><br><span class="line">int x &#x3D; stoi(out, nullptr, 16);</span><br><span class="line">cout &lt;&lt; x &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：26</span><br></pre></td></tr></table></figure>
+<p> <strong>（2）十进制转十六进制</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int x &#x3D; 26 ;</span><br><span class="line">string out;</span><br><span class="line">stringstream ss;</span><br><span class="line">ss &lt;&lt; std::hex &lt;&lt;x;</span><br><span class="line">ss &gt;&gt; out ;</span><br><span class="line">transform(out.begin(), out.end(), out.begin(), ::toupper);</span><br><span class="line">cout &lt;&lt; out &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：1A</span><br></pre></td></tr></table></figure>
+<h1 id="二进制和十六进制"><a href="#二进制和十六进制" class="headerlink" title="二进制和十六进制"></a><strong>二进制和十六进制</strong></h1><p><strong>（1）二进制转十六进制</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">string binary &#x3D; &quot;11010101&quot;;</span><br><span class="line">string hex;</span><br><span class="line">stringstream ss;</span><br><span class="line">ss &lt;&lt; std::hex &lt;&lt; stoi(binary, nullptr, 2);</span><br><span class="line">ss &gt;&gt; hex;</span><br><span class="line">transform(hex.begin(), hex.end(), hex.begin(), ::toupper);</span><br><span class="line">cout &lt;&lt; hex &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：D5</span><br></pre></td></tr></table></figure>
+<p><strong>（2）十六进制转二进制</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string binary &#x3D; &quot;D5&quot;;</span><br><span class="line">bitset&lt;8&gt; bit(stoi(binary, nullptr, 16));</span><br><span class="line">cout &lt;&lt; bit &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：11010101</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/C++%20string/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -188,10 +282,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-09-27 17:08:21 / Modified: 17:09:44" itemprop="dateCreated datePublished" datetime="2020-09-27T17:08:21+08:00">2020-09-27</time>
+              <time title="Created: 2020-09-27 17:08:21" itemprop="dateCreated datePublished" datetime="2020-09-27T17:08:21+08:00">2020-09-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-28 14:21:51" itemprop="dateModified" datetime="2020-09-28T14:21:51+08:00">2020-09-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -218,58 +318,14 @@
 <p>basic_string 此处可以不必深究。</p>
 <p>string 类的成员函数有很多，同一个名字的函数也常会有五六个重载的版本。篇幅所限，不能将这些原型一一列出并加以解释。这里仅对常用成员函数按功能进行分类，并直接给出应用的例子，通过例子，读者可以基本掌握这些成员函数的用法。</p>
 <p>要想更深入地了解 string 类，还要阅读 <a target="_blank" rel="noopener" href="http://c.biancheng.net/cplus/">C++</a> 的参考手册或编译器自带的联机资料。对于前面介绍过的字符串处理的内容，这里不再重复说明。</p>
-<h2 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1. 构造函数"></a>1. 构造函数</h2><p>string 类有多个构造函数，用法示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1();  &#x2F;&#x2F; si &#x3D; &quot;&quot;string s2(&quot;Hello&quot;);  &#x2F;&#x2F; s2 &#x3D; &quot;Hello&quot;string s3(4, &#39;K&#39;);  &#x2F;&#x2F; s3 &#x3D; &quot;KKKK&quot;string s4(&quot;12345&quot;, 1, 3);  &#x2F;&#x2F;s4 &#x3D; &quot;234&quot;，即 &quot;12345&quot; 的从下标 1 开始，长度为 3 的子串</span><br></pre></td></tr></table></figure>
-<p>为称呼方便，本教程后文将从字符串下标 n 开始、长度为 m 的字符串称为“子串(n, m)”。</p>
-<p>string 类没有接收一个整型参数或一个字符型参数的构造函数。下面的两种写法是错误的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&#39;K&#39;);string s2(123);</span><br></pre></td></tr></table></figure>
-<h2 id="2-对-string-对象赋值"><a href="#2-对-string-对象赋值" class="headerlink" title="2. 对 string 对象赋值"></a>2. 对 string 对象赋值</h2><p>可以用 char* 类型的变量、常量，以及 char 类型的变量、常量对 string 对象进行赋值。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1;s1 &#x3D; &quot;Hello&quot;;  &#x2F;&#x2F; s1 &#x3D; &quot;Hello&quot;s2 &#x3D; &#39;K&#39;;  &#x2F;&#x2F; s2 &#x3D; &quot;K”</span><br></pre></td></tr></table></figure>
-<p>string 类还有 assign 成员函数，可以用来对 string 对象赋值。assign 成员函数返回对象自身的引用。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;12345&quot;), s2;s3.assign(s1);  &#x2F;&#x2F; s3 &#x3D; s1s2.assign(s1, 1, 2);  &#x2F;&#x2F; s2 &#x3D; &quot;23&quot;，即 s1 的子串(1, 2)s2.assign(4, &#39;K&#39;);  &#x2F;&#x2F; s2 &#x3D; &quot;KKKK&quot;s2.assign(&quot;abcde&quot;, 2, 3);  &#x2F;&#x2F; s2 &#x3D; &quot;cde&quot;，即 &quot;abcde&quot; 的子串(2, 3)</span><br></pre></td></tr></table></figure>
-<h2 id="3-求字符串的长度"><a href="#3-求字符串的长度" class="headerlink" title="3. 求字符串的长度"></a>3. 求字符串的长度</h2><p>length 成员函数返回字符串的长度。size 成员函数可以实现同样的功能。</p>
-<h2 id="4-string对象中字符串的连接"><a href="#4-string对象中字符串的连接" class="headerlink" title="4. string对象中字符串的连接"></a>4. string对象中字符串的连接</h2><p>除了可以使用<code>+</code>和<code>+=</code>运算符对 string 对象执行字符串的连接操作外，string 类还有 append 成员函数，可以用来向字符串后面添加内容。append 成员函数返回对象自身的引用。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;123&quot;), s2(&quot;abc&quot;);s1.append(s2);  &#x2F;&#x2F; s1 &#x3D; &quot;123abc&quot;s1.append(s2, 1, 2);  &#x2F;&#x2F; s1 &#x3D; &quot;123abcbc&quot;s1.append(3, &#39;K&#39;);  &#x2F;&#x2F; s1 &#x3D; &quot;123abcbcKKK&quot;s1.append(&quot;ABCDE&quot;, 2, 3);  &#x2F;&#x2F; s1 &#x3D; &quot;123abcbcKKKCDE&quot;，添加 &quot;ABCDE&quot; 的子串(2, 3)</span><br></pre></td></tr></table></figure>
-<h2 id="5-string对象的比较"><a href="#5-string对象的比较" class="headerlink" title="5. string对象的比较"></a>5. string对象的比较</h2><p>除了可以用 &lt;、&lt;=、==、!=、&gt;=、&gt; 运算符比较 string 对象外，string 类还有 compare 成员函数，可用于比较字符串。compare 成员函数有以下返回值：</p>
-<ul>
-<li>小于 0 表示当前的字符串小；</li>
-<li>等于 0 表示两个字符串相等；</li>
-<li>大于 0 表示另一个字符串小。</li>
-</ul>
-<p>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;hello&quot;), s2(&quot;hello, world&quot;);int n &#x3D; s1.compare(s2);n &#x3D; s1.compare(1, 2, s2, 0, 3);  &#x2F;&#x2F;比较s1的子串 (1,2) 和s2的子串 (0,3)n &#x3D; s1.compare(0, 2, s2);  &#x2F;&#x2F; 比较s1的子串 (0,2) 和 s2n &#x3D; s1.compare(&quot;Hello&quot;);n &#x3D; s1.compare(1, 2, &quot;Hello&quot;);  &#x2F;&#x2F;比较 s1 的子串(1,2)和&quot;Hello”n &#x3D; s1.compare(1, 2, &quot;Hello&quot;, 1, 2);  &#x2F;&#x2F;比较 s1 的子串(1,2)和 &quot;Hello&quot; 的子串(1,2)</span><br></pre></td></tr></table></figure>
-<h2 id="6-求-string-对象的子串"><a href="#6-求-string-对象的子串" class="headerlink" title="6. 求 string 对象的子串"></a>6. 求 string 对象的子串</h2><p>substr 成员函数可以用于求子串 (n, m)，原型如下：</p>
-<p>string substr(int n = 0, int m = string::npos) const;</p>
-<p>调用时，如果省略 m 或 m 超过了字符串的长度，则求出来的子串就是从下标 n 开始一直到字符串结束的部分。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1 &#x3D; &quot;this is ok&quot;;string s2 &#x3D; s1.substr(2, 4);  &#x2F;&#x2F; s2 &#x3D; &quot;is i&quot;s2 &#x3D; s1.substr(2);  &#x2F;&#x2F; s2 &#x3D; &quot;is is ok&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="7-交换两个string对象的内容"><a href="#7-交换两个string对象的内容" class="headerlink" title="7. 交换两个string对象的内容"></a>7. 交换两个string对象的内容</h2><p>swap 成员函数可以交换两个 string 对象的内容。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;West”), s2(&quot;East&quot;);s1.swap(s2);  &#x2F;&#x2F; s1 &#x3D; &quot;East&quot;，s2 &#x3D; &quot;West&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="8-查找子串和字符"><a href="#8-查找子串和字符" class="headerlink" title="8. 查找子串和字符"></a>8. 查找子串和字符</h2><p>string 类有一些查找子串和字符的成员函数，它们的返回值都是子串或字符在 string 对象字符串中的位置（即下标）。如果查不到，则返回 string::npos。string: :npos 是在 string 类中定义的一个静态常量。这些函数如下：</p>
-<ul>
-<li>find：从前往后查找子串或字符出现的位置。</li>
-<li>rfind：从后往前查找子串或字符出现的位置。</li>
-<li>find_first_of：从前往后查找何处出现另一个字符串中包含的字符。例如：</li>
-<li>s1.find_first_of(“abc”); //查找s1中第一次出现”abc”中任一字符的位置</li>
-<li>find_last_of：从后往前查找何处出现另一个字符串中包含的字符。</li>
-<li>find_first_not_of：从前往后查找何处出现另一个字符串中没有包含的字符。</li>
-<li>find_last_not_of：从后往前查找何处出现另一个字符串中没有包含的字符。</li>
-</ul>
-<p>下面是 string 类的查找成员函数的示例程序。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;int main()&#123;    string s1(&quot;Source Code&quot;);    int n;    if ((n &#x3D; s1.find(&#39;u&#39;)) !&#x3D; string::npos) &#x2F;&#x2F;查找 u 出现的位置        cout &lt;&lt; &quot;1) &quot; &lt;&lt; n &lt;&lt; &quot;,&quot; &lt;&lt; s1.substr(n) &lt;&lt; endl;    &#x2F;&#x2F;输出 l)2,urce Code    if ((n &#x3D; s1.find(&quot;Source&quot;, 3)) &#x3D;&#x3D; string::npos)        &#x2F;&#x2F;从下标3开始查找&quot;Source&quot;，找不到        cout &lt;&lt; &quot;2) &quot; &lt;&lt; &quot;Not Found&quot; &lt;&lt; endl;  &#x2F;&#x2F;输出 2) Not Found    if ((n &#x3D; s1.find(&quot;Co&quot;)) !&#x3D; string::npos)        &#x2F;&#x2F;查找子串&quot;Co&quot;。能找到，返回&quot;Co&quot;的位置        cout &lt;&lt; &quot;3) &quot; &lt;&lt; n &lt;&lt; &quot;, &quot; &lt;&lt; s1.substr(n) &lt;&lt; endl;    &#x2F;&#x2F;输出 3) 7, Code    if ((n &#x3D; s1.find_first_of(&quot;ceo&quot;)) !&#x3D; string::npos)        &#x2F;&#x2F;查找第一次出现或 &#39;c&#39;、&#39;e&#39;或&#39;o&#39;的位置        cout &lt;&lt; &quot;4) &quot; &lt;&lt; n &lt;&lt; &quot;, &quot; &lt;&lt; s1.substr(n) &lt;&lt; endl;    &#x2F;&#x2F;输出 4) l, ource Code    if ((n &#x3D; s1.find_last_of(&#39;e&#39;)) !&#x3D; string::npos)        &#x2F;&#x2F;查找最后一个 &#39;e&#39; 的位置        cout &lt;&lt; &quot;5) &quot; &lt;&lt; n &lt;&lt; &quot;, &quot; &lt;&lt; s1.substr(n) &lt;&lt; endl;  &#x2F;&#x2F;输出 5) 10, e    if ((n &#x3D; s1.find_first_not_of(&quot;eou&quot;, 1)) !&#x3D; string::npos)        &#x2F;&#x2F;从下标1开始查找第一次出现非 &#39;e&#39;、&#39;o&#39; 或 &#39;u&#39; 字符的位置        cout &lt;&lt; &quot;6) &quot; &lt;&lt; n &lt;&lt; &quot;, &quot; &lt;&lt; s1.substr(n) &lt;&lt; endl;    &#x2F;&#x2F;输出 6) 3, rce Code    return 0;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="9-替换子串"><a href="#9-替换子串" class="headerlink" title="9. 替换子串"></a>9. 替换子串</h2><p>replace 成员函数可以对 string 对象中的子串进行替换，返回值为对象自身的引用。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;Real Steel&quot;);s1.replace(1, 3, &quot;123456&quot;, 2, 4);  &#x2F;&#x2F;用 &quot;123456&quot; 的子串(2,4) 替换 s1 的子串(1,3)cout &lt;&lt; s1 &lt;&lt; endl;  &#x2F;&#x2F;输出 R3456 Steelstring s2(&quot;Harry Potter&quot;);s2.replace(2, 3, 5, &#39;0&#39;);  &#x2F;&#x2F;用 5 个 &#39;0&#39; 替换子串(2,3)cout &lt;&lt; s2 &lt;&lt; endl;  &#x2F;&#x2F;输出 HaOOOOO Potterint n &#x3D; s2.find(&quot;OOOOO&quot;);  &#x2F;&#x2F;查找子串 &quot;00000&quot; 的位置，n&#x3D;2s2.replace(n, 5, &quot;XXX&quot;);  &#x2F;&#x2F;将子串(n,5)替换为&quot;XXX&quot;cout &lt;&lt; s2 &lt; &lt; endl;  &#x2F;&#x2F;输出 HaXXX Potter</span><br></pre></td></tr></table></figure>
-<h2 id="10-删除子串"><a href="#10-删除子串" class="headerlink" title="10. 删除子串"></a>10. 删除子串</h2><p>erase 成员函数可以删除 string 对象中的子串，返回值为对象自身的引用。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;Real Steel&quot;);s1.erase(1, 3);  &#x2F;&#x2F;删除子串(1, 3)，此后 s1 &#x3D; &quot;R Steel&quot;s1.erase(5);  &#x2F;&#x2F;删除下标5及其后面的所有字符，此后 s1 &#x3D; &quot;R Ste&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="11-插入字符串"><a href="#11-插入字符串" class="headerlink" title="11. 插入字符串"></a>11. 插入字符串</h2><p>insert 成员函数可以在 string 对象中插入另一个字符串，返回值为对象自身的引用。例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string s1(&quot;Limitless&quot;), s2(&quot;00&quot;);s1.insert(2, &quot;123&quot;);  &#x2F;&#x2F;在下标 2 处插入字符串&quot;123&quot;，s1 &#x3D; &quot;Li123mitless&quot;s1.insert(3, s2);  &#x2F;&#x2F;在下标 2 处插入 s2 , s1 &#x3D; &quot;Li10023mitless&quot;s1.insert(3, 5, &#39;X&#39;);  &#x2F;&#x2F;在下标 3 处插入 5 个 &#39;X&#39;，s1 &#x3D; &quot;Li1XXXXX0023mitless&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="12-将-string-对象作为流处理"><a href="#12-将-string-对象作为流处理" class="headerlink" title="12. 将 string 对象作为流处理"></a>12. 将 string 对象作为流处理</h2><p>使用流对象 istringstream 和 ostringstream，可以将 string 对象当作一个流进行输入输出。使用这两个类需要包含头文件 sstream。</p>
-<p>示例程序如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;#include &lt;sstream&gt;#include &lt;string&gt;using namespace std;int main()&#123;    string src(&quot;Avatar 123 5.2 Titanic K&quot;);    istringstream istrStream(src); &#x2F;&#x2F;建立src到istrStream的联系    string s1, s2;    int n;  double d;  char c;    istrStream &gt;&gt; s1 &gt;&gt; n &gt;&gt; d &gt;&gt; s2 &gt;&gt; c; &#x2F;&#x2F;把src的内容当做输入流进行读取    ostringstream ostrStream;    ostrStream &lt;&lt; s1 &lt;&lt; endl &lt;&lt; s2 &lt;&lt; endl &lt;&lt; n &lt;&lt; endl &lt;&lt; d &lt;&lt; endl &lt;&lt; c &lt;&lt;endl;    cout &lt;&lt; ostrStream.str();    return 0;&#125;</span><br></pre></td></tr></table></figure>
-<p>程序的输出结果是：<br>Avatar<br>Titanic<br>123<br>5.2<br>K</p>
-<p>第 11 行，从输入流 istrStream 进行读取，过程和从 cin 读取一样，只不过输入的来源由键盘变成了 string 对象 src。因此，”Avatar” 被读取到 s1，123 被读取到 n，5.2 被读取到 d，”Titanic” 被读取到s2，’K’ 被读取到 c。</p>
-<p>第 12 行，将变量的值输出到流 ostrStream。输出结果不会出现在屏幕上，而是被保存在 ostrStream 对象管理的某处。用 ostringstream 类的 str 成员函数能将输出到 ostringstream 对象中的内容提取出来。</p>
-<h2 id="13-用-STL-算法操作-string-对象"><a href="#13-用-STL-算法操作-string-对象" class="headerlink" title="13. 用 STL 算法操作 string 对象"></a>13. 用 STL 算法操作 string 对象</h2><p>string 对象也可以看作一个顺序容器，它支持随机访问迭代器，也有 begin 和 end 等成员函数。STL 中的许多算法也适用于 string 对象。下面是用 STL 算法操作 string 对象的程序示例。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">纯文本复制</span><br><span class="line">#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;string&gt;using namespace std;int main()&#123;    string s(&quot;afgcbed&quot;);    string::iterator p &#x3D; find(s.begin(), s.end(), &#39;c&#39;);    if (p!&#x3D; s.end())        cout &lt;&lt; p - s.begin() &lt;&lt; endl;  &#x2F;&#x2F;输出 3    sort(s.begin(), s.end());    cout &lt;&lt; s &lt;&lt; endl;  &#x2F;&#x2F;输出 abcdefg    next_permutation(s.begin(), s.end());    cout &lt;&lt; s &lt;&lt; endl; &#x2F;&#x2F;输出 abcdegf    return 0;&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/27/C++%20string/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -720,6 +776,73 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Hexo-blog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/05/Hexo-blog/" class="post-title-link" itemprop="url">Hexo-Blog 搭建</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-05 16:19:59 / Modified: 17:29:08" itemprop="dateCreated datePublished" datetime="2020-08-05T16:19:59+08:00">2020-08-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h2><p>Node.js是基于Chrome V8引擎的JavaScript运行环境，npm是随Node.js一起安装的包管理工具，新版的Node.js集成了npm。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure></p>
+<p>检查版本：<code>node -v, npm -v</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/08/05/Hexo-blog/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/CommonCommands/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -778,73 +901,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/08/05/CommonCommands/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Hexo-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/Hexo-blog/" class="post-title-link" itemprop="url">Hexo-Blog 搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-05 16:19:59 / Modified: 17:29:08" itemprop="dateCreated datePublished" datetime="2020-08-05T16:19:59+08:00">2020-08-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h2><p>Node.js是基于Chrome V8引擎的JavaScript运行环境，npm是随Node.js一起安装的包管理工具，新版的Node.js集成了npm。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure></p>
-<p>检查版本：<code>node -v, npm -v</code>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/05/Hexo-blog/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -929,7 +985,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
