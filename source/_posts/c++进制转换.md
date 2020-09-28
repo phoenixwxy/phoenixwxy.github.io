@@ -5,7 +5,7 @@ tags: [learn,Program]
 categories: program
 ---
 
-
+<!-- more -->
 
 # 十进制和二进制相互转换
 
