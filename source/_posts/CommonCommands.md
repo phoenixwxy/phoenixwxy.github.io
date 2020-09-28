@@ -31,6 +31,14 @@ source /etc/bash_completion.d/git
 source /usr/share/bash-completion/completions/git
 ```
 
+- udev设置
+
+```
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", MODE="0666"
+```
+
+
+
 
 
 # Shell 脚本
