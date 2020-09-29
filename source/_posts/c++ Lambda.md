@@ -5,9 +5,11 @@ tags: [learn,Program]
 categories: program
 ---
 
-
+# Lambda 表达式
 
 C++11的一大亮点就是引入了Lambda表达式。利用Lambda表达式，可以方便的定义和创建匿名函数。对于C++这门语言来说来说，“Lambda表达式”或“匿名函数”这些概念听起来好像很深奥，但很多高级语言在很早以前就已经提供了Lambda表达式的功能，如C#，[Python](http://lib.csdn.net/base/11)等。今天，我们就来简单介绍一下C++中Lambda表达式的简单使用。
+
+<!-- more -->
 
 ## **声明Lambda表达式**
 
