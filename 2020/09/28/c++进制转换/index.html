@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="十进制和二进制相互转换（1）十进制转二进制 12345int a &#x3D; 10;bitset&lt;10&gt; bit(a);cout &lt;&lt; bit &lt;&lt; endl;输出：0000001010 （2）二进制转十进制    第一种方法： 12345bitset&lt;10&gt; bit(&quot;010101&quot;);int a &#x3D; bit.to">
+  <meta name="description" content="十进制和二进制相互转换（1）十进制转二进制 12345int a &#x3D; 10;bitset&lt;10&gt; bit(a);cout &lt;&lt; bit &lt;&lt; endl;输出：0000001010 （2）二进制转十进制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++进制转换">
 <meta property="og:url" content="http://yoursite.com/2020/09/28/c++%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/index.html">
 <meta property="og:site_name" content="Phoenix">
-<meta property="og:description" content="十进制和二进制相互转换（1）十进制转二进制 12345int a &#x3D; 10;bitset&lt;10&gt; bit(a);cout &lt;&lt; bit &lt;&lt; endl;输出：0000001010 （2）二进制转十进制    第一种方法： 12345bitset&lt;10&gt; bit(&quot;010101&quot;);int a &#x3D; bit.to">
+<meta property="og:description" content="十进制和二进制相互转换（1）十进制转二进制 12345int a &#x3D; 10;bitset&lt;10&gt; bit(a);cout &lt;&lt; bit &lt;&lt; endl;输出：0000001010 （2）二进制转十进制">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-28T06:16:44.799Z">
-<meta property="article:modified_time" content="2020-09-28T06:21:57.945Z">
+<meta property="article:modified_time" content="2020-10-13T08:48:08.241Z">
 <meta property="article:author" content="Phoenix">
 <meta property="article:tag" content="learn">
 <meta property="article:tag" content="Program">
@@ -194,10 +194,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-09-28 14:16:44 / Modified: 14:21:57" itemprop="dateCreated datePublished" datetime="2020-09-28T14:16:44+08:00">2020-09-28</time>
+              <time title="Created: 2020-09-28 14:16:44" itemprop="dateCreated datePublished" datetime="2020-09-28T14:16:44+08:00">2020-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-13 16:48:08" itemprop="dateModified" datetime="2020-10-13T16:48:08+08:00">2020-10-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -219,10 +225,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <a id="more"></a>
-<h1 id="十进制和二进制相互转换"><a href="#十进制和二进制相互转换" class="headerlink" title="十进制和二进制相互转换"></a>十进制和二进制相互转换</h1><p><strong>（1）十进制转二进制</strong></p>
+        <h1 id="十进制和二进制相互转换"><a href="#十进制和二进制相互转换" class="headerlink" title="十进制和二进制相互转换"></a>十进制和二进制相互转换</h1><p><strong>（1）十进制转二进制</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 10;</span><br><span class="line">bitset&lt;10&gt; bit(a);</span><br><span class="line">cout &lt;&lt; bit &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：0000001010</span><br></pre></td></tr></table></figure>
 <p><strong>（2）二进制转十进制</strong></p>
+<a id="more"></a>
 <p>   第一种方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;10&gt; bit(&quot;010101&quot;);</span><br><span class="line">int a &#x3D; bit.to_ullong(); &#x2F;&#x2F;这里为unsigned long long</span><br><span class="line">cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：21</span><br></pre></td></tr></table></figure>
 <p>  第二种方法： </p>

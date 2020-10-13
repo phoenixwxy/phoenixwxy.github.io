@@ -269,10 +269,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-09-28 14:16:44 / Modified: 14:21:57" itemprop="dateCreated datePublished" datetime="2020-09-28T14:16:44+08:00">2020-09-28</time>
+              <time title="Created: 2020-09-28 14:16:44" itemprop="dateCreated datePublished" datetime="2020-09-28T14:16:44+08:00">2020-09-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-10-13 16:48:08" itemprop="dateModified" datetime="2020-10-13T16:48:08+08:00">2020-10-13</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -294,34 +300,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <a id="more"></a>
-<h1 id="十进制和二进制相互转换"><a href="#十进制和二进制相互转换" class="headerlink" title="十进制和二进制相互转换"></a>十进制和二进制相互转换</h1><p><strong>（1）十进制转二进制</strong></p>
+          <h1 id="十进制和二进制相互转换"><a href="#十进制和二进制相互转换" class="headerlink" title="十进制和二进制相互转换"></a>十进制和二进制相互转换</h1><p><strong>（1）十进制转二进制</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 10;</span><br><span class="line">bitset&lt;10&gt; bit(a);</span><br><span class="line">cout &lt;&lt; bit &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：0000001010</span><br></pre></td></tr></table></figure>
 <p><strong>（2）二进制转十进制</strong></p>
-<p>   第一种方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;10&gt; bit(&quot;010101&quot;);</span><br><span class="line">int a &#x3D; bit.to_ullong(); &#x2F;&#x2F;这里为unsigned long long</span><br><span class="line">cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：21</span><br></pre></td></tr></table></figure>
-<p>  第二种方法： </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string out &#x3D; &quot;0101&quot;;</span><br><span class="line">int x &#x3D; stoi(out, nullptr, 2);</span><br><span class="line">cout &lt;&lt; x &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：5</span><br></pre></td></tr></table></figure>
-<h1 id="字符串和二进制相互转换"><a href="#字符串和二进制相互转换" class="headerlink" title="字符串和二进制相互转换"></a>字符串和二进制相互转换</h1><p><strong>（1）二进制转字符串</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;10&gt; bit(&quot;010101&quot;);</span><br><span class="line">string str &#x3D; bit.to_string();</span><br><span class="line">cout &lt;&lt; str &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：0000010101</span><br></pre></td></tr></table></figure>
-<p><strong>（2）字符串转二进制</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string str &#x3D; &quot;010101&quot;;</span><br><span class="line">bitset&lt;10&gt; bit(str);    </span><br><span class="line">cout &lt;&lt; bit &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：0000010101</span><br></pre></td></tr></table></figure>
-<h1 id="字符串和十进制相互转换"><a href="#字符串和十进制相互转换" class="headerlink" title="字符串和十进制相互转换"></a>字符串和十进制相互转换</h1><p><strong>（1）十进制转字符串</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a &#x3D; 345;</span><br><span class="line">string str &#x3D; to_string(a);</span><br><span class="line">cout &lt;&lt;str &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：345</span><br></pre></td></tr></table></figure>
-<p><strong>（2）字符串转十进制</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string str &#x3D; &quot;3456&quot;;</span><br><span class="line">int a &#x3D; stoi(str);</span><br><span class="line">cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：3456</span><br></pre></td></tr></table></figure>
-<h1 id="十进制和十六进制相互转换"><a href="#十进制和十六进制相互转换" class="headerlink" title="十进制和十六进制相互转换"></a>十进制和十六进制相互转换</h1><p><strong>（1）十六进制转十进制</strong></p>
-<p>  第一种方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sstream&gt;</span><br><span class="line">int x;</span><br><span class="line">stringstream ss;</span><br><span class="line">ss &lt;&lt; std::hex &lt;&lt; &quot;1A&quot;;  &#x2F;&#x2F;std::oct（八进制）、std::dec（十进制）</span><br><span class="line">ss &gt;&gt; x;</span><br><span class="line">cout &lt;&lt; x&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：26</span><br></pre></td></tr></table></figure>
-<p>  第二种方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string out &#x3D; &quot;1A&quot;;</span><br><span class="line">int x &#x3D; stoi(out, nullptr, 16);</span><br><span class="line">cout &lt;&lt; x &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：26</span><br></pre></td></tr></table></figure>
-<p> <strong>（2）十进制转十六进制</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int x &#x3D; 26 ;</span><br><span class="line">string out;</span><br><span class="line">stringstream ss;</span><br><span class="line">ss &lt;&lt; std::hex &lt;&lt;x;</span><br><span class="line">ss &gt;&gt; out ;</span><br><span class="line">transform(out.begin(), out.end(), out.begin(), ::toupper);</span><br><span class="line">cout &lt;&lt; out &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：1A</span><br></pre></td></tr></table></figure>
-<h1 id="二进制和十六进制"><a href="#二进制和十六进制" class="headerlink" title="二进制和十六进制"></a><strong>二进制和十六进制</strong></h1><p><strong>（1）二进制转十六进制</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">string binary &#x3D; &quot;11010101&quot;;</span><br><span class="line">string hex;</span><br><span class="line">stringstream ss;</span><br><span class="line">ss &lt;&lt; std::hex &lt;&lt; stoi(binary, nullptr, 2);</span><br><span class="line">ss &gt;&gt; hex;</span><br><span class="line">transform(hex.begin(), hex.end(), hex.begin(), ::toupper);</span><br><span class="line">cout &lt;&lt; hex &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">输出：D5</span><br></pre></td></tr></table></figure>
-<p><strong>（2）十六进制转二进制</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">string binary &#x3D; &quot;D5&quot;;</span><br><span class="line">bitset&lt;8&gt; bit(stoi(binary, nullptr, 16));</span><br><span class="line">cout &lt;&lt; bit &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">输出：11010101</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/28/c++%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
