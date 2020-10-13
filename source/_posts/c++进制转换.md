@@ -5,8 +5,6 @@ tags: [learn,Program]
 categories: program
 ---
 
-<!-- more -->
-
 # 十进制和二进制相互转换
 
 **（1）十进制转二进制**
@@ -20,6 +18,8 @@ cout << bit << endl;
 ```
 
 **（2）二进制转十进制**
+
+<!-- more -->
 
    第一种方法：
 
