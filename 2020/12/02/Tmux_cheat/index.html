@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="注意：本文内容适用于 Tmux 2.3 及以上的版本，但是绝大部分的特性低版本也都适用，鼠标支持、VI 模式、插件管理在低版本可能会与本文不兼容。 Tmux 快捷键 &amp; 速查表 &amp; 简明教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tmux常用快捷键">
+<meta property="og:url" content="http://yoursite.com/2020/12/02/Tmux_cheat/index.html">
+<meta property="og:site_name" content="Phoenix">
+<meta property="og:description" content="注意：本文内容适用于 Tmux 2.3 及以上的版本，但是绝大部分的特性低版本也都适用，鼠标支持、VI 模式、插件管理在低版本可能会与本文不兼容。 Tmux 快捷键 &amp; 速查表 &amp; 简明教程">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-12-02T03:46:23.007Z">
+<meta property="article:modified_time" content="2020-12-02T03:48:40.610Z">
+<meta property="article:author" content="Phoenix">
+<meta property="article:tag" content="learn">
+<meta property="article:tag" content="backup">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/12/02/Tmux_cheat/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Tmux常用快捷键 | Phoenix</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Phoenix</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-博客">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>博客</a>
+
+  </li>
+        <li class="menu-item menu-item-标签">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-日历">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日历</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/Tmux_cheat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Tmux常用快捷键
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-02 11:46:23 / Modified: 11:48:40" itemprop="dateCreated datePublished" datetime="2020-12-02T11:46:23+08:00">2020-12-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9F%A5%E8%AF%A2/" itemprop="url" rel="index"><span itemprop="name">查询</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>注意：本文内容适用于 Tmux 2.3 及以上的版本，但是绝大部分的特性低版本也都适用，鼠标支持、VI 模式、插件管理在低版本可能会与本文不兼容。</p>
+<h1 id="Tmux-快捷键-amp-速查表-amp-简明教程"><a href="#Tmux-快捷键-amp-速查表-amp-简明教程" class="headerlink" title="Tmux 快捷键 &amp; 速查表 &amp; 简明教程"></a>Tmux 快捷键 &amp; 速查表 &amp; 简明教程</h1><a id="more"></a>
+<p>启动新会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux [new -s 会话名 -n 窗口名]</span><br></pre></td></tr></table></figure>
+<p>恢复会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux at [-t 会话名]</span><br></pre></td></tr></table></figure>
+<p>列出所有会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux ls</span><br></pre></td></tr></table></figure>
+<p>关闭会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux kill-session -t 会话名</span><br></pre></td></tr></table></figure>
+<p>关闭所有会话：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux ls | grep : | cut -d. -f1 | awk &#39;&#123;print substr($1, 0, length($1)-1)&#125;&#39; | xargs kill</span><br></pre></td></tr></table></figure>
+<h1 id="在-Tmux-中，按下-Tmux-前缀-ctrl-b，然后："><a href="#在-Tmux-中，按下-Tmux-前缀-ctrl-b，然后：" class="headerlink" title="在 Tmux 中，按下 Tmux 前缀 ctrl+b，然后："></a>在 Tmux 中，按下 Tmux 前缀 <code>ctrl+b</code>，然后：</h1><h2 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:new&lt;回车&gt;  启动新会话</span><br><span class="line">s           列出所有会话</span><br><span class="line">$           重命名当前会话</span><br></pre></td></tr></table></figure>
+<h2 id="窗口-标签页"><a href="#窗口-标签页" class="headerlink" title="窗口 (标签页)"></a>窗口 (标签页)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c  创建新窗口</span><br><span class="line">w  列出所有窗口</span><br><span class="line">n  后一个窗口</span><br><span class="line">p  前一个窗口</span><br><span class="line">f  查找窗口</span><br><span class="line">,  重命名当前窗口</span><br><span class="line">&amp;  关闭当前窗口</span><br></pre></td></tr></table></figure>
+<h2 id="调整窗口排序"><a href="#调整窗口排序" class="headerlink" title="调整窗口排序"></a>调整窗口排序</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">swap-window -s 3 -t 1  交换 3 号和 1 号窗口</span><br><span class="line">swap-window -t 1       交换当前和 1 号窗口</span><br><span class="line">move-window -t 1       移动当前窗口到 1 号</span><br></pre></td></tr></table></figure>
+<h2 id="窗格（分割窗口）"><a href="#窗格（分割窗口）" class="headerlink" title="窗格（分割窗口）"></a>窗格（分割窗口）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">%  垂直分割</span><br><span class="line">&quot;  水平分割</span><br><span class="line">o  交换窗格</span><br><span class="line">x  关闭窗格</span><br><span class="line">⍽  左边这个符号代表空格键 - 切换布局</span><br><span class="line">q 显示每个窗格是第几个，当数字出现的时候按数字几就选中第几个窗格</span><br><span class="line">&#123; 与上一个窗格交换位置</span><br><span class="line">&#125; 与下一个窗格交换位置</span><br><span class="line">z 切换窗格最大化&#x2F;最小化</span><br></pre></td></tr></table></figure>
+<h2 id="同步窗格"><a href="#同步窗格" class="headerlink" title="同步窗格"></a>同步窗格</h2><p>这么做可以切换到想要的窗口，输入 Tmux 前缀和一个冒号呼出命令提示行，然后输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:setw synchronize-panes</span><br></pre></td></tr></table></figure>
+<p>你可以指定开或关，否则重复执行命令会在两者间切换。 这个选项值针对某个窗口有效，不会影响别的会话和窗口。 完事儿之后再次执行命令来关闭。<a target="_blank" rel="noopener" href="http://blog.sanctum.geek.nz/sync-tmux-panes/">帮助</a></p>
+<h2 id="调整窗格尺寸"><a href="#调整窗格尺寸" class="headerlink" title="调整窗格尺寸"></a>调整窗格尺寸</h2><p>如果你不喜欢默认布局，可以重调窗格的尺寸。虽然这很容易实现，但一般不需要这么干。这几个命令用来调整窗格：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PREFIX : resize-pane -D          当前窗格向下扩大 1 格</span><br><span class="line">PREFIX : resize-pane -U          当前窗格向上扩大 1 格</span><br><span class="line">PREFIX : resize-pane -L          当前窗格向左扩大 1 格</span><br><span class="line">PREFIX : resize-pane -R          当前窗格向右扩大 1 格</span><br><span class="line">PREFIX : resize-pane -D 20       当前窗格向下扩大 20 格</span><br><span class="line">PREFIX : resize-pane -t 2 -L 20  编号为 2 的窗格向左扩大 20 格</span><br></pre></td></tr></table></figure>
+<h2 id="文本复制模式："><a href="#文本复制模式：" class="headerlink" title="文本复制模式："></a>文本复制模式：</h2><p>按下 <code>PREFIX-[</code> 进入文本复制模式。可以使用方向键在屏幕中移动光标。默认情况下，方向键是启用的。在配置文件中启用 Vim 键盘布局来切换窗口、调整窗格大小。Tmux 也支持 Vi 模式。要是想启用 Vi 模式，只需要把下面这一行添加到 .tmux.conf 中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setw -g mode-keys vi</span><br></pre></td></tr></table></figure>
+<p>启用这条配置后，就可以使用 h、j、k、l 来移动光标了。</p>
+<p>想要退出文本复制模式的话，按下回车键就可以了。然后按下 <code>PREFIX-]</code> 粘贴刚才复制的文本。</p>
+<p>一次移动一格效率低下，在 Vi 模式启用的情况下，可以辅助一些别的快捷键高效工作。</p>
+<p>例如，可以使用 w 键逐词移动，使用 b 键逐词回退。使用 f 键加上任意字符跳转到当前行第一次出现该字符的位置，使用 F 键达到相反的效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">vi             emacs        功能</span><br><span class="line">^              M-m          反缩进</span><br><span class="line">Escape         C-g          清除选定内容</span><br><span class="line">Enter          M-w          复制选定内容</span><br><span class="line">j              Down         光标下移</span><br><span class="line">h              Left         光标左移</span><br><span class="line">l              Right        光标右移</span><br><span class="line">L                           光标移到尾行</span><br><span class="line">M              M-r          光标移到中间行</span><br><span class="line">H              M-R          光标移到首行</span><br><span class="line">k              Up           光标上移</span><br><span class="line">d              C-u          删除整行</span><br><span class="line">D              C-k          删除到行末</span><br><span class="line">$              C-e          移到行尾</span><br><span class="line">:              g            前往指定行</span><br><span class="line">C-d            M-Down       向下滚动半屏</span><br><span class="line">C-u            M-Up         向上滚动半屏</span><br><span class="line">C-f            Page down    下一页</span><br><span class="line">w              M-f          下一个词</span><br><span class="line">p              C-y          粘贴</span><br><span class="line">C-b            Page up      上一页</span><br><span class="line">b              M-b          上一个词</span><br><span class="line">q              Escape       退出</span><br><span class="line">C-Down or J    C-Down       向下翻</span><br><span class="line">C-Up or K      C-Up         向下翻</span><br><span class="line">n              n            继续搜索</span><br><span class="line">?              C-r          向前搜索</span><br><span class="line">&#x2F;              C-s          向后搜索</span><br><span class="line">0              C-a          移到行首</span><br><span class="line">Space          C-Space      开始选中</span><br><span class="line">               C-t          字符调序</span><br></pre></td></tr></table></figure>
+<h2 id="杂项："><a href="#杂项：" class="headerlink" title="杂项："></a>杂项：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">d  退出 tmux（tmux 仍在后台运行）</span><br><span class="line">t  窗口中央显示一个数字时钟</span><br><span class="line">?  列出所有快捷键</span><br><span class="line">:  命令提示符</span><br></pre></td></tr></table></figure>
+<h2 id="配置选项："><a href="#配置选项：" class="headerlink" title="配置选项："></a>配置选项：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># 鼠标支持 - 设置为 on 来启用鼠标(与 2.1 之前的版本有区别，请自行查阅 man page)</span><br><span class="line">* set -g mouse on</span><br><span class="line"></span><br><span class="line"># 设置默认终端模式为 256color</span><br><span class="line">set -g default-terminal &quot;screen-256color&quot;</span><br><span class="line"></span><br><span class="line"># 启用活动警告</span><br><span class="line">setw -g monitor-activity on</span><br><span class="line">set -g visual-activity on</span><br><span class="line"></span><br><span class="line"># 居中窗口列表</span><br><span class="line">set -g status-justify centre</span><br><span class="line"></span><br><span class="line"># 最大化&#x2F;恢复窗格</span><br><span class="line">unbind Up bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp</span><br><span class="line">unbind Down</span><br><span class="line">bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/learn/" rel="tag"># learn</a>
+              <a href="/tags/backup/" rel="tag"># backup</a>
+              <a href="/tags/shell/" rel="tag"># shell</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/28/c++%20Lambda/" rel="prev" title="c++ Lambda表达式">
+      <i class="fa fa-chevron-left"></i> c++ Lambda表达式
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE-amp-%E9%80%9F%E6%9F%A5%E8%A1%A8-amp-%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">Tmux 快捷键 &amp; 速查表 &amp; 简明教程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8-Tmux-%E4%B8%AD%EF%BC%8C%E6%8C%89%E4%B8%8B-Tmux-%E5%89%8D%E7%BC%80-ctrl-b%EF%BC%8C%E7%84%B6%E5%90%8E%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">在 Tmux 中，按下 Tmux 前缀 ctrl+b，然后：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D"><span class="nav-number">2.1.</span> <span class="nav-text">会话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3-%E6%A0%87%E7%AD%BE%E9%A1%B5"><span class="nav-number">2.2.</span> <span class="nav-text">窗口 (标签页)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E7%AA%97%E5%8F%A3%E6%8E%92%E5%BA%8F"><span class="nav-number">2.3.</span> <span class="nav-text">调整窗口排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E6%A0%BC%EF%BC%88%E5%88%86%E5%89%B2%E7%AA%97%E5%8F%A3%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">窗格（分割窗口）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E7%AA%97%E6%A0%BC"><span class="nav-number">2.5.</span> <span class="nav-text">同步窗格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E6%95%B4%E7%AA%97%E6%A0%BC%E5%B0%BA%E5%AF%B8"><span class="nav-number">2.6.</span> <span class="nav-text">调整窗格尺寸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F%EF%BC%9A"><span class="nav-number">2.7.</span> <span class="nav-text">文本复制模式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%82%E9%A1%B9%EF%BC%9A"><span class="nav-number">2.8.</span> <span class="nav-text">杂项：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9%EF%BC%9A"><span class="nav-number">2.9.</span> <span class="nav-text">配置选项：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Phoenix</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Phoenix</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
