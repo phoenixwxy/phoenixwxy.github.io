@@ -1,5 +1,5 @@
 ---
-title:  CMake link_directories, LINK_LIBRARIES, target_link_libraries使用总结
+title: CMake link_directories, LINK_LIBRARIES, target_link_libraries使用总结
 time:  2020-12-15
 tags: [learn,Program,CMake]
 categories: [program,CMake]
