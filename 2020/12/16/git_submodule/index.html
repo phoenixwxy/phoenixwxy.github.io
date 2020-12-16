@@ -22,13 +22,13 @@
 
   <meta name="description" content="使用前提经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。 在Git 中你可以用子模块submodule来管理这些项目，submodule允许你将一个Git 仓库当作另外一个Git 仓库的子目录。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CMake link_directories, LINK_LIBRARIES, target_link_libraries使用总结">
+<meta property="og:title" content="Git submodule">
 <meta property="og:url" content="http://yoursite.com/2020/12/16/git_submodule/index.html">
 <meta property="og:site_name" content="Phoenix">
 <meta property="og:description" content="使用前提经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。 在Git 中你可以用子模块submodule来管理这些项目，submodule允许你将一个Git 仓库当作另外一个Git 仓库的子目录。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-16T10:29:40.989Z">
-<meta property="article:modified_time" content="2020-12-16T10:30:17.953Z">
+<meta property="article:modified_time" content="2020-12-16T11:53:28.765Z">
 <meta property="article:author" content="Phoenix">
 <meta property="article:tag" content="learn">
 <meta property="article:tag" content="Program">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>CMake link_directories, LINK_LIBRARIES, target_link_libraries使用总结 | Phoenix</title>
+  <title>Git submodule | Phoenix</title>
   
 
 
@@ -186,7 +186,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CMake link_directories, LINK_LIBRARIES, target_link_libraries使用总结
+          Git submodule
         </h1>
 
         <div class="post-meta">
@@ -197,7 +197,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-12-16 18:29:40 / Modified: 18:30:17" itemprop="dateCreated datePublished" datetime="2020-12-16T18:29:40+08:00">2020-12-16</time>
+              <time title="Created: 2020-12-16 18:29:40 / Modified: 19:53:28" itemprop="dateCreated datePublished" datetime="2020-12-16T18:29:40+08:00">2020-12-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
