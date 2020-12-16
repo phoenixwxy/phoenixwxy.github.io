@@ -9,6 +9,8 @@ categories: [program,CMake]
 
 总结一下include_directories，link_directories，link_libraries和target_link_libraries的作用。尤其是后面三个参数，比较相似，容易弄混。
 
+<!-- more -->
+
 ***\*INCLUDE_DIRECTORIES（添加头文件目录）\****
 它相当于g++选项中的-I参数的作用，也相当于环境变量中增加路径到CPLUS_INCLUDE_PATH变量的作用（这里特指c++。c和Java中用法类似）。
 
