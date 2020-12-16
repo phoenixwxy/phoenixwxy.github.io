@@ -165,6 +165,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/16/CMake_link_cmd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/16/CMake_link_cmd/" class="post-title-link" itemprop="url">CMake link_directories, LINK_LIBRARIES, target_link_libraries使用总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-16 17:05:41 / Modified: 17:07:38" itemprop="dateCreated datePublished" datetime="2020-12-16T17:05:41+08:00">2020-12-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/" itemprop="url" rel="index"><span itemprop="name">program</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/CMake/" itemprop="url" rel="index"><span itemprop="name">CMake</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="link-directories-LINK-LIBRARIES-target-link-libraries使用总结"><a href="#link-directories-LINK-LIBRARIES-target-link-libraries使用总结" class="headerlink" title="link_directories, LINK_LIBRARIES, target_link_libraries使用总结"></a>link_directories, LINK_LIBRARIES, target_link_libraries使用总结</h1><p>总结一下include_directories，link_directories，link_libraries和target_link_libraries的作用。尤其是后面三个参数，比较相似，容易弄混。</p>
+<p><strong><em>\</em>INCLUDE_DIRECTORIES（添加头文件目录）**</strong><br>它相当于g++选项中的-I参数的作用，也相当于环境变量中增加路径到CPLUS_INCLUDE_PATH变量的作用（这里特指c++。c和Java中用法类似）。</p>
+<p>比如：<br>include_directories(“/opt/MATLAB/R2012a/extern/include”)</p>
+<p>export CPLUS_INCLUDE_PATH=CPLUS_INCLUDE_PATH:$MATLAB/extern/include</p>
+<p><strong>LINK_DIRECTORIES（添加需要链接的库文件目录）</strong><br>语法：<br>link_directories(directory1 directory2 …)</p>
+<p>它相当于g++命令的-L选项的作用，也相当于环境变量中增加LD_LIBRARY_PATH的路径的作用。</p>
+<p>比如：<br>LINK_DIRECTORIES(“/opt/MATLAB/R2012a/bin/glnxa64”)</p>
+<p>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MATLAB/bin/glnxa64</p>
+<p><strong><br>LINK_LIBRARIES　（添加需要链接的库文件路径，注意这里是全路径）</strong><br>List of direct link dependencies.</p>
+<p>比如：<br>LINK_LIBRARIES(“/opt/MATLAB/R2012a/bin/glnxa64/libeng.so”)<br>LINK_LIBRARIES(“/opt/MATLAB/R2012a/bin/glnxa64/libmx.so”)</p>
+<p>也可以写成：<br>LINK_LIBRARIES(“/opt/MATLAB/R2012a/bin/glnxa64/libeng.so”　“/opt/MATLAB/R2012a/bin/glnxa64/libmx.so”)</p>
+<p><strong>TARGET_LINK_LIBRARIES （设置要链接的库文件的名称）</strong><br>语法：TARGET_LINK_LIBRARIES(targetlibrary1 <debug | optimized> library2 ..)</p>
+<p>比如（以下写法（包括备注中的）都可以）：<br>TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库<br>TARGET_LINK_LIBRARIES(myProject libhello.a)<br>TARGET_LINK_LIBRARIES(myProject libhello.so)</p>
+<p>再如：<br>TARGET_LINK_LIBRARIES(myProject libeng.so)　　#这些库名写法都可以。<br>TARGET_LINK_LIBRARIES(myProject eng)<br>TARGET_LINK_LIBRARIES(myProject -leng)</p>
+<p><strong>一个简单的示例（\</strong>以下CMakeLists.txt效果相当，在ubuntu 12.04 + g++4.6下测试编译通过*<em>）：*</em></p>
+<p>方式一：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 2.8 FATAL_ERROR)</span><br><span class="line"></span><br><span class="line">include_directories(&quot;/opt/MATLAB/R2012a/extern/include&quot;)</span><br><span class="line"></span><br><span class="line">#directly link to the libraries.</span><br><span class="line"></span><br><span class="line">LINK_LIBRARIES(&quot;/opt/MATLAB/R2012a/bin/glnxa64/libeng.so&quot;)</span><br><span class="line"></span><br><span class="line">LINK_LIBRARIES(&quot;/opt/MATLAB/R2012a/bin/glnxa64/libmx.so&quot;)</span><br><span class="line"></span><br><span class="line">#equals to below</span><br><span class="line"></span><br><span class="line">#LINK_LIBRARIES(&quot;/opt/MATLAB/R2012a/bin/glnxa64/libeng.so&quot; &quot;/opt/MATLAB/R2012a/bin/glnxa64/libmx.so&quot;)</span><br><span class="line"></span><br><span class="line">add_executable(myProject main.cpp) </span><br></pre></td></tr></table></figure>
+<p>方式二：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 2.8 FATAL_ERROR)</span><br><span class="line"></span><br><span class="line">include_directories(&quot;/opt/MATLAB/R2012a/extern/include&quot;)</span><br><span class="line"></span><br><span class="line">LINK_DIRECTORIES(&quot;/opt/MATLAB/R2012a/bin/glnxa64&quot;)</span><br><span class="line"></span><br><span class="line">add_executable(myProject main.cpp)</span><br><span class="line"></span><br><span class="line">target_link_libraries(myProject eng mx)</span><br><span class="line"></span><br><span class="line">#equals to below</span><br><span class="line"></span><br><span class="line">#target_link_libraries(myProject -leng -lmx)</span><br><span class="line"></span><br><span class="line">#target_link_libraries(myProject libeng.so libmx.so)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/02/Tmux_cheat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -918,73 +1007,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/05/Hexo-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/05/Hexo-blog/" class="post-title-link" itemprop="url">Hexo-Blog 搭建</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-05 16:19:59 / Modified: 17:29:08" itemprop="dateCreated datePublished" datetime="2020-08-05T16:19:59+08:00">2020-08-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="安装Nodejs"><a href="#安装Nodejs" class="headerlink" title="安装Nodejs"></a>安装Nodejs</h2><p>Node.js是基于Chrome V8引擎的JavaScript运行环境，npm是随Node.js一起安装的包管理工具，新版的Node.js集成了npm。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install nodejs</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure></p>
-<p>检查版本：<code>node -v, npm -v</code>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/05/Hexo-blog/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1053,18 +1075,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
