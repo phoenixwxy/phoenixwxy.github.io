@@ -165,6 +165,142 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/16/HOWTOWRITEREADME/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/16/HOWTOWRITEREADME/" class="post-title-link" itemprop="url">写一个B格满满的README</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-12-16 20:25:05 / Modified: 20:27:46" itemprop="dateCreated datePublished" datetime="2020-12-16T20:25:05+08:00">2020-12-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/" itemprop="url" rel="index"><span itemprop="name">program</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/program/doc/" itemprop="url" rel="index"><span itemprop="name">doc</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>侵删，链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903585000456199">https://juejin.cn/post/6844903585000456199</a></p>
+<p>编写一个项目的 README 就像是写一本书的序言一样，一个好的项目不应该仅仅只有一份高质量代码，同时更应该有一份高质量的文档。而对使用者来说，一份好的文档能够节省大量的时间。</p>
+<h2 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h2><p>要知道比如 GitHub 这样的代码托管平台，可是有着另一个名字，全世界最大的同性交友网站（技术基不说话），你的项目可能不止中国的程序猿在使用，一个好的项目，使用者来自世界各地，那么一份中英双语的文档至关重要。</p>
+<p>毕竟对母语的文档有更加亲和的感觉，同时阅读起来会更加顺畅。</p>
+<p>比如，Ant Design Pro 的文档：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f89bf94f7d20" alt="img"></p>
+<h2 id="项目是干什么的"><a href="#项目是干什么的" class="headerlink" title="项目是干什么的"></a>项目是干什么的</h2><p>首先，要有一个项目名，不一定要霸气，但是一定要朗朗上口，不会读起来很拗口，而且别太长。</p>
+<p>比如说，chalk、react、vue、commander 等等。如果自己实在不知道怎么起，搞个随机函数，试试自己的运气吧。</p>
+<p>当然了，如果你有 LOGO 是最好的了，一张高清大图 LOGO 帅一脸，看起来就舒服有木有。</p>
+<p>就比如说这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626fb0920c2315e" alt="img"></p>
+<p>或者这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8a1cdd0035f" alt="img"></p>
+<p>再接下来，一个好的项目简介，能够帮助使用者了解他能够使用这个工具干什么，能不能满足自己的需求。一般来说，我们希望从简介中，了解下面一些信息：</p>
+<ul>
+<li>什么语言写的？Node、Python 还是其他什么</li>
+<li>这个项目的用途是什么</li>
+<li>最新版本信息</li>
+<li>构建、测试结果等信息</li>
+<li>Demo 演示地址或者官网</li>
+</ul>
+<p>就像这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8a44a7837b4" alt="img"></p>
+<p>对于我们技术 README 一定要各种徽章砸脸上，比如标配的 travis、coverage、npm 等等，给人一种安全感，如果你自己测试构建都没过，我用着也不放心。至于这些东西大家可以去这儿看看：<a target="_blank" rel="noopener" href="http://shields.io/">shield.io</a></p>
+<p>同时，我们要精要的总结项目的闪光点，有哪些特性是激动人心的，别人没有的，这是吸引用户的好方法。</p>
+<p>比如这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8a65b54c92d" alt="img"></p>
+<h2 id="安装及快速开始"><a href="#安装及快速开始" class="headerlink" title="安装及快速开始"></a>安装及快速开始</h2><p>这部分内容是是文档很重要的部分，通过这些步骤，能够让使用者快速的使用。</p>
+<p>首先，你要告诉用户怎么去获取以及初始化项目，比如下面这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8a919986c90" alt="img"></p>
+<p>然后你需要给一个简单的例子，让使用者快速感受到使用它的好处：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8aaee7a668e" alt="img"></p>
+<p>当然了，在这个地方，最好最直观的方法就是放一张 gif 的图片，吸引用户的注意力，同时给用户展示使用结果，比如这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8cd4c256122" alt="img"></p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>API 是一个项目的灵魂，这是暴露给用户最直接的地方，当使用者有疑问的时候，他会第一时间去找你的 API 文档。</p>
+<p>对于一个 API 应该表述清楚的是：</p>
+<ul>
+<li>作用</li>
+<li>入参及每个参数是否必须，数据类型是什么等等</li>
+<li>返回值</li>
+</ul>
+<p>如果你的 API 不多，那么可以放在一个文件里，但是如果你的 API 非常多，那么建议你将 API 单独放到一个文件里，这个文件留一个链接就可以。</p>
+<p>同时，如果你的 API 有相当多个版本，那么需要准备几份 API 文档，应对不同的需求。</p>
+<p>就比如这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8b5b3ff3ab6" alt="img"></p>
+<h2 id="版本变化"><a href="#版本变化" class="headerlink" title="版本变化"></a>版本变化</h2><p>还有最好是能有一份 CHANGELOG 文档，对不同版本做了哪些修改，有什么特性等等，让用户知道每个版本干了什么。</p>
+<p>就比如这样：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8b83e79197d" alt="img"></p>
+<h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><p>当然了，如果你不想回答一些非常重复的问题，我想你需要一份 FAQ 来记录一些常见问题。</p>
+<h2 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h2><p>我相信很多人跟我一样，能给一些知名仓库提交 PR 是一件比较自豪的事情。</p>
+<p>所以如果能提供一个提交 PR 的方式或者是途径，能够吸引更多的人来贡献代码，同时将贡献者，展示出来，我想会有更多人愿意贡献出自己的力量。</p>
+<p>比如在这样的列表中也是挺有意思的：</p>
+<p><img src="HOWTOWRITEREADME.assets/1626f8bb46e1cc35" alt="img"></p>
+<h2 id="版权"><a href="#版权" class="headerlink" title="版权"></a>版权</h2><p>相信前不久 Facebook 的开源协议事件大家都知道，也是闹得沸沸扬扬，所以，对于开源协议等等的版权问题一定要慎重，如果你想做的不是一个玩具项目，那么关于这块一定要写清楚。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>最后，总结一下，对于一份好的 README 来说，这些也许够了，也许不够，但是，文档始终是因为使用者才存在的东西，所以使用者关注什么，什么才是我们文档的重点。</p>
+<p>但是这些基础是我们应该都需要的：</p>
+<ul>
+<li>名字</li>
+<li>简介</li>
+<li>功能</li>
+<li>安装配置</li>
+<li>快速教程</li>
+<li>API 文档</li>
+</ul>
+<p>这些是使用者都会去关心的点，应该在编写之前好好斟酌。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/16/git_submodule/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -317,7 +453,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-12-16 17:05:41 / Modified: 17:31:33" itemprop="dateCreated datePublished" datetime="2020-12-16T17:05:41+08:00">2020-12-16</time>
+              <time title="Created: 2020-12-16 17:05:41 / Modified: 20:25:56" itemprop="dateCreated datePublished" datetime="2020-12-16T17:05:41+08:00">2020-12-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -962,87 +1098,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/13/Python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Phoenix">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Phoenix">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/13/Python/" class="post-title-link" itemprop="url">Python学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-13 11:13:20" itemprop="dateCreated datePublished" datetime="2020-08-13T11:13:20+08:00">2020-08-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-27 17:05:08" itemprop="dateModified" datetime="2020-09-27T17:05:08+08:00">2020-09-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/program/" itemprop="url" rel="index"><span itemprop="name">program</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>一种解释性编程语言</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/13/Python/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1111,13 +1166,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
