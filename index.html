@@ -274,10 +274,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-12-16 18:29:40 / Modified: 19:53:28" itemprop="dateCreated datePublished" datetime="2020-12-16T18:29:40+08:00">2020-12-16</time>
+              <time title="Created: 2020-12-16 18:29:40" itemprop="dateCreated datePublished" datetime="2020-12-16T18:29:40+08:00">2020-12-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-17 16:29:32" itemprop="dateModified" datetime="2020-12-17T16:29:32+08:00">2020-12-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -305,61 +311,14 @@
       
           <h2 id="使用前提"><a href="#使用前提" class="headerlink" title="使用前提"></a>使用前提</h2><p>经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。</p>
 <p>在Git 中你可以用子模块<code>submodule</code>来管理这些项目，<code>submodule</code>允许你将一个Git 仓库当作另外一个Git 仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立。</p>
-<h2 id="添加子模块"><a href="#添加子模块" class="headerlink" title="添加子模块"></a>添加子模块</h2><p>此文中统一将远程项目<code>https://github.com/maonx/vimwiki-assets.git</code>克隆到本地<code>assets</code>文件夹。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git submodule add https://github.com/maonx/vimwiki-assets.git assets</span><br></pre></td></tr></table></figure>
-<p>添加子模块后运行<code>git status</code>, 可以看到目录有增加1个文件<code>.gitmodules</code>, 这个文件用来保存子模块的信息。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">Initial commit</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line"></span><br><span class="line">    new file:   .gitmodules</span><br><span class="line">    new file:   assets</span><br></pre></td></tr></table></figure>
-<h2 id="查看子模块"><a href="#查看子模块" class="headerlink" title="查看子模块"></a>查看子模块</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git submodule</span><br><span class="line"> e33f854d3f51f5ebd771a68da05ad0371a3c0570 assets (heads/master)</span><br></pre></td></tr></table></figure>
-<h2 id="更新子模块"><a href="#更新子模块" class="headerlink" title="更新子模块"></a>更新子模块</h2><ul>
-<li>更新项目内子模块到最新版本</li>
-</ul>
-<pre><code>&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git submodule update&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
-</code></pre><ul>
-<li>更新子模块为远程项目的最新版本</li>
-</ul>
-<pre><code>&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git submodule update --remote&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
-</code></pre><h2 id="克隆包含子模块的项目"><a href="#克隆包含子模块的项目" class="headerlink" title="克隆包含子模块的项目"></a>克隆包含子模块的项目</h2><p>克隆包含子模块的项目有二种方法：一种是先克隆父项目，再更新子模块；另一种是直接递归克隆整个项目。</p>
-<h3 id="克隆父项目，再更新子模块"><a href="#克隆父项目，再更新子模块" class="headerlink" title="克隆父项目，再更新子模块"></a>克隆父项目，再更新子模块</h3><ol>
-<li>克隆父项目</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/maonx/vimwiki-assets.git assets</span><br></pre></td></tr></table></figure>
-<ol>
-<li>查看子模块</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git submodule</span><br><span class="line"> -e33f854d3f51f5ebd771a68da05ad0371a3c0570 assets</span><br></pre></td></tr></table></figure>
-<p>子模块前面有一个<code>-</code>，说明子模块文件还未检入（空文件夹）。</p>
-<ol>
-<li>初始化子模块</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git submodule init</span><br><span class="line">Submodule <span class="string">&#x27;assets&#x27;</span> (https://github.com/maonx/vimwiki-assets.git) registered <span class="keyword">for</span> path <span class="string">&#x27;assets&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>初始化模块只需在克隆父项目后运行一次。</p>
-<ol>
-<li>更新子模块</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git submodule update</span><br><span class="line">Cloning into <span class="string">&#x27;assets&#x27;</span>...</span><br><span class="line">remote: Counting objects: 151, <span class="keyword">done</span>.</span><br><span class="line">remote: Compressing objects: 100% (80/80), <span class="keyword">done</span>.</span><br><span class="line">remote: Total 151 (delta 18), reused 0 (delta 0), pack-reused 70</span><br><span class="line">Receiving objects: 100% (151/151), 1.34 MiB | 569.00 KiB/s, <span class="keyword">done</span>.</span><br><span class="line">Resolving deltas: 100% (36/36), <span class="keyword">done</span>.</span><br><span class="line">Checking connectivity... <span class="keyword">done</span>.</span><br><span class="line">Submodule path <span class="string">&#x27;assets&#x27;</span>: checked out <span class="string">&#x27;e33f854d3f51f5ebd771a68da05ad0371a3c0570&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="递归克隆整个项目"><a href="#递归克隆整个项目" class="headerlink" title="递归克隆整个项目"></a>递归克隆整个项目</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/maonx/vimwiki-assets.git assets --recursive </span><br></pre></td></tr></table></figure>
-<p>递归克隆整个项目，子模块已经同时更新了，一步到位。</p>
-<h2 id="修改子模块"><a href="#修改子模块" class="headerlink" title="修改子模块"></a>修改子模块</h2><p>在子模块中修改文件后，直接提交到远程项目分支。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line">$ git ci -m <span class="string">&quot;commit&quot;</span></span><br><span class="line">$ git push origin HEAD:master</span><br></pre></td></tr></table></figure>
-<h2 id="删除子模块"><a href="#删除子模块" class="headerlink" title="删除子模块"></a>删除子模块</h2><p><strong>删除子模块比较麻烦，需要手动删除相关的文件，否则在添加子模块时有可能出现错误</strong><br> 同样以删除<code>assets</code>文件夹为例</p>
-<ol>
-<li>删除子模块文件夹</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached assets</span><br><span class="line">$ rm -rf assets</span><br></pre></td></tr></table></figure>
-<ol>
-<li>删除<code>.gitmodules</code>文件中相关子模块信息</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[submodule <span class="string">&quot;assets&quot;</span>]</span><br><span class="line">  path = assets</span><br><span class="line">  url = https://github.com/maonx/vimwiki-assets.git</span><br></pre></td></tr></table></figure>
-<ol>
-<li>删除<code>.git/config</code>中的相关子模块信息</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[submodule <span class="string">&quot;assets&quot;</span>]</span><br><span class="line">  url = https://github.com/maonx/vimwiki-assets.git</span><br></pre></td></tr></table></figure>
-<ol>
-<li>删除<code>.git</code>文件夹中的相关子模块文件</li>
-</ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rm -rf .git/modules/assets</span><br></pre></td></tr></table></figure>
-<p>作者：Maonx<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9000cd49822c">https://www.jianshu.com/p/9000cd49822c</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/16/git_submodule/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

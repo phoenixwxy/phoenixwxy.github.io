@@ -28,7 +28,7 @@
 <meta property="og:description" content="使用前提经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。 在Git 中你可以用子模块submodule来管理这些项目，submodule允许你将一个Git 仓库当作另外一个Git 仓库的子目录。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-12-16T10:29:40.989Z">
-<meta property="article:modified_time" content="2020-12-16T11:53:28.765Z">
+<meta property="article:modified_time" content="2020-12-17T08:29:32.897Z">
 <meta property="article:author" content="Phoenix">
 <meta property="article:tag" content="learn">
 <meta property="article:tag" content="Program">
@@ -195,10 +195,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-12-16 18:29:40 / Modified: 19:53:28" itemprop="dateCreated datePublished" datetime="2020-12-16T18:29:40+08:00">2020-12-16</time>
+              <time title="Created: 2020-12-16 18:29:40" itemprop="dateCreated datePublished" datetime="2020-12-16T18:29:40+08:00">2020-12-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-12-17 16:29:32" itemprop="dateModified" datetime="2020-12-17T16:29:32+08:00">2020-12-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -226,6 +232,7 @@
       
         <h2 id="使用前提"><a href="#使用前提" class="headerlink" title="使用前提"></a>使用前提</h2><p>经常碰到这种情况：当你在一个Git 项目上工作时，你需要在其中使用另外一个Git 项目。也许它是一个第三方开发的Git 库或者是你独立开发和并在多个父项目中使用的。这个情况下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。</p>
 <p>在Git 中你可以用子模块<code>submodule</code>来管理这些项目，<code>submodule</code>允许你将一个Git 仓库当作另外一个Git 仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立。</p>
+<a id="more"></a>
 <h2 id="添加子模块"><a href="#添加子模块" class="headerlink" title="添加子模块"></a>添加子模块</h2><p>此文中统一将远程项目<code>https://github.com/maonx/vimwiki-assets.git</code>克隆到本地<code>assets</code>文件夹。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git submodule add https://github.com/maonx/vimwiki-assets.git assets</span><br></pre></td></tr></table></figure>
 <p>添加子模块后运行<code>git status</code>, 可以看到目录有增加1个文件<code>.gitmodules</code>, 这个文件用来保存子模块的信息。</p>
