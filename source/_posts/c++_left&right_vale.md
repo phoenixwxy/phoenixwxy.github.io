@@ -1,7 +1,7 @@
 ---
 title: c++ 左值右值
 time:  
-tags: [learn,Program，c++]
+tags: [learn,Program,c++]
 categories: program
 ---
 

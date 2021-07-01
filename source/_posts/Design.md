@@ -1,7 +1,7 @@
 ---
 title: 设计模式笔记
 time:  
-tags: [learn,Program，c++]
+tags: [learn,Program,c++]
 categories: program
 ---
 
