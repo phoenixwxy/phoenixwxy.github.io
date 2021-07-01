@@ -1,3 +1,12 @@
+---
+title: 设计模式笔记
+time:  
+tags: [learn,Program，c++]
+categories: program
+---
+
+
+
 # 设计模式
 
 ## 面向对象的设计原则
