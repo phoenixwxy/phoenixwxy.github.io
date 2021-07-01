@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="个人总结，或从网上找到的资料整理后备份；若有侵权请联系我。 联系方式：wxymails@gmail.com">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+  <meta name="description" content="设计模式面向对象的设计原则 依赖倒置原则（DIP） 高层不依赖底层，二者应该依赖抽象（底层抽象？） 抽象不依赖于实现，说一下给依赖于抽象   开放封闭原则（OCP） 对扩展开放，对更改封闭 类模块可扩展但不可修改   单一职责原则（SRP） 一个类应该仅有一个引起它变化的原因 变化的方向隐含着类的责任   Liskov 替换原则（LSP） 子类必须能够替代他们的基类（IS-A） 继承表达类型抽象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Phoenix">
+<meta property="og:url" content="http://yoursite.com/2021/07/01/Design/index.html">
 <meta property="og:site_name" content="Phoenix">
-<meta property="og:description" content="个人总结，或从网上找到的资料整理后备份；若有侵权请联系我。 联系方式：wxymails@gmail.com">
+<meta property="og:description" content="设计模式面向对象的设计原则 依赖倒置原则（DIP） 高层不依赖底层，二者应该依赖抽象（底层抽象？） 抽象不依赖于实现，说一下给依赖于抽象   开放封闭原则（OCP） 对扩展开放，对更改封闭 类模块可扩展但不可修改   单一职责原则（SRP） 一个类应该仅有一个引起它变化的原因 变化的方向隐含着类的责任   Liskov 替换原则（LSP） 子类必须能够替代他们的基类（IS-A） 继承表达类型抽象">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-08-05T07:44:25.000Z">
-<meta property="article:modified_time" content="2020-12-16T12:28:33.624Z">
+<meta property="article:published_time" content="2021-07-01T05:26:52.347Z">
+<meta property="article:modified_time" content="2021-07-01T05:46:29.809Z">
 <meta property="article:author" content="Phoenix">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/about/">
+<link rel="canonical" href="http://yoursite.com/2021/07/01/Design/">
 
 
 <script id="page-configurations">
@@ -40,13 +40,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>about | Phoenix
-</title>
+  <title> | Phoenix</title>
   
 
 
@@ -163,45 +162,122 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="en">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/07/01/Design/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">about
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2021-07-01 13:26:52 / Modified: 13:46:29" itemprop="dateCreated datePublished" datetime="2021-07-01T13:26:52+08:00">2021-07-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="面向对象的设计原则"><a href="#面向对象的设计原则" class="headerlink" title="面向对象的设计原则"></a>面向对象的设计原则</h2><ol>
+<li>依赖倒置原则（DIP）<ul>
+<li>高层不依赖底层，二者应该依赖抽象（底层抽象？）</li>
+<li>抽象不依赖于实现，说一下给依赖于抽象</li>
+</ul>
+</li>
+<li>开放封闭原则（OCP）<ul>
+<li>对扩展开放，对更改封闭</li>
+<li>类模块可扩展但不可修改</li>
+</ul>
+</li>
+<li>单一职责原则（SRP）<ul>
+<li>一个类应该仅有一个引起它变化的原因</li>
+<li>变化的方向隐含着类的责任</li>
+</ul>
+</li>
+<li>Liskov 替换原则（LSP）<ul>
+<li>子类必须能够替代他们的基类（IS-A）</li>
+<li>继承表达类型抽象</li>
+</ul>
+</li>
+<li>接口隔离原则（ISP）<ul>
+<li>不应该强迫客户程序依赖他们不用的方法</li>
+<li>接口应该小而完备</li>
+</ul>
+</li>
+<li>优先使用对象组合，而不是继承<ul>
+<li>类继承通常为”白箱复用“，对象组合通常为”黑箱复用“</li>
+<li>继承在某种程度上破坏了封装性，子类父类耦合度高</li>
+<li>对象组合只要求倍组合的对象具有良好的定义的接口，耦合低</li>
+</ul>
+</li>
+<li>封装变化点<ul>
+<li>封装来创建对象之间的分解层。让设计者可以在一侧修改。而不对另一侧造成影响</li>
+</ul>
+</li>
+<li>针对接口编程，不是针对实现编程<ul>
+<li>不将变量类型声明为某个特定的具体类，而是声明为某个接口</li>
+<li>客户程序无需获知对象的具体类型，只需要知道对象所具有的接口</li>
+<li>减少系统中各部分的依赖关系，实现”高内聚，松（低）耦合“</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/30/c++_left&right_vale/" rel="prev" title="c++ 左值右值">
+      <i class="fa fa-chevron-left"></i> c++ 左值右值
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <p>个人总结，或从网上找到的资料整理后备份；若有侵权请联系我。</p>
-<p>联系方式：wxymails@gmail.com</p>
-
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -252,6 +328,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">1.1.</span> <span class="nav-text">面向对象的设计原则</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

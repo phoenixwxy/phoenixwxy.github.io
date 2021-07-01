@@ -165,6 +165,114 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Phoenix">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Phoenix">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/" class="post-title-link" itemprop="url">输出函数比较</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-27 16:50:55 / Modified: 17:02:57" itemprop="dateCreated datePublished" datetime="2020-09-27T16:50:55+08:00">2020-09-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="各种输出函数的比较（printf-fprintf-sprintf-snprintf-vprintf-vfprintf-vsprintf-vsnprintf）"><a href="#各种输出函数的比较（printf-fprintf-sprintf-snprintf-vprintf-vfprintf-vsprintf-vsnprintf）" class="headerlink" title="各种输出函数的比较（printf/fprintf/sprintf/snprintf/vprintf/vfprintf/vsprintf/vsnprintf）"></a>各种输出函数的比较（printf/fprintf/sprintf/snprintf/vprintf/vfprintf/vsprintf/vsnprintf）</h1><p>首先列出全部的函数申明，以供参考。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int printf(const char *format, ...);</span><br><span class="line">int fprintf(FILE *stream, const char *format, ...);</span><br><span class="line">int sprintf(char *str, const char *format, ...);</span><br><span class="line">int snprintf(char *str, size_t size, const char *format, ...);</span><br><span class="line"></span><br><span class="line">#include &lt;stdarg.h&gt;</span><br><span class="line"></span><br><span class="line">int vprintf(const char *format, va_list ap);</span><br><span class="line">int vfprintf(FILE *stream, const char *format, va_list ap);</span><br><span class="line">int vsprintf(char *str, const char *format, va_list ap);</span><br><span class="line">int vsnprintf(char *str, size_t size, const char *format, va_list ap);12345678910111213</span><br></pre></td></tr></table></figure>
+<p>怎么样，是不是看的有点晕？没关系，我们可以先用一个表格来大致区分一下上述这些函数的异同点，就不会那么晕了。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数类型</th>
+<th>输出到设备</th>
+<th>输出到文件</th>
+<th>输出到字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可变参数</td>
+<td>printf</td>
+<td>fprintf</td>
+<td>sprintf、snprintf</td>
+</tr>
+<tr>
+<td>固定参数</td>
+<td>vprintf</td>
+<td>vfprintf</td>
+<td>vsprintf、vsnprintf</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/09/27/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/31/getopt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -701,7 +809,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

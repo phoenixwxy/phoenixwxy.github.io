@@ -28,7 +28,7 @@
 <meta property="og:description" content="c++左值右值">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-30T09:46:45.199Z">
-<meta property="article:modified_time" content="2021-06-30T13:34:28.790Z">
+<meta property="article:modified_time" content="2021-07-01T10:12:50.045Z">
 <meta property="article:author" content="Phoenix">
 <meta property="article:tag" content="learn">
 <meta property="article:tag" content="Program，c++">
@@ -194,10 +194,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-06-30 17:46:45 / Modified: 21:34:28" itemprop="dateCreated datePublished" datetime="2021-06-30T17:46:45+08:00">2021-06-30</time>
+              <time title="Created: 2021-06-30 17:46:45" itemprop="dateCreated datePublished" datetime="2021-06-30T17:46:45+08:00">2021-06-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-07-01 18:12:50" itemprop="dateModified" datetime="2021-07-01T18:12:50+08:00">2021-07-01</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -239,7 +245,78 @@
 <p>  使用基于右值引用的语义转移，可以使我们在复制具有大块内存空间的对象时可以直接使用原对象已经分配好的内存空间进而省去重新分配内存空间的过程，因此某种程度上来讲，可以在一定条件下提升应用的运行效率。</p>
 </li>
 </ul>
-
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b90d1091a4ff">网址</a></p>
+<p>下文先从C++11引入的几个规则，如引用折叠、右值引用的特殊类型推断规则、static_cast的扩展功能说起，然后通过例子解析std::move和std::forward的推导解析过程，说明std::move和std::forward本质就是一个转换函数，std::move执行到右值的无条件转换，std::forward执行到右值的有条件转换，在参数都是右值时，二者就是等价的。其实std::move和std::forward就是在C++11基本规则之上封装的语法糖。</p>
+<h2 id="1-引入的新规则"><a href="#1-引入的新规则" class="headerlink" title="1 引入的新规则"></a>1 引入的新规则</h2><p>规则1（引用折叠规则）：如果间接的创建一个引用的引用，则这些引用就会“折叠”。在所有情况下（除了一个例外），引用折叠成一个普通的左值引用类型。一种特殊情况下，引用会折叠成右值引用，即右值引用的右值引用， T&amp;&amp; &amp;&amp;。即</p>
+<ul>
+<li>X&amp; &amp;、X&amp; &amp;&amp;、X&amp;&amp; &amp;都折叠成X&amp;</li>
+<li>X&amp;&amp; &amp;&amp;折叠为X&amp;&amp;</li>
+</ul>
+<p>规则2（右值引用的特殊类型推断规则）：当将一个左值传递给一个参数是右值引用的函数，且此右值引用指向模板类型参数(T&amp;&amp;)时，编译器推断模板参数类型为实参的左值引用，如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T&amp;&amp;)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> i = <span class="number">42</span>;</span><br><span class="line">f(i)</span><br></pre></td></tr></table></figure>
+<p>上述的模板参数类型T将推断为int&amp;类型，而非int。</p>
+<blockquote>
+<p>若将规则1和规则2结合起来，则意味着可以传递一个左值<code>int i</code>给f，编译器将推断出T的类型为int&amp;。再根据引用折叠规则 void f(int&amp; &amp;&amp;)将推断为void f(int&amp;)，因此，f将被实例化为: void f<int&>(int&amp;)。</p>
+<p>从上述两个规则可以得出结论：<strong>如果一个函数形参是一个指向模板类型的右值引用，则该参数可以被绑定到一个左值上</strong>，即类似下面的定义：</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(T&amp;&amp;)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>规则3：虽然不能隐式的将一个左值转换为右值引用，但是可以通过static_cast显示地将一个左值转换为一个右值。【C++11中为static_cast新增的转换功能】。</p>
+<h2 id="2-std-move"><a href="#2-std-move" class="headerlink" title="2 std::move"></a>2 std::move</h2><h3 id="2-1-std-move的使用"><a href="#2-1-std-move的使用" class="headerlink" title="2.1 std::move的使用"></a>2.1 std::move的使用</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> member;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Copy member.</span></span><br><span class="line">    Foo(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span>&amp; m): member(m) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Move member.</span></span><br><span class="line">    Foo(<span class="built_in">std</span>::<span class="built_in">string</span>&amp;&amp; m): member(<span class="built_in">std</span>::move(m)) &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上述<code>Foo(std::string&amp;&amp; member)</code>中的member是rvalue reference，但是member却是一个左值lvalue，因此在初始化列表中需要使用std::move将其转换成rvalue。</p>
+<h3 id="2-2-std-move-解析"><a href="#2-2-std-move-解析" class="headerlink" title="2.2 std::move()解析"></a>2.2 std::move()解析</h3><p>标准库中move的定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">typename</span> remove_reference&lt;T&gt;::<span class="function">type &amp;&amp; <span class="title">move</span><span class="params">(T&amp;&amp; t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">typename</span> remove_reference&lt;T&gt;::type &amp;&amp;&gt;(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>move函数的参数T&amp;&amp;是一个指向模板类型参数的右值引用【规则2】，通过引用折叠，此参数可以和任何类型的实参匹配，因此move既可以传递一个左值，也可以传递一个右值；</li>
+<li>std::move(string(“hello”))调用解析：<ul>
+<li>首先，根据模板推断规则，确地T的类型为string;</li>
+<li>typename remove_reference<T>::type &amp;&amp; 的结果为 string &amp;&amp;;</li>
+<li>move函数的参数类型为string&amp;&amp;;</li>
+<li>static_cast<string &&>(t)，t已经是string&amp;&amp;，于是类型转换什么都不做，返回string &amp;&amp;;</li>
+</ul>
+</li>
+<li>string s1(“hello”); std::move(s1); 调用解析：<ul>
+<li>首先，根据模板推断规则，确定T的类型为string&amp;;</li>
+<li>typename remove_reference<T>::type &amp;&amp; 的结果为 string&amp;</li>
+<li>move函数的参数类型为string&amp; &amp;&amp;，引用折叠之后为string&amp;;</li>
+<li>static_cast<string &&>(t)，t是string&amp;，经过static_cast之后转换为string&amp;&amp;, 返回string &amp;&amp;;</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>从move的定义可以看出，move自身除了做一些参数的推断之外，返回右值引用本质上还是靠static_cast<T&&>完成的。</p>
+</blockquote>
+<p>因此下面两个调用是等价的，std::move就是个语法糖。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span>&amp;&amp; a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">6</span>;</span><br><span class="line">func(<span class="built_in">std</span>::move(a));</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line">func(<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&amp;&amp;&gt;(b)); </span><br></pre></td></tr></table></figure>
+<p>std::move执行到右值的无条件转换。就其本身而言，它没有move任何东西。</p>
+<h2 id="3-std-forward"><a href="#3-std-forward" class="headerlink" title="3 std::forward()"></a>3 std::forward()</h2><h3 id="3-1-完美转发"><a href="#3-1-完美转发" class="headerlink" title="3.1 完美转发"></a>3.1 完美转发</h3><blockquote>
+<p>完美转发实现了参数在传递过程中保持其值属性的功能，即若是左值，则传递之后仍然是左值，若是右值，则传递之后仍然是右值。</p>
+<p>C++11 lets us perform perfect forwarding, which means that we can forward the parameters passed to a function template to another function call inside it without losing their own qualifiers (const-ref, ref, value, rvalue, etc.).</p>
+</blockquote>
+<h3 id="3-2-std-forward-解析"><a href="#3-2-std-forward-解析" class="headerlink" title="3.2 std::forward()解析"></a>3.2 std::forward()解析</h3><p>std::forward只有在它的参数绑定到一个右值上的时候，它才转换它的参数到一个右值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> member;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    Foo(T&amp;&amp; member): member&#123;<span class="built_in">std</span>::forward&lt;T&gt;(member)&#125; &#123;&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>传递一个lvalue或者传递一个const lvaue</p>
+<ul>
+<li>传递一个lvalue，模板推导之后 <code>T = std::string&amp;</code></li>
+<li>传递一个const lvaue, 模板推导之后<code>T = const std::string&amp;</code></li>
+<li><code>T&amp; &amp;&amp;</code>将折叠为T&amp;，即<code>std::string&amp; &amp;&amp; 折叠为 std::string&amp;</code></li>
+<li>最终函数为: <code>Foo(string&amp; member): member&#123;std::forward&lt;string&amp;&gt;(member)&#125; &#123;&#125;</code></li>
+<li>std::forward<string&>(member)将返回一个左值，最终调用拷贝构造函数</li>
+</ul>
+<p>传递一个rvalue</p>
+<ul>
+<li>传递一个rvalue，模板推导之后 <code>T = std::string</code></li>
+<li>最终函数为: <code>Foo(string&amp;&amp; member): member&#123;std::forward&lt;string&gt;(member)&#125; &#123;&#125;</code></li>
+<li>std::forward<string>(member) 将返回一个右值，最终调用移动构造函数；</li>
+</ul>
+<p>std::move和std::forward本质都是转换。std::move执行到右值的无条件转换。std::forward只有在它的参数绑定到一个右值上的时候，才转换它的参数到一个右值。</p>
+<p>std::move没有move任何东西，std::forward没有转发任何东西。在运行期，它们没有做任何事情。它们没有产生需要执行的代码，一byte都没有。</p>
+<h2 id="4-std-move-和std-forward-对比"><a href="#4-std-move-和std-forward-对比" class="headerlink" title="4 std::move()和std::forward()对比"></a>4 std::move()和std::forward()对比</h2><ul>
+<li>std::move执行到右值的无条件转换。就其本身而言，它没有move任何东西。</li>
+<li>std::forward只有在它的参数绑定到一个右值上的时候，它才转换它的参数到一个右值。</li>
+<li>std::move和std::forward只不过就是执行类型转换的两个函数；std::move没有move任何东西，std::forward没有转发任何东西。在运行期，它们没有做任何事情。它们没有产生需要执行的代码，一byte都没有。</li>
+<li>std::forward<T>()不仅可以保持左值或者右值不变，同时还可以保持const、Lreference、Rreference、validate等属性不变；</li>
+</ul>
+<h2 id="5-一个完整的例子"><a href="#5-一个完整的例子" class="headerlink" title="5 一个完整的例子"></a>5 一个完整的例子</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;type_traits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    A(<span class="keyword">int</span>&amp;&amp; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;rvalue overload, n=&quot;</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    A(<span class="keyword">int</span>&amp; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;lvalue overload, n=&quot;</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T1</span>, <span class="title">class</span> <span class="title">T2</span>, <span class="title">class</span> <span class="title">T3</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="title">B</span>(<span class="title">T1</span> &amp;&amp; <span class="title">t1</span>, <span class="title">T2</span> &amp;&amp; <span class="title">t2</span>, <span class="title">T3</span> &amp;&amp; <span class="title">t3</span>) :</span></span><br><span class="line">        a1_(<span class="built_in">std</span>::forward&lt;T1&gt;(t1)),</span><br><span class="line">        a2_(<span class="built_in">std</span>::forward&lt;T2&gt;(t2)),</span><br><span class="line">        a3_(<span class="built_in">std</span>::forward&lt;T3&gt;(t3))</span><br><span class="line">    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    A a1_, a2_, a3_;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">U</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">std</span>:</span>:<span class="function"><span class="built_in">unique_ptr</span>&lt;T&gt; <span class="title">make_unique1</span><span class="params">(U&amp;&amp; u)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//return std::unique_ptr&lt;T&gt;(new T(std::forward&lt;U&gt;(u)));</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;T&gt;(<span class="keyword">new</span> T(<span class="built_in">std</span>::move(u)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span>... <span class="title">U</span>&gt;</span></span><br><span class="line"><span class="class"><span class="title">std</span>:</span>:<span class="function"><span class="built_in">unique_ptr</span>&lt;T&gt; <span class="title">make_unique</span><span class="params">(U&amp;&amp;... u)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//return std::unique_ptr&lt;T&gt;(new T(std::forward&lt;U&gt;(u)...));</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;T&gt;(<span class="keyword">new</span> T(<span class="built_in">std</span>::move(u)...));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> p1 = make_unique1&lt;A&gt;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">auto</span> p2 = make_unique1&lt;A&gt;(i);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">100</span>;</span><br><span class="line">    <span class="keyword">auto</span> p3 = make_unique&lt;B&gt;(i, <span class="number">2</span>, j);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -261,7 +338,10 @@
     <a href="/2021/03/22/Effective-01/" rel="prev" title="Effective">
       <i class="fa fa-chevron-left"></i> Effective
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/01/Design/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -320,7 +400,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c-%E5%B7%A6%E5%80%BC%E5%8F%B3%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">c++左值右值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#c-%E5%B7%A6%E5%80%BC%E5%8F%B3%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">c++左值右值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%BC%95%E5%85%A5%E7%9A%84%E6%96%B0%E8%A7%84%E5%88%99"><span class="nav-number">1.2.</span> <span class="nav-text">1 引入的新规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-std-move"><span class="nav-number">1.3.</span> <span class="nav-text">2 std::move</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-std-move%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.1 std::move的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-std-move-%E8%A7%A3%E6%9E%90"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2 std::move()解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-std-forward"><span class="nav-number">1.4.</span> <span class="nav-text">3 std::forward()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 完美转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-std-forward-%E8%A7%A3%E6%9E%90"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 std::forward()解析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-std-move-%E5%92%8Cstd-forward-%E5%AF%B9%E6%AF%94"><span class="nav-number">1.5.</span> <span class="nav-text">4 std::move()和std::forward()对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.6.</span> <span class="nav-text">5 一个完整的例子</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -333,7 +413,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
