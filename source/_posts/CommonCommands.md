@@ -95,6 +95,7 @@ killcameraserver(){
 `docker commit -m="update some" -a="Phoenix" 4cfd1849b2fe phoenix`
 
 `docker run -t -v /home/mi:/phoenix -u phoenix -i phoenix /bin/bash`
+`docker run -t -v /home/mi:/phoenix -u phoenix -i phoenixwxy1/phoenix_ubuntu /bin/bash`
 
 `docker save -o rocketmq.tar rocketmq    ##-o：指定保存的镜像的名字；rocketmq.tar：保存到本地的镜像名称；rocketmq：镜像名字，通过"docker images"查看`
 
