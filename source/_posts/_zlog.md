@@ -71,7 +71,7 @@ zlog里面有三个重要的概念,category,format，rule
 
 ```shell
 # []代表一个节的开始，四个小节的顺序不能变，依次为global-levels-formats-rules
-[global]				# 全局参数
+[global]                # 全局参数
 # 如果"strict init"是true，zlog_init()将会严格检查所有的格式和规则，
 # 任何错误都会导致zlog_init() 失败并且返回-1。当"strict init"是false的时候，
 # zlog_init()会忽略错误的格式和规则。 这个参数默认为true。
@@ -114,7 +114,7 @@ default = "%d.%us %-6V (%c:%F:%L) - %m%n"
 # 这一节以[rules]开头。这个描述了日志是怎么被过滤、格式化以及被输出的。
 # (category).(level)    (output), (options, optional); (format name, optional)
 [rules]
-*.*						"./log"
+*.*                        "./log"
 default.*               >stdout; simple
 *.*                     "%12.2E(HOME)/log/%c.log", 1MB*12; simple
 my_.INFO                >stderr;
@@ -131,4 +131,3 @@ my_mice.*               $user_define;
 1g => 1000000000 bytes 
 1gb => 1024*1024*1024 byte
 ```
-
