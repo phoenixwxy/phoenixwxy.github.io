@@ -1,6 +1,8 @@
 # c++
 
-[toc]
+[TOC]
+
+<!-- more -->
 
 ## 关键字
 
@@ -43,7 +45,60 @@ double
 dynamic_cast
 else
 enum
-explicit
+
+### explicit
+
+1. 指定构造函数或转换函数 (C++11起)为显式, 即它不能用于[隐式转换](https://link.zhihu.com/?target=https%3A//zh.cppreference.com/w/cpp/language/implicit_conversion)和[复制初始化](https://link.zhihu.com/?target=https%3A//zh.cppreference.com/w/cpp/language/copy_initialization).
+2. explicit 指定符可以与常量表达式一同使用. 函数若且唯若该常量表达式求值为 true 才为显式. (C++20起)
+
+自己的理解就是，因为C++存在的隐式转换和复制初始化，导致声明对象时出现可预料的不正常操作。
+
+使用场景是只有一个参数需要在构造函数中初始化的。
+
+```cpp
+#include<cstring>
+#include<string>
+#include<iostream>
+
+class Explicit
+{
+    private:
+
+    public:
+        explicit Explicit(int size)
+        {
+            std::cout << " the size is " << size << std::endl;
+        }
+        explicit Explicit(const char* str)
+        {
+            std::string _str = str;
+            std::cout << " the str is " << _str << std::endl;
+        }
+
+        Explicit(const Explicit& ins)
+        {
+            std::cout << " The Explicit is ins" << std::endl;
+        }
+
+        Explicit(int a,int b)
+        {
+            std::cout << " the a is " << a  << " the b is " << b << std::endl;
+        }
+};
+
+int main()
+{
+    Explicit test0(15);
+    Explicit test1 = 10;// 无法调用
+
+    Explicit test2("RIGHTRIGHT");
+    Explicit test3 = "BUGBUGBUG"; // 无法调用
+
+    Explicit test4(1, 10);
+    Explicit test5 = test0;
+}
+```
+
 export (1) (3)
 extern (1)
 false
@@ -58,57 +113,87 @@ for
 
 缺点：破坏类的封装性。
 
-- goto
-  if
-  inline (1)
-  int
-  long
-  mutable (1)
-  namespace
-  new
-  noexcept (since C++11)
-  not
-  not_eq
-  nullptr (since C++11)
-  operator
-  or
-  or_eq
-  private
-  protected
-  public
-  reflexpr (reflection TS)
-  register (2)
-  reinterpret_cast
-  requires (since C++20)
-  return
-  short
-  signed
-  sizeof (1)
-  static
-  static_assert (since C++11)
-  static_cast
-  struct (1)
-  switch
-  synchronized (TM TS)
-  template
-  this
-  thread_local (since C++11)
-  throw
-  true
-  try
-  typedef
-  typeid
-  typename
-  union
-  unsigned
-  using (1)
-  virtual
-  void
-  volatile
-  wchar_t
-  while
-  xor
-  xor_eq
+goto
+if
+inline (1)
+int
+long
+mutable (1)
+namespace
+new
+noexcept (since C++11)
+not
+not_eq
+nullptr (since C++11)
+
+### override
+
+作用：在成员函数声明或定义中， override 确保该函数为虚函数并覆写来自基类的虚函数。
+
+位置：函数调用运算符之后，函数体或纯虚函数标识 “= 0” 之前。
+
+好处:
+
+    1. 可以当注释用,方便阅读
+
+    2. 告诉阅读你代码的人，这是方法的复写
+
+    3. 编译器可以给你验证 override 对应的方法名是否是你父类中所有的，如果没有则报错
+
+```cpp
+class base
+{
+public:
+    virtual void fun1(void)=0;
+};
+
+class derived : public base
+{
+public:
+#if 1 //OK
+    void fun1(void) override {
+        cout << "a fun1" << std::endl; 
+```
+
+operator
+or
+or_eq
+private
+protected
+public
+reflexpr (reflection TS)
+register (2)
+reinterpret_cast
+requires (since C++20)
+return
+short
+signed
+sizeof (1)
+static
+static_assert (since C++11)
+static_cast
+struct (1)
+switch
+synchronized (TM TS)
+template
+this
+thread_local (since C++11)
+throw
+true
+try
+typedef
+typeid
+typename
+union
+unsigned
+using (1)
+virtual
+void
+volatile
+wchar_t
+while
+xor
+xor_eq
 
 ## 中英文对照
 
@@ -299,6 +384,64 @@ vector                                  向量
 viable                                  可实行的
 viable  function                        可行函数
 volatile                                易变的
+```
+
+## 知识点
+
+### virtual public的含义和作用
+
+**虚基类**
+
+含义为 ，虚基类是指：class SubClass : virtual public BaseClass 中以virtual声明的基类
+
+因为C++支持多重继承。可能会出现派生类的多个父类的父类相同，导致构造时出现二义性。此时使用 虚基类 来基类生成一块内存区域，这样最终的派生类只含有一个基类。
+
+## STL
+
+### std::make_unique(C++14)
+
+### std::make_shared(C++11)
+
+通过make方法构造一个使用智能指针的对象
+
+1.同直接使用new相比，make函数减小了代码重复，提高了异常安全，并且对于std::make_shared和std::allcoated_shared，生成的代码会更小更快。
+
+2.不能使用make函数的情况包括我们需要定制删除器和期望直接传递大括号初始化器。
+
+3.对于std::shared_ptr，额外的不建议使用make函数的情况包括：
+
+  （1）定制内存管理的类，
+
+  （2）关注内存的系统，非常大的对象，以及生存期比 std::shared_ptr长的std::weak_ptr。
+
+### std::move
+
+将一个左值强制转化为右值引用，继而可以通过右值引用使用该值，以用于移动语义。
+
+从实现上讲，std::move基本等同于一个类型转换：`static_cast<T&&>(lvalue);`
+
+### std::variant
+
+表示一个类型安全的[联合体](https://zh.cppreference.com/w/cpp/language/union "cpp/language/union")。 `std::variant` 的一个实例在任意时刻要么保有其一个可选类型之一的值，要么在错误情况下无值
+
+1. 通过可变的模板参数（variable template，variadic template）你可以指定一组可选类型，它们将是这个实例类型所支持的值类型表。例如 `std::variant<int, boo>` 允许你放入 int 或者 bool 的值并安全的抽出它。
+2. 其实例在任意时刻要么包含一个其可选类型之一的值，要么处于病式状态。
+3. 其实例的默认值为其首个可选类型的默认构造值。即 `std::variant<int, bool> a;` 语句中，`a` 具有 `(int)(0)` 值。如果首个可选类型没有默认的构造器，那么你需要显式地提供初始化表达式。
+4. 不支持引用类型，数组，void 等作为其可选类型。
+
+### std::memory_order_relaxed
+
+std::memory_order 指定如何围绕原子操作对内存访问（包括常规的非原子内存访问）进行排序。在多核系统上没有任何限制，当多个线程同时读取和写入多个变量时，一个线程可以观察到值的变化顺序与另一个线程写入它们的顺序不同。事实上，变化的明显顺序在多个阅读器线程之间甚至可能不同。由于内存模型允许的编译器转换，即使在单处理器系统上也会出现一些类似的效果
+
+属于C++的六种内存顺序。
+
+```textile
+std::memory_order_relaxed
+std::memory_order_consume
+std::memory_order_acquire
+std::memory_order_release
+std::memory_order_acq_rel
+std::memory_order_seq_cst
 ```
 
 

@@ -16,13 +16,13 @@ categories: program
 **右值**：一个值在表达式的位置位于右侧 或理解为”**不**可以取地址、**没有**名字的值“
 
 1. xvalue
-
+   
     Expiring Value 即将死亡的值 ----------  右值应用
 
 2. prvalue
-
+   
     Rure Right Value 纯粹的右值
-
+   
     比如函数返回的临时变量值、字面量值以及 Lambda 表达式等等
 
 **右值引用**：对右值的一个引用， 使用 "&&"
@@ -34,14 +34,8 @@ int &&int_number = 10;
 ```
 
 - 使用场景
-
+  
     使用基于右值引用的语义转移，可以使我们在复制具有大块内存空间的对象时可以直接使用原对象已经分配好的内存空间进而省去重新分配内存空间的过程，因此某种程度上来讲，可以在一定条件下提升应用的运行效率。
-
-
-
-
-
-
 
 [网址](https://www.jianshu.com/p/b90d1091a4ff)
 
@@ -55,8 +49,6 @@ int &&int_number = 10;
 - X&& &&折叠为X&&
 
 规则2（右值引用的特殊类型推断规则）：当将一个左值传递给一个参数是右值引用的函数，且此右值引用指向模板类型参数(T&&)时，编译器推断模板参数类型为实参的左值引用，如
-
-
 
 ```cpp
 template<typename T> 
@@ -72,8 +64,6 @@ f(i)
 
 > 从上述两个规则可以得出结论：**如果一个函数形参是一个指向模板类型的右值引用，则该参数可以被绑定到一个左值上**，即类似下面的定义：
 
-
-
 ```cpp
 template<typename T> 
 void f(T&&);
@@ -84,8 +74,6 @@ void f(T&&);
 ## 2 std::move
 
 ### 2.1 std::move的使用
-
-
 
 ```cpp
 class Foo
@@ -107,8 +95,6 @@ public:
 
 标准库中move的定义如下：
 
-
-
 ```cpp
 template<typename T>
 typename remove_reference<T>::type && move(T&& t)
@@ -119,21 +105,19 @@ typename remove_reference<T>::type && move(T&& t)
 
 - move函数的参数T&&是一个指向模板类型参数的右值引用【规则2】，通过引用折叠，此参数可以和任何类型的实参匹配，因此move既可以传递一个左值，也可以传递一个右值；
 - std::move(string("hello"))调用解析：
-    - 首先，根据模板推断规则，确地T的类型为string;
-    - typename remove_reference<T>::type && 的结果为 string &&;
-    - move函数的参数类型为string&&;
-    - static_cast<string &&>(t)，t已经是string&&，于是类型转换什么都不做，返回string &&;
+  - 首先，根据模板推断规则，确地T的类型为string;
+  - typename remove_reference<T>::type && 的结果为 string &&;
+  - move函数的参数类型为string&&;
+  - static_cast<string &&>(t)，t已经是string&&，于是类型转换什么都不做，返回string &&;
 - string s1("hello"); std::move(s1); 调用解析：
-    - 首先，根据模板推断规则，确定T的类型为string&;
-    - typename remove_reference<T>::type && 的结果为 string&
-    - move函数的参数类型为string& &&，引用折叠之后为string&;
-    - static_cast<string &&>(t)，t是string&，经过static_cast之后转换为string&&, 返回string &&;
+  - 首先，根据模板推断规则，确定T的类型为string&;
+  - typename remove_reference<T>::type && 的结果为 string&
+  - move函数的参数类型为string& &&，引用折叠之后为string&;
+  - static_cast<string &&>(t)，t是string&，经过static_cast之后转换为string&&, 返回string &&;
 
 > 从move的定义可以看出，move自身除了做一些参数的推断之外，返回右值引用本质上还是靠static_cast<T&&>完成的。
 
 因此下面两个调用是等价的，std::move就是个语法糖。
-
-
 
 ```cpp
 void func(int&& a)
@@ -161,8 +145,6 @@ std::move执行到右值的无条件转换。就其本身而言，它没有move�
 ### 3.2 std::forward()解析
 
 std::forward只有在它的参数绑定到一个右值上的时候，它才转换它的参数到一个右值。
-
-
 
 ```cpp
 class Foo
@@ -201,8 +183,6 @@ std::move没有move任何东西，std::forward没有转发任何东西。在运�
 - std::forward<T>()不仅可以保持左值或者右值不变，同时还可以保持const、Lreference、Rreference、validate等属性不变；
 
 ## 5 一个完整的例子
-
-
 
 ```cpp
 #include <iostream>

@@ -1,0 +1,27 @@
+@startuml IInterface
+
+class RefBase {
+    +void incStrong(const void* id) const
+    +void incStrongRequireStrong(const void* id) const
+    +void decStrong(const void* id) const
+    +void forceIncStrong(const void* id) const
+    +class weakref_type {}
+    ..
+    #RefBase()
+    #virual ~RefBase()
+}
+
+
+class IInterface {
+    +IInterface()
+    --
+    #virtual ~IInterface()
+    #virtual IBinder* onAsBinder() = 0
+    ==
+    +static sp<IBinder>  asBinder(const IInterface*)
+    +static sp<IBinder>  asBinder(const sp<IInterface>&)
+}
+
+RefBase <|-- IInterface
+
+@enduml

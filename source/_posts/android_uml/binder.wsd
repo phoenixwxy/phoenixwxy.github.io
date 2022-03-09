@@ -1,5 +1,230 @@
-@startuml
+@startuml Binder
 
-Class01 <|-- Class2
+
+package "binder class" {
+class RefBase {
+    +void incStrong(const void* id) const
+    +void incStrongRequireStrong(const void* id) const
+    +void decStrong(const void* id) const
+    +void forceIncStrong(const void* id) const
+    +class weakref_type {}
+    ..
+    #RefBase()
+    #virual ~RefBase()
+}
+
+
+class IInterface {
+    +IInterface()
+    --
+    #virtual ~IInterface()
+    #virtual IBinder* onAsBinder() = 0
+    ==
+    +static sp<IBinder>  asBinder(const IInterface*)
+    +static sp<IBinder>  asBinder(const sp<IInterface>&)
+
+    ==
+    {static}template<typename INTERFACE>
+                inline sp<INTERFACE> interface_cast(const sp<IBinder>& obj)
+}
+
+class IBinder {
+    +IBinder()
+    --
+    +virtual const String16& getInterfaceDescriptor() const = 0
+    +static  status_t        shellCommand()
+    +virtual status_t        transact() = 0
+    +virtual status_t        unlinkToDeath() = 0
+
+    +class DeathRecipient
+    --
+    #~IBinder() 
+    ==
+    +virtual BBinder*        localBinder()
+    +virtual BpBinder*       remoteBinder()
+}
+
+
+class DeathRecipient {
+    +virtual void binderDied(const wp<IBinder>& who) = 0
+}
+
+
+class BBinder {
+    #virtual status_t    onTransact(uint32_t code,
+                                    const Parcel& data,
+                                    Parcel* reply,
+                                    uint32_t flags = 0)
+    --
+    -BBinder(const BBinder& o)
+    -BBinder&    operator=(const BBinder& o)
+}
+
+class BnInterface {
+    +virtual sp<IInterface>      queryLocalInterface(const String16& _descriptor)
+    +virtual const String16&     getInterfaceDescriptor() const
+    ==
+    #virtual IBinder*            onAsBinder()
+}
+
+class BpRefBase {
+    -IBinder* const          mRemote
+    ==
+    #inline IBinder* remote() const { return mRemote; }
+    #inline sp<IBinder> remoteStrong() const { return sp<IBinder>::fromExisting(mRemote); }
+}
+
+class BpInterface {
+    +explicit                    BpInterface(const sp<IBinder>& remote)
+    --
+    -virtual IBinder*            onAsBinder()
+}
+
+class Parcel {
+
+}
+
+class INTERFACE<? DECLARE_META_INTERFACE> {
+
+}
+
+class IServiceManager {
+    +virtual const String16& getInterfaceDescriptor() const
+    +IServiceManager()
+    +virtual ~ServiceManager()
+    +virtual sp<IBinder>         getService() const = 0
+    +virtual status_t addService() = 0
+    +virtual sp<IBinder> waitForService() = 0
+
+    {static}sp<IServiceManager> defaultServiceManager()
+    {static}void setDefaultServiceManager(const sp<IServiceManager>& sm)
+}
+
+class ServiceManagerShim {
+
+}
+
+class ProcessState {
+    +{static}sp<ProcessState>    self();
+    +{static}sp<ProcessState>    selfOrNull()
+    +static  sp<ProcessState>    initWithDriver(const char *driver)
+    +sp<IBinder>         getContextObject(const sp<IBinder>& caller)
+    +void                startThreadPool()
+    +bool                becomeContextManager()
+    --
+    -static  sp<ProcessState>    init(const char *defaultDriver, bool requireDefault)
+    -handle_entry* lookupHandleLocked(int32_t handle)
+    -String8             mDriverName
+    -int                 mDriverFD
+    -void*               mVMStart
+}
+
+class handle_entry {
+    IBinder* binder
+    RefBase::weakref_type* refs
+}
+
+class BpBinder {
+    +virtual BpBinder*   remoteBinder()
+    virtual status_t    transact()
+    ==
+    -using Handle = std::variant<BinderHandle, RpcHandle>;
+    --
+    -Handle mHandle;
+}
+
+class BinderHandle {
+    +int32_t handle
+}
+
+class RpcHandle {
+    +sp<RpcSession> session;
+    +RpcAddress address;
+}
+
+BpBinder::Handle *-- BinderHandle
+BpBinder::Handle *-- RpcHandle
+
+
+RefBase <|-- IInterface
+
+IBinder *-- DeathRecipient
+IBinder o-- BBinder
+IBinder o-- BpBinder
+RefBase <|-- DeathRecipient
+
+
+IBinder <|-- BBinder
+
+
+
+BBinder <|-- BnInterface
+INTERFACE <|-- BnInterface
+
+RefBase <|-- BpRefBase
+BpRefBase o-- IBinder
+BpRefBase <|-- BpInterface
+
+IInterface <|-- IServiceManager
+IServiceManager <|-- ServiceManagerShim
+
+RefBase <|-- ProcessState
+ProcessState::lookupHandleLocked *-- handle_entry
+}
+
+
+package "binder data struct" {
+class binder_object_header {
+    __u32        type;
+}
+
+note as note_181
+"表明Binder的类型,包括以下几种:\n
+BINDER_TYPE_BINDER:表示传递的是Binder实体,并且指向该实体的引用都是强类型;\n
+BINDER_TYPE_WEAK_BINDER:表示传递的是BInder实体,并且指向该实体的引用都\n
+是弱类型的;\n
+BINDER_TYPE_HANDLE:表示传递的是Binder强类型的引用;\n
+BINDER_TYPE_WEAK_HANDLE:表示传递的是Binder弱类型的引用;\n
+BINDER_TYPE_FD:表示传递的是文件形式的Binder"
+end note
+
+note_181 .. binder_object_header
+
+
+note as note_194
+"该域只对第一次传递Binder实体时有效,因为此时驱动需要在内核中创建相应的实体节点
+,有些参数需要从该域取出:
+第0-7位,表示处理本实体请求数据包的线程的最低优先级,当一个应用程序提供多个实体
+时,可以通过该参数调整分配给各个实体的处理能力;
+第8位置1表示该实体可以接收其他线程发过来的文件形式的Binder,由于接收文件形式的
+Binder会在接收方进程中自动打开文件,有些接收方可以用该位标示禁止此功能,以防止
+打开过多文件。"
+end note
+
+note as note_204
+"该域只对Binder实体有效,存放与该Binder有关的附加信息。"
+end note
+
+class flat_binder_object {
+	struct binder_object_header hdr;
+	__u32				flags;
+
+	/* 8 bytes of data. */
+	union {
+		binder_uintptr_t	binder;	/* local object */
+		__u32			handle;	/* remote object */
+	};
+
+	/* extra data associated with local object */
+	binder_uintptr_t	cookie;
+}
+
+flat_binder_object::hdr *-- binder_object_header
+
+note_194 .. flat_binder_object::flags
+note_204 .. flat_binder_object::cookie
+
+}
+
 
 @enduml
