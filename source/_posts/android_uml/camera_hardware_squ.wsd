@@ -37,7 +37,10 @@ main -> CameraService.cpp : instantiate()
                 "provider Manager"
                 end note
                 Service -> CameraProviderManager.cpp : initialize(this)
-                    
+                        Service -> CameraProviderManager.cpp : addProviderLocked(instance)
+                    note right
+                    "provider名字生成的位置"
+                    end note
                 Service -> CameraProviderManager.cpp : setUpVendorTags()
                 note right
                 "在get_camera_info之前先设置tags，底层可能有静态tags需要设置"
