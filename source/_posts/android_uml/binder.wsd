@@ -51,18 +51,18 @@ class DeathRecipient {
 
 
 class BBinder {
-    #virtual status_t    onTransact(uint32_t code,
-                                    const Parcel& data,
-                                    Parcel* reply,
-                                    uint32_t flags = 0)
+    +status_t transact()
+    ==
+    #virtual status_t    onTransact()
     --
     -BBinder(const BBinder& o)
     -BBinder&    operator=(const BBinder& o)
 }
 
-class BnInterface {
+class BnInterface <INTERFACE>{
     +virtual sp<IInterface>      queryLocalInterface(const String16& _descriptor)
     +virtual const String16&     getInterfaceDescriptor() const
+    +virtual status_t    onTransact()
     ==
     #virtual IBinder*            onAsBinder()
 }
@@ -74,17 +74,13 @@ class BpRefBase {
     #inline sp<IBinder> remoteStrong() const { return sp<IBinder>::fromExisting(mRemote); }
 }
 
-class BpInterface {
+class BpInterface<INTERFACE> {
     +explicit                    BpInterface(const sp<IBinder>& remote)
     --
     -virtual IBinder*            onAsBinder()
 }
 
 class Parcel {
-
-}
-
-class INTERFACE<? DECLARE_META_INTERFACE> {
 
 }
 
@@ -159,10 +155,9 @@ IBinder <|-- BBinder
 
 
 BBinder <|-- BnInterface
-INTERFACE <|-- BnInterface
 
 RefBase <|-- BpRefBase
-BpRefBase o-- IBinder
+RefBase o-- IBinder
 BpRefBase <|-- BpInterface
 
 IInterface <|-- IServiceManager
@@ -170,7 +165,63 @@ IServiceManager <|-- ServiceManagerShim
 
 RefBase <|-- ProcessState
 ProcessState::lookupHandleLocked *-- handle_entry
+
+
+class android::os::IServiceManager {
+
 }
+
+IInterface <|-- android::os::IServiceManager
+
+class BpServiceManager <android::os::IServiceManager> {
+    +BpServiceManager(sp<IBinder> remote)
+}
+
+
+class IPCThreadState {
+    +status_t transact()
+    --
+    -talkWithDriver()
+    ==
+    -const sp<ProcessState> mProcess
+}
+
+BpInterface <|-- BpServiceManager
+BpRefBase::mRemote o-- BpBinder
+IPCThreadState::transact <-- BpBinder::transact
+IPCThreadState::transact <-- BBinder::transact
+
+class BnServiceManager {
+    status_t onTransact()
+}
+
+BnInterface <|-- BnServiceManager
+
+class ServiceManager {
+
+}
+
+note as note_203
+"这里指的是ServiceManager"
+end note
+
+BnServiceManager <|-- ServiceManager
+DeathRecipient <|-- ServiceManager
+note_203 .. ServiceManager
+}
+' end package
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 package "binder data struct" {
@@ -226,5 +277,37 @@ note_204 .. flat_binder_object::cookie
 
 }
 
+
+
+package "Binder Java" {
+interface IInterface {
+    +asBinder() : IBinder
+}
+
+interface IBinder {
+
+}
+
+class ServiceManagerProxy {
+
+}
+
+IServiceManager <|-- ServiceManagerProxy
+
+class ServiceManagerNative {
+    +{static} asInterface(IBinder obj) : IServiceManager
+}
+
+
+class ServiceManager <final> {
+    -{static} sServiceManager : IServiceManager
+    ==
+    -{static} getIServiceManager() : IServiceManager
+}
+
+
+
+}
+' end package Binder Java
 
 @enduml

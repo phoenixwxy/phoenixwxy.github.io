@@ -1,0 +1,103 @@
+@startuml CameraHardWare
+
+class CameraService {
+    -mNumberOfCameras : int
+}
+
+class BinderService <CameraService> {
+    +publish()
+    +{static} instantiate()
+}
+
+class BnCameraService {
+
+}
+
+class BnInterface <ICameraService> {
+
+}
+
+class ICameraService {
+
+}
+
+class IInterface {
+
+}
+
+class HidlCameraService {
+
+}
+
+HidlCameraService --|> ICameraService
+
+ICameraService --|> IInterface
+IInterface --|> RefBase
+
+BnCameraService --|> BnInterface
+
+class IBinder {
+
+}
+
+class BBinder {
+
+}
+
+BnInterface --|> ICameraService
+BnInterface --|> BBinder
+BBinder --|> IBinder
+
+class DeathRecipient {
+
+}
+
+class RefBase {
+    +incStrong()
+    +decStrong()
+    +onFirstRef()
+}
+
+class StatusListener {
+
+}
+
+class CameraProviderManager {
+
+}
+
+class IServiceNotification {
+
+}
+
+class IBase {
+
+}
+
+class sp <T> {
+    -m_ptr : T*
+    +sp()
+    +~sp()
+}
+
+sp::sp -> RefBase::incStrong
+' sp::~sp -> RefBase::decStrong
+
+BinderService::instantiate -> BinderService::publish
+
+IBase --|> RefBase
+IBase <|-- IServiceNotification
+IServiceNotification <|-- CameraProviderManager
+StatusListener --|> RefBase
+CameraProviderManager *-- StatusListener
+
+RefBase <|-- IBinder
+IBinder *-- DeathRecipient
+
+
+CameraService --|> BinderService
+CameraService --|> DeathRecipient
+CameraService --|> BnCameraService
+
+
+@enduml

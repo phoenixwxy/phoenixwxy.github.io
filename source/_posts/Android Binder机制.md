@@ -16,8 +16,6 @@ Binder是一种进程通信机制（IPC，Inter-Process Communication）。Googl
 4. Client和Server之间的进程间通信通过Binder驱动程序间接实现
 5. Service Manager是一个守护进程，用来管理Server，并向Client提供查询Server接口的能力
 
-
-
 ## ServiceManager
 
 ServiceManager用来管理Client和Server的通信，且三者属于不同进程；所以三者之间的通信都是Binder通信。所以ServiceManager在充当Binder的守护进程的时候，也在充当Server。

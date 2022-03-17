@@ -1,0 +1,60 @@
+@startuml CameraHardwareSquence
+
+participant main_cameraserver.cpp as main
+participant CameraService.cpp as Service
+
+
+
+main -> HidlTransportSupport.cpp : configureRpcThreadpool(maxThreads)
+HidlTransportSupport.cpp -> HidlBinderSupport.cpp : configureBinderRpcThreadpool()
+HidlBinderSupport.cpp -> ProcessState.cpp : setThreadPoolConfiguration()
+main -> IServiceManager.cpp : sm = defaultServiceManager()
+main -> CameraService.cpp : instantiate()
+
+
+
+    CameraService.cpp -> BinderService.h : instantiate()
+    BinderService.h -> BinderService.h : publish()
+    BinderService.h -> BpServiceManager.h : addService()
+    note left
+    "这里指的是 Server(CameraService)"
+    "通过ServiceManager的BpBinder去addService"
+    end note
+        BpServiceManager.h -> CameraService.cpp : new CameraService()
+        note right
+        "这里CameraService要转换成 sp<IBinder>& service"
+        "sp构造时调用 T(IBinder)的 onFirstRef,"
+        "实际是从RefBase开始调用的"
+        end note
+        BpServiceManager.h -> CameraService.cpp : onFirstRef()
+            CameraService.cpp -> BnCameraService.h : onFirstRef()
+            note right
+            "调用父类"
+            end note
+            Service -> Service : enumerateProviders()
+                Service -> CameraProviderManager.cpp : new CameraProviderManager()
+                note right
+                "provider Manager"
+                end note
+                Service -> CameraProviderManager.cpp : initialize(this)
+                    
+                Service -> CameraProviderManager.cpp : setUpVendorTags()
+                note right
+                "在get_camera_info之前先设置tags，底层可能有静态tags需要设置"
+                end note
+                service -> CameraFlashlight.cpp : new CameraFlashlight()
+
+            Service -> Service : HidlCameraService::getInstance(this)
+            Service -> CameraServiceProxyWrapper.cpp : pingCameraServiceProxy()
+            Service -> CameraProviderManager.cpp : getCameraDeviceIds()
+
+
+
+
+main -> ProcessState.cpp : startThreadPool()
+main -> IPCThreadState.cpp : joinThreadPool()
+
+
+
+
+@enduml

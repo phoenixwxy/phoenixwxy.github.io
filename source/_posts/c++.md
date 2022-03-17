@@ -182,7 +182,20 @@ throw
 true
 try
 typedef
-typeid
+
+### typeid
+
+获取一个表达式的类型，返回表达式的类型
+
+表达式可以是类型名称、变量名、数字、字符串、指针、结构体等
+
+```cpp
+struct A {int b;};
+A str;
+cout << typeid(str).name() << " "
+     << typeid(int).name() << endl;
+```
+
 typename
 union
 unsigned
@@ -444,4 +457,48 @@ std::memory_order_acq_rel
 std::memory_order_seq_cst
 ```
 
+### std::underlying_type
 
+获取一个枚举类型的基本类型（即枚举成员的类型）
+
+template< class T >  
+struct underlying_type;
+
+```cpp
+    enum class A {white, blue, red};
+    enum B {};
+    enum class C {A, B, C};
+    enum class D : short {};
+
+    cout << "A is " << typeid(underlying_type<A>::type).name() << endl;
+    cout << "B is " << typeid(underlying_type<B>::type).name() << endl;
+    cout << "B is " << typeid(underlying_type<B>::type).name() << endl;
+    cout << "D is " << typeid(underlying_type<D>::type).name() << endl;
+    cout << "int is " << typeid(int).name() << endl;
+    
+    // output
+    A is i
+    B is j
+    B is j
+    D is s
+    int is i
+```
+
+```cpp
+类型对照表
+bool                                   b
+char                                   c
+signed char                            a
+unsigned char                          h
+(signed) short (int)                   s
+unsigned short (int)                   t
+(signed) (int)                         i
+unsigned (int)                         j
+(signed) long (int)                    l
+unsigned long (int)                    m
+(signed) long long (int)               x
+unsigned long long (int)               y
+float                                  f
+double                                 d
+long double                            e
+```
