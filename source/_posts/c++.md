@@ -1,3 +1,11 @@
+---
+title: C++
+time: 2022
+tags: [learn,Program]
+categories: [program]
+
+---
+
 # c++
 
 [TOC]
@@ -475,7 +483,7 @@ struct underlying_type;
     cout << "B is " << typeid(underlying_type<B>::type).name() << endl;
     cout << "D is " << typeid(underlying_type<D>::type).name() << endl;
     cout << "int is " << typeid(int).name() << endl;
-    
+
     // output
     A is i
     B is j
@@ -502,3 +510,9 @@ float                                  f
 double                                 d
 long double                            e
 ```
+
+### # std::funcional
+
+头文件 `<functional>`
+
+类模版std::function是一种通用、多态的函数封装。std::function的实例可以对任何可以调用的目标实体进行存储、复制、和调用操作，这些目标实体包括普通函数、Lambda表达式、函数指针、以及其它函数对象等。std::function对象是对C++中现有的可调用实体的一种类型安全的包裹（我们知道像函数指针这类可调用实体，是类型不安全的）。
