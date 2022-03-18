@@ -3,7 +3,6 @@ title: C++
 time: 2022
 tags: [learn,Program]
 categories: [program]
-
 ---
 
 # c++

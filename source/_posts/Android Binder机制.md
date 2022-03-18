@@ -1,3 +1,10 @@
+---
+title: Android Binder机制
+time: 2022
+tags: [learn,Program]
+categories: [program]
+---
+
 # Android Binder机制
 
 ## 概念
@@ -27,4 +34,10 @@ ServiceManager用来管理Client和Server的通信，且三者属于不同进程
 ```textile
 BnBinder                        Binder Native
 BpBInder                        Binder Proxy
+```
+
+# CodeFollow
+
+```cpp
+
 ```
