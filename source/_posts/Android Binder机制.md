@@ -140,7 +140,7 @@ frameworks/native/cmds/servicemanager/main.cpp
         ClientCallbackCallback::setupTo(looper, manager);
             //callBack,执行serviceManager的callback
             mManager->handleClientCallbacks();
-            
+
 ServiceManager 远程接口的实现
 // 创建一个单例
 [[clang::no_destroy]] static sp<IServiceManager> gDefaultServiceManager;
@@ -168,7 +168,7 @@ ServiceManager 远程接口的实现
                         if b is null && e->refs(wp) is include && handle is 0
                             // 理解为用于跨进程时,用于保存各种数据的对象,并且改对象提供很多方法用于存取数据
                             Parcel data;
-                            
+
                             status_t status = ipc->transact(0, IBinder::PING_TRANSACTION, data, nullptr, 0);
                                 err = writeTransactionData(BC_TRANSACTION, flags, handle, code, data, nullptr);
                                     // 通过ioctl向binder驱动发送了个啥消息,不明白,从上面注释看起来意思是在Binder驱动(kernel)搞了一个context(上下文) manager
@@ -313,7 +313,7 @@ class MediaPlayerService : public BnMediaPlayerService
 
                 processPendingDerefs();
 
-        
+
         ::android::hardware::configureRpcThreadpool(16, false);
         ProcessState::self()->startThreadPool();
             ProcessState->spawnPooledThread(true);
@@ -339,8 +339,8 @@ class MediaPlayerService : public BnMediaPlayerService
                             talkWithDriver(false);
         IPCThreadState::self()->joinThreadPool();
         ::android::hardware::joinRpcThreadpool();
-                            
-                    
+
+
 Client和Server通信
 使用MediaPlayer和MediaService进行分析
     IMediaDeathNotifier::getMediaPlayerService()
@@ -366,7 +366,7 @@ Client和Server通信
                                                     if ((err=talkWithDriver()) < NO_ERROR) break;
                                                         if (ioctl(mProcess->mDriverFD, BINDER_WRITE_READ, &bwr) >= 0)
                     }
-                    
+
             if (binder != 0) {                
                 break;
             }
@@ -397,10 +397,10 @@ frameworks/base/core/java/android/os/ServiceManager.java
                                         //     jclass mClass;
                                         //     jmethodID mExecTransact;
                                         //     jmethodID mGetInterfaceDescriptor;
-                                        
+
                                         //     // Object state.
                                         //     jfieldID mObject;
-                                        
+
                                         // } gBinderOffsets;
                                         // gBinderOffsets用来记录 Binder信息的，在int_register_android_os_Binder初始化
                                         // static struct binderproxy_offsets_t
@@ -427,5 +427,3 @@ frameworks/base/core/java/android/os/ServiceManager.java
                     return new ServiceManagerProxy(obj);
                         class ServiceManagerProxy implements IServiceManager
 ```
-
-<>

@@ -1,0 +1,93 @@
+@startuml camera_ops
+
+' participant
+
+ICameraService.cpp -> CameraService.cpp : BnCameraService::OnTransact connectDevice
+activate CameraService.cpp
+CameraService.cpp -> CameraService.cpp : connectHelper()
+CameraService.cpp -> CameraService.cpp : makeClient()
+activate CameraService.cpp
+CameraService.cpp -> CameraDeviceClient.cpp : new CameraDeviceClient()
+CameraDeviceClient.cpp -> Camera2ClientBase.cpp : Camera2ClientBase()
+Camera2ClientBase.cpp -> Camera3Device.cpp : new Camera3Device()
+return
+deactivate CameraService.cpp
+' makeClient
+deactivate CameraService.cpp 
+' connectHelper
+CameraService.cpp -> CameraDeviceClient.cpp : initialize()
+CameraDeviceClient.cpp -> CameraDeviceClient.cpp : initializeImpl()
+CameraDeviceClient.cpp -> Camera2ClientBase.cpp : initialize()
+Camera2ClientBase.cpp -> Camera2ClientBase.cpp : initializeImpl()
+Camera2ClientBase.cpp -> CameraService.cpp : BasicClient::startCameraOps()
+note left
+鉴权
+end note
+activate Camera3Device.cpp
+Camera2ClientBase.cpp -> Camera3Device.cpp : initialize()
+    Camera3Device.cpp -> CameraProviderManager.cpp : openSession
+    Camera3Device.cpp -> CameraProviderManager.cpp : getCameraCharacteristics()
+    Camera3Device.cpp -> Camera3Device.cpp : new HalInterface()
+    Camera3Device.cpp -> Camera3Device.cpp : initializeCommonLocked()
+    Camera3Device.cpp -> Camera3Device.cpp : new StatusTracker(this)
+    Camera3Device.cpp -> Camera3Device.cpp : new Camera3BufferManager()
+    Camera3Device.cpp -> Camera3Device.cpp : new RequestThread()
+    Camera3Device.cpp -> Camera3Device.cpp : new PreparerThread()
+note left
+Provider Open
+Get Static Metadata
+end note
+deactivate Camera3Device.cpp
+Camera3Device.cpp --> Camera2ClientBase.cpp
+Camera2ClientBase.cpp --> CameraDeviceClient.cpp
+CameraDeviceClient.cpp --> FrameProcessorBase.cpp : new FrameProcessorBase(mDevice)
+CameraDeviceClient.cpp --> CameraService.cpp
+
+' CreateDefaultRequest
+ICameraDeviceUser.cpp --> CameraDeviceClient.cpp : createDefaultRequest
+CameraDeviceClient.cpp --> Camera3Device.cpp : createDefaultRequest()
+Camera3Device.cpp --> Camera3Device.cpp : constructDefaultRequestSettings()
+    Camera3Device.cpp --> CameraDeviceSession.cpp : constructDefaultRequestSettings()
+    Camera3Device.cpp <-- CameraDeviceSession.cpp
+CameraDeviceClient.cpp <-- Camera3Device.cpp
+ICameraDeviceUser.cpp <-- CameraDeviceClient.cpp
+
+' CreateStream
+ICameraDeviceUser.cpp --> CameraDeviceClient.cpp : createStream(outputConfiguration, newStreamId)
+    CameraDeviceClient.cpp --> CameraDeviceClient.cpp : bufferProducers = outputConfiguration.getGraphicBufferProducers()
+        CameraDeviceClient.cpp --> SessionConfigurationUtils.cpp : SessionConfigurationUtils::createSurfaceFromGbp()
+        note left
+        check params valid and return streamId
+        end note
+        SessionConfigurationUtils.cpp --> SessionConfigurationUtils.cpp : new Surface(gbp, useAsync)
+        SessionConfigurationUtils.cpp --> CameraDeviceClient.cpp
+    CameraDeviceClient.cpp --> Camera3Device.cpp : createStream()
+        Camera3Device.cpp --> Camera3Device.cpp : newStream = new Camera3OutputStream()
+        Camera3Device.cpp --> Camera3Device.cpp : mOutputStreams.add(newStream)
+        Camera3Device.cpp --> Camera3Device.cpp : mSessionStatsBuilder.addStream(mNextStreamId)
+    CameraDeviceClient.cpp <-- Camera3Device.cpp
+ICameraDeviceUser.cpp <-- CameraDeviceClient.cpp
+
+
+' ConfigureStreams
+ICameraDeviceUser.cpp --> CameraDeviceClient.cpp : endConfigure()
+    CameraDeviceClient.cpp --> Camera3Device.cpp : configureStreams()
+        CameraDeviceClient.cpp --> Camera3Device.cpp : outputStream = mOutputStreams[i]->startConfiguration()
+        CameraDeviceClient.cpp --> Camera3Device.cpp : mInterface->configureStreams()
+
+' SubmitRequestList
+ICameraDeviceUser.cpp --> CameraDeviceClient.cpp : submitRequestList
+    CameraDeviceClient.cpp --> Camera3Device.cpp : setStreamingRequestList()
+    Camera3Device.cpp --> Camera3Device.cpp : submitRequestsHelper()
+    Camera3Device.cpp --> Camera3Device.cpp : setRepeatingRequests()
+
+' threadLoop
+Camera3Device.cpp --> Camera3Device.cpp : mRequestThread = new RequestThread()
+    Camera3Device.cpp --> Threads.cpp : mRequestThread->run()
+    Threads.cpp --> Camera3Device.cpp : threadLoop()
+        Camera3Device.cpp --> Camera3Device.cpp : prepareHalRequests()
+        
+
+
+
+@enduml

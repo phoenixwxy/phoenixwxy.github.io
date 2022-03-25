@@ -37,6 +37,7 @@ main -> CameraService.cpp : instantiate()
                 "provider Manager"
                 end note
                 Service -> CameraProviderManager.cpp : initialize(this)
+                    CameraProviderManager.cpp -> ICameraProvider.h : mServiceProxy->registerForNotifications()
                         Service -> CameraProviderManager.cpp : addProviderLocked(instance)
                     note right
                     "provider名字生成的位置"
@@ -50,8 +51,6 @@ main -> CameraService.cpp : instantiate()
             Service -> Service : HidlCameraService::getInstance(this)
             Service -> CameraServiceProxyWrapper.cpp : pingCameraServiceProxy()
             Service -> CameraProviderManager.cpp : getCameraDeviceIds()
-
-
 
 
 main -> ProcessState.cpp : startThreadPool()

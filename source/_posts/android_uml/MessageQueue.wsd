@@ -1,0 +1,32 @@
+@startuml MessageQueue
+
+enum MQFlavor {
+    kSynchronizedReadWrite = 0x01,
+    kUnsynchronizedWrite = 0x02
+}
+
+
+class MessageQueue <T, MQFlavor> {
+    +typedef MQDescriptor<T, flavor> Descriptor
+    +MessageQueue(const Descriptor& Desc, bool resetPointers = true)
+    +MessageQueue(size_t numElementsInQueue, bool configureEventFlagWord,\nandroid::base::unique_fd bufferFd, size_t bufferSize)
+    +MessageQueue(size_t numElementsInQueue, bool configureEventFlagWord = false)
+}
+
+class MessageQueueBase {
+    +MessageQueueBase(const Descriptor& Desc, bool resetPointers = true)
+    +MessageQueueBase(size_t numElementsInQueue, bool configureEventFlagWord,\n
+                     android::base::unique_fd bufferFd, size_t bufferSize)
+    +MessageQueueBase(size_t numElementsInQueue, bool configureEventFlagWord = false)
+        : MessageQueueBase(numElementsInQueue, configureEventFlagWord, android::base::unique_fd(),
+                           0) {}
+    +getQuantumSize()
+    +write()
+    +read()
+}
+
+
+MessageQueue --|> MessageQueueBase
+MessageQueue *-- MQFlavor
+
+@enduml

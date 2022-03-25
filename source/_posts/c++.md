@@ -515,3 +515,18 @@ long double                            e
 头文件 `<functional>`
 
 类模版std::function是一种通用、多态的函数封装。std::function的实例可以对任何可以调用的目标实体进行存储、复制、和调用操作，这些目标实体包括普通函数、Lambda表达式、函数指针、以及其它函数对象等。std::function对象是对C++中现有的可调用实体的一种类型安全的包裹（我们知道像函数指针这类可调用实体，是类型不安全的）。
+
+最大用处就是实现函数回调，但是之恶能用来检查NULL或者nullptr的相等比较
+
+```cpp
+
+double f(int x, char y, double z) {
+    return x + y + z;
+}
+
+int main()
+{
+    std::function<double(int, char, double)> func_display = f;
+    std::cout << func_display(3, 'a', 1.7) << "\n";  
+}
+```

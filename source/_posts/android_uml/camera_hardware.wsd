@@ -1,7 +1,11 @@
 @startuml CameraHardWare
 
+package "CameraService Binder" {
+
+
 class CameraService {
     -mNumberOfCameras : int
+    -mCameraProviderManager 
 }
 
 class BinderService <CameraService> {
@@ -62,10 +66,6 @@ class StatusListener {
 
 }
 
-class CameraProviderManager {
-
-}
-
 class IServiceNotification {
 
 }
@@ -87,9 +87,7 @@ BinderService::instantiate -> BinderService::publish
 
 IBase --|> RefBase
 IBase <|-- IServiceNotification
-IServiceNotification <|-- CameraProviderManager
 StatusListener --|> RefBase
-CameraProviderManager *-- StatusListener
 
 RefBase <|-- IBinder
 IBinder *-- DeathRecipient
@@ -99,5 +97,125 @@ CameraService --|> BinderService
 CameraService --|> DeathRecipient
 CameraService --|> BnCameraService
 
+}
+
+package "CameraService-Provider" {
+
+    class HardwareServiceInteractionProxy {
+        +getService() : provider::V2_4::ICameraProvider
+        +registerForNotifications()
+        +{static} sHardwareServiceInteractionProxy
+        --
+        
+    }
+    
+    class ServiceInteractionProxy {
+
+    }
+
+    class CameraProviderManager {
+        -mServiceProxy : ServiceInteractionProxy
+    }
+
+    ServiceInteractionProxy <|-- HardwareServiceInteractionProxy
+    CameraService::mCameraProviderManager <-- CameraProviderManager
+    CameraProviderManager *-- StatusListener
+    IServiceNotification <|-- CameraProviderManager
+    CameraProviderManager::sHardwareServiceInteractionProxy <-- HardwareServiceInteractionProxy
+
+    class CameraDeviceClient {
+
+    }
+
+    class Camera2ClientBase <TClientBase> {
+        #mDevice : const sp<CameraDeviceBase>
+    }
+
+    class CameraDeviceClientBase {
+        
+    }
+
+    class BasicClient {
+
+    }
+
+    class BnCameraDeviceUser {
+
+    }
+
+    class NotificationListener {
+
+    }
+
+    class FilteredListener {
+
+    }
+
+    class FrameProcessorBase {
+
+    }
+
+    class Thread {
+
+    }
+
+    BasicClient --|> RefBase
+    CameraDeviceClientBase --|> BasicClient
+    CameraDeviceClientBase --|> BnCameraDeviceUser
+    FrameProcessorBase --|> Thread
+    FilteredListener --|> FrameProcessorBase
+    CameraDeviceClient --|> Camera2ClientBase
+    CameraDeviceClient --|> FilteredListener
+    Camera2ClientBase --|> CameraDeviceClientBase
+    Camera2ClientBase --|> NotificationListener
+
+    class Camera3Device {
+        -mBufferManager
+        -mId : CamerId
+    }
+
+    class ICameraDeviceCallback {
+
+    }
+
+    class SetErrorInterface {
+
+    }
+
+    class InflightRequestUpdateInterface {
+
+    }
+
+    class RequestBufferInterface {
+
+    }
+
+    class FlushBufferInterface {
+
+    }
+
+    class Camera3BufferManager {
+
+    }
+
+    class OutputConfiguration {
+        -std::vector<sp<IGraphicBufferProducer>> mGbps
+    }
+
+    class Parcelable {}
+
+
+    ICameraDeviceCallback --|> IBase
+    Camera3BufferManager --|> RefBase
+
+    Camera3Device --|> CameraDeviceBase
+    Camera3Device --|> ICameraDeviceCallback
+    Camera3Device --|> SetErrorInterface
+    Camera3Device --|> InflightRequestUpdateInterface
+    Camera3Device --|> RequestBufferInterface
+    Camera3Device --|> FlushBufferInterface
+    Camera3Device::mBufferManager <-- Camera3BufferManager
+    OutputConfiguration --> CameraDeviceClient
+}
 
 @enduml
