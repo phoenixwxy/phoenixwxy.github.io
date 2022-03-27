@@ -44,7 +44,13 @@ continue
 co_await (since C++20)
 co_return (since C++20)
 co_yield (since C++20)
-decltype (since C++11)
+
+### decltype (since C++11)
+
+检查实体的声明类型，或表达式的类型和值类别。
+
+对于变量，指定要从其初始化器自动推导出其类型。
+
 default (1)
 delete (1)
 do
@@ -128,7 +134,11 @@ long
 mutable (1)
 namespace
 new
-noexcept (since C++11)
+
+### noexcept (since C++11)
+
+`noexcept` 运算符进行编译时检查，如果表达式不会抛出任何异常则返回 true。
+
 not
 not_eq
 nullptr (since C++11)
@@ -510,7 +520,7 @@ double                                 d
 long double                            e
 ```
 
-### # std::funcional
+### std::funcion
 
 头文件 `<functional>`
 
@@ -519,7 +529,6 @@ long double                            e
 最大用处就是实现函数回调，但是之恶能用来检查NULL或者nullptr的相等比较
 
 ```cpp
-
 double f(int x, char y, double z) {
     return x + y + z;
 }
@@ -530,3 +539,78 @@ int main()
     std::cout << func_display(3, 'a', 1.7) << "\n";  
 }
 ```
+
+头文件`<feature>`
+
+通用多态函数包装器。 `std::function` 的实例能存储、复制及调用任何[可复制构造 (CopyConstructible)](https://zh.cppreference.com/w/cpp/named_req/CopyConstructible "cpp/named req/CopyConstructible") 的[可调用 (Callable)](https://zh.cppreference.com/w/cpp/named_req/Callable "cpp/named req/Callable") *目标*——函数、 [lambda 表达式](https://zh.cppreference.com/w/cpp/language/lambda "cpp/language/lambda")、 [bind 表达式](https://zh.cppreference.com/w/cpp/utility/functional/bind "cpp/utility/functional/bind")或其他函数对象，还有指向成员函数指针和指向数据成员指针。
+
+存储的可调用对象被称为 `std::function` 的*目标*。若 `std::function` 不含目标，则称它为*空*。调用*空* `std::function` 的*目标*导致抛出 [std::bad_function_call](https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call "cpp/utility/functional/bad function call") 异常。
+
+### std::packaged_task
+
+用于包装任何 可调用(Callable) 目标(函数，Lambda，bind表达式)，使得能异步调用，其返回值或所抛异常被存储于能通过 [std::future](https://zh.cppreference.com/w/cpp/thread/future "cpp/thread/future") 对象访问的共享状态中。
+
+### std::feature
+
+头文件`future`
+
+类模板 `std::future` 提供访问异步操作结果的机制：
+
+- （通过 [std::async](https://zh.cppreference.com/w/cpp/thread/async "cpp/thread/async") 、 [std::packaged_task](https://zh.cppreference.com/w/cpp/thread/packaged_task "cpp/thread/packaged task") 或 [std::promise](https://zh.cppreference.com/w/cpp/thread/promise "cpp/thread/promise") 创建的）异步操作能提供一个 `std::future` 对象给该异步操作的创建者。
+
+- 然后，异步操作的创建者能用各种方法查询、等待或从 `std::future` 提取值。若异步操作仍未提供值，则这些方法可能阻塞。
+
+- 异步操作准备好发送结果给创建者时，它能通过修改链接到创建者的 `std::future` 的*共享状态*（例如 [std::promise::set_value](https://zh.cppreference.com/w/cpp/thread/promise/set_value "cpp/thread/promise/set value") ）进行。
+
+```cpp
+template< class T > class future;
+(1)	(C++11 起)
+template< class T > class future<T&>;
+(2)	(C++11 起)
+template<>          class future<void>;
+(3)	(C++11 起)
+```
+
+### std::bind
+
+头文件`<fuctional>`
+
+函数模版bind用于生成 f 的转发调用包装器，
+
+```cpp
+template <class F, class... Args>
+bind(F&& f, Args&&... args);
+```
+
+**参数**
+
+| f    | -   | [可调用 (Callable)](https://zh.cppreference.com/w/cpp/named_req/Callable "cpp/named req/Callable") 对象（函数对象、指向函数指针、到函数引用、指向成员函数指针或指向数据成员指针） |
+| ---- | --- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| args | -   | 要绑定的参数列表，未绑定参数为命名空间 `std::placeholders` 的占位符 `_1, _2, _3...` 所替换                                                                        |
+
+**返回值**
+
+未指定类型 `T` 的函数对象，满足 [std::is_bind_expression](http://zh.cppreference.com/w/cpp/utility/functional/is_bind_expression)<T>::value == true 。它有下列属性：
+
+### std::forward
+
+头文件`<utility>`
+
+```cpp
+template< class T >
+T&& forward( typename std::remove_reference<T>::type& t ) noexcept;
+template< class T >
+constexpr T&& forward( std::remove_reference_t<T>& t ) noexcept;
+template< class T >
+T&& forward( typename std::remove_reference<T>::type&& t ) noexcept;
+template< class T >
+constexpr T&& forward( std::remove_reference_t<T>&& t ) noexcept;
+```
+
+1) 转发左值为左值或右值，依赖于 T
+
+当 `t` 是[转发引用](https://zh.cppreference.com/w/cpp/language/reference#.E8.BD.AC.E5.8F.91.E5.BC.95.E7.94.A8 "cpp/language/reference")（作为到无 cv 限定函数模板形参的右值引用的函数实参），此重载将参数以在传递给调用方函数时的[值类别](https://zh.cppreference.com/w/cpp/language/value_category "cpp/language/value category")转发给另一个函数。
+
+2) 转发右值为右值并禁止右值的转发为左值
+
+此重载令转发表达式（如函数调用）的结果可行，结果可以是右值或左值，同转发引用参数的原始值类别。
