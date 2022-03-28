@@ -86,7 +86,7 @@ Camera3Device.cpp --> Camera3Device.cpp : mRequestThread = new RequestThread()
     Camera3Device.cpp --> Threads.cpp : mRequestThread->run()
     Threads.cpp --> Camera3Device.cpp : threadLoop()
         Camera3Device.cpp --> Camera3Device.cpp : prepareHalRequests()
-        
+            
 
 
 

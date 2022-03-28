@@ -67,7 +67,6 @@ string s1("123"), s2("abc");s1.append(s2);  // s1 = "123abc"s1.append(s2, 1, 2);
 - 等于 0 表示两个字符串相等；
 - 大于 0 表示另一个字符串小。
 
-
 例如：
 
 ```
@@ -105,7 +104,6 @@ string 类有一些查找子串和字符的成员函数，它们的返回值都�
 - find_last_of：从后往前查找何处出现另一个字符串中包含的字符。
 - find_first_not_of：从前往后查找何处出现另一个字符串中没有包含的字符。
 - find_last_not_of：从后往前查找何处出现另一个字符串中没有包含的字符。
-
 
 下面是 string 类的查找成员函数的示例程序。
 
@@ -146,7 +144,6 @@ string s1("Limitless"), s2("00");s1.insert(2, "123");  //在下标 2 处插入�
 ```
 #include <iostream>#include <sstream>#include <string>using namespace std;int main(){    string src("Avatar 123 5.2 Titanic K");    istringstream istrStream(src); //建立src到istrStream的联系    string s1, s2;    int n;  double d;  char c;    istrStream >> s1 >> n >> d >> s2 >> c; //把src的内容当做输入流进行读取    ostringstream ostrStream;    ostrStream << s1 << endl << s2 << endl << n << endl << d << endl << c <<endl;    cout << ostrStream.str();    return 0;}
 ```
-
 
 程序的输出结果是：
 Avatar

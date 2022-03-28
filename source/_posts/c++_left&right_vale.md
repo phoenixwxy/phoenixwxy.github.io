@@ -15,9 +15,11 @@ categories: program
 
 **右值**：一个值在表达式的位置位于右侧 或理解为”**不**可以取地址、**没有**名字的值“
 
+[知乎-左值右值](https://zhuanlan.zhihu.com/p/240833006)
+
 1. xvalue
    
-    Expiring Value 即将死亡的值 ----------  右值应用
+    Expiring Value 即将死亡的值 ----------  右值引用
 
 2. prvalue
    

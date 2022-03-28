@@ -51,6 +51,30 @@ co_yield (since C++20)
 
 对于变量，指定要从其初始化器自动推导出其类型。
 
+1. 如果实参是没有括号的标识表达式或没有括号的类成员访问表达式，decltype产生以表达式命名的实体的类型，如果没有这种实体或实参指明了一组重载函数，那么程序非良构（重载函数，编译报错）。
+
+2. 如果实参是其他类型为T的任何表达式，且
+   
+   1. 如果表达式的值类别是**亡值**，将会 decltype 产生 T&& (右值)
+   
+   2. 如果表达式的值类别是**左值**，将会 decltype 产生 T& (左值)
+   
+   3. 如果表达式的值类别是**纯右值**，将会 decltype 产生 T 
+
+```cpp
+int i = 4;
+decltype(i) a; // a is int
+
+using size_t = decltype(sizeof(0))    // sizeof(a) return type is size_t
+
+// auto return type
+template <typename _Tx, typename _Ty>
+auto multiply(_Tx x, _Ty y)->decltype(_Tx*_Ty)
+{
+    return x*y;
+}
+```
+
 default (1)
 delete (1)
 do
@@ -115,6 +139,11 @@ int main()
 export (1) (3)
 extern (1)
 false
+
+### final
+
+c++11, 若一个类标记为final则不可继承。函数标记final则禁止子类重写该方法
+
 float
 for
 
@@ -564,11 +593,11 @@ int main()
 
 ```cpp
 template< class T > class future;
-(1)	(C++11 起)
+(1)    (C++11 起)
 template< class T > class future<T&>;
-(2)	(C++11 起)
+(2)    (C++11 起)
 template<>          class future<void>;
-(3)	(C++11 起)
+(3)    (C++11 起)
 ```
 
 ### std::bind
