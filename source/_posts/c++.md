@@ -37,10 +37,18 @@ compl
 concept (since C++20)
 const
 consteval (since C++20)
-constexpr (since C++11)
+
+### constexpr (since C++11)
+
+
+
 constinit (since C++20)
-const_cast
-continue
+
+### const_cast
+
+**const_cast<type> (expr)**
+
+用于修改类型的 const / volatile 属性。除了 const 或 volatile 属性之外，目标类型必须与源类型相同。这种类型的转换主要是用来操作所传对象的 const 属性，可以加上 const 属性，也可以去掉 const 属性。continue
 co_await (since C++20)
 co_return (since C++20)
 co_yield (since C++20)
@@ -79,7 +87,15 @@ default (1)
 delete (1)
 do
 double
-dynamic_cast
+
+### dynamic_cast
+
+**dynamic_cast<type> (expr):**
+
+可以安全的将父类转化为子类，子类转化为父类都是安全的。所以你可以用于安全的将基类转化为继承类，而且可以知道是否成功，如果强制转换的是指针类型，失败会返回NULL指针，如果强制转化的是引用类型，失败会抛出异常。dynamic_cast 转换符只能用于含有虚函数的类。
+
+运行时执行转换，验证转换的有效性。如果转换未执行，则转换失败，表达式 expr 被判定为 null。dynamic_cast 执行动态转换时，type 必须是类的指针、类的引用或者 void*，如果 type 是类指针类型，那么 expr 也必须是一个指针，如果 type 是一个引用，那么 expr 也必须是一个引用。
+
 else
 enum
 
@@ -209,15 +225,27 @@ protected
 public
 reflexpr (reflection TS)
 register (2)
-reinterpret_cast
-requires (since C++20)
+
+### reinterpret_cast
+
+**reinterpret_cast<type> (expr)**
+
+重新解释（无理）转换。即要求编译器将两种无关联的类型作转换。
+
+把某种指针改为其他类型的指针。它可以把一个指针转换为一个整数，也可以把一个整数转换为一个指针。requires (since C++20)
 return
 short
 signed
 sizeof (1)
 static
 static_assert (since C++11)
-static_cast
+
+### static_cast
+
+**static_cast<type> (expr)**
+
+执行非动态转换，没有运行时类检查来保证转换的安全性。编译期转换
+
 struct (1)
 switch
 synchronized (TM TS)
