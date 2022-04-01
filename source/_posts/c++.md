@@ -40,7 +40,7 @@ consteval (since C++20)
 
 ### constexpr (since C++11)
 
-
+指定变量或函数的值可以在[常量表达式](https://zh.cppreference.com/w/cpp/language/constant_expression "cpp/language/constant expression")中出现
 
 constinit (since C++20)
 
@@ -507,6 +507,15 @@ volatile                                易变的
 
 从实现上讲，std::move基本等同于一个类型转换：`static_cast<T&&>(lvalue);`
 
+```cpp
+ template<typename _Tp>
+    constexpr typename std::remove_reference<_Tp>::type&&
+    move(_Tp&& __t) noexcept
+    { return static_cast<typename std::remove_reference<_Tp>::type&&>(__t); }
+```
+
+
+
 ### std::variant
 
 表示一个类型安全的[联合体](https://zh.cppreference.com/w/cpp/language/union "cpp/language/union")。 `std::variant` 的一个实例在任意时刻要么保有其一个可选类型之一的值，要么在错误情况下无值
@@ -656,12 +665,19 @@ bind(F&& f, Args&&... args);
 ```cpp
 template< class T >
 T&& forward( typename std::remove_reference<T>::type& t ) noexcept;
+(since C++11)
+(until C++14)
 template< class T >
 constexpr T&& forward( std::remove_reference_t<T>& t ) noexcept;
+(since C++14)
+(2)	
 template< class T >
 T&& forward( typename std::remove_reference<T>::type&& t ) noexcept;
+(since C++11)
+(until C++14)
 template< class T >
 constexpr T&& forward( std::remove_reference_t<T>&& t ) noexcept;
+(since C++14)
 ```
 
 1) 转发左值为左值或右值，依赖于 T
