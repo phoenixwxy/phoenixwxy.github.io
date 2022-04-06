@@ -594,6 +594,14 @@ long double                            e
 
 最大用处就是实现函数回调，但是之恶能用来检查NULL或者nullptr的相等比较
 
+**std::function是一个可调用对象包装器，是一个类模板，可以容纳除了类成员函数指针之外的所有可调用对象，它可以用统一的方式处理函数、函数对象、函数指针，并允许保存和延迟它们的执行**。
+
+**作用**
+
+1. std::function对C++中各种可调用实体(普通函数、Lambda表达式、函数指针、以及其它函数对象等)的封装，形成一个新的可调用的std::function对象，简化调用
+
+2. std::function对象是对C++中现有的可调用实体的一种类型安全的包裹(如：函数指针这类可调用实体，是类型不安全的)。
+
 ```cpp
 double f(int x, char y, double z) {
     return x + y + z;
@@ -606,11 +614,41 @@ int main()
 }
 ```
 
-头文件`<feature>`
-
 通用多态函数包装器。 `std::function` 的实例能存储、复制及调用任何[可复制构造 (CopyConstructible)](https://zh.cppreference.com/w/cpp/named_req/CopyConstructible "cpp/named req/CopyConstructible") 的[可调用 (Callable)](https://zh.cppreference.com/w/cpp/named_req/Callable "cpp/named req/Callable") *目标*——函数、 [lambda 表达式](https://zh.cppreference.com/w/cpp/language/lambda "cpp/language/lambda")、 [bind 表达式](https://zh.cppreference.com/w/cpp/utility/functional/bind "cpp/utility/functional/bind")或其他函数对象，还有指向成员函数指针和指向数据成员指针。
 
 存储的可调用对象被称为 `std::function` 的*目标*。若 `std::function` 不含目标，则称它为*空*。调用*空* `std::function` 的*目标*导致抛出 [std::bad_function_call](https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call "cpp/utility/functional/bad function call") 异常。
+
+
+
+### std::bind
+
+头文件`<fuctional>`
+
+函数模版bind用于生成 f 的转发调用包装器，
+
+**它接受一个可调用对象，生成一个新的可调用对象来适应原对象的参数列表**。
+
+
+
+- **将可调用对象和其参数绑定成一个仿函数**；
+- **只绑定部分参数，减少可调用对象传入的参数**。
+
+```cpp
+template <class F, class... Args>
+bind(F&& f, Args&&... args);
+```
+
+**参数**
+
+| f    | -   | [C++ 具名要求：可调用 (Callable) - cppreference.com](https://zh.cppreference.com/w/cpp/named_req/Callable) 对象（函数对象、指向函数指针、到函数引用、指向成员函数指针或指向数据成员指针） |
+| ---- | --- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| args | -   | 要绑定的参数列表，未绑定参数为命名空间 `std::placeholders` 的占位符 `_1, _2, _3...` 所替换                                                                           |
+
+**返回值**
+
+未指定类型 `T` 的函数对象，满足 [std::is_bind_expression](http://zh.cppreference.com/w/cpp/utility/functional/is_bind_expression)::value == true 。它有下列属性：
+
+
 
 ### std::packaged_task
 
@@ -636,27 +674,6 @@ template< class T > class future<T&>;
 template<>          class future<void>;
 (3)    (C++11 起)
 ```
-
-### std::bind
-
-头文件`<fuctional>`
-
-函数模版bind用于生成 f 的转发调用包装器，
-
-```cpp
-template <class F, class... Args>
-bind(F&& f, Args&&... args);
-```
-
-**参数**
-
-| f    | -   | [可调用 (Callable)](https://zh.cppreference.com/w/cpp/named_req/Callable "cpp/named req/Callable") 对象（函数对象、指向函数指针、到函数引用、指向成员函数指针或指向数据成员指针） |
-| ---- | --- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| args | -   | 要绑定的参数列表，未绑定参数为命名空间 `std::placeholders` 的占位符 `_1, _2, _3...` 所替换                                                                        |
-
-**返回值**
-
-未指定类型 `T` 的函数对象，满足 [std::is_bind_expression](http://zh.cppreference.com/w/cpp/utility/functional/is_bind_expression)<T>::value == true 。它有下列属性：
 
 ### std::forward
 
