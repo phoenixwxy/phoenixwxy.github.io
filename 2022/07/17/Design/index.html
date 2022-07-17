@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>设计模式笔记 | Phoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="设计模式面向对象的设计原则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式笔记">
+<meta property="og:url" content="http://yoursite.com/2022/07/17/Design/index.html">
+<meta property="og:site_name" content="Phoenix">
+<meta property="og:description" content="设计模式面向对象的设计原则">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-17T07:54:04.091Z">
+<meta property="article:modified_time" content="2022-07-17T07:54:04.091Z">
+<meta property="article:author" content="Phoenix">
+<meta property="article:tag" content="learn">
+<meta property="article:tag" content="Program">
+<meta property="article:tag" content="c++">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/phoenixwxy.github.io/atom.xml" title="Phoenix" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/phoenixwxy.github.io/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/phoenixwxy.github.io/" id="logo">Phoenix</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/phoenixwxy.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/phoenixwxy.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/phoenixwxy.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Design" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/phoenixwxy.github.io/2022/07/17/Design/" class="article-date">
+  <time datetime="2022-07-17T07:54:04.091Z" itemprop="datePublished">2022-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/phoenixwxy.github.io/categories/program/">program</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      设计模式笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="面向对象的设计原则"><a href="#面向对象的设计原则" class="headerlink" title="面向对象的设计原则"></a>面向对象的设计原则</h2><span id="more"></span>
+<ol>
+<li>依赖倒置原则（DIP）<ul>
+<li>高层不依赖底层，二者应该依赖抽象（底层抽象？）</li>
+<li>抽象不依赖于实现，说一下给依赖于抽象</li>
+</ul>
+</li>
+<li>开放封闭原则（OCP）<ul>
+<li>对扩展开放，对更改封闭</li>
+<li>类模块可扩展但不可修改</li>
+</ul>
+</li>
+<li>单一职责原则（SRP）<ul>
+<li>一个类应该仅有一个引起它变化的原因</li>
+<li>变化的方向隐含着类的责任</li>
+</ul>
+</li>
+<li>Liskov 替换原则（LSP）<ul>
+<li>子类必须能够替代他们的基类（IS-A）</li>
+<li>继承表达类型抽象</li>
+</ul>
+</li>
+<li>接口隔离原则（ISP）<ul>
+<li>不应该强迫客户程序依赖他们不用的方法</li>
+<li>接口应该小而完备</li>
+</ul>
+</li>
+<li>优先使用对象组合，而不是继承<ul>
+<li>类继承通常为”白箱复用“，对象组合通常为”黑箱复用“</li>
+<li>继承在某种程度上破坏了封装性，子类父类耦合度高</li>
+<li>对象组合只要求倍组合的对象具有良好的定义的接口，耦合低</li>
+</ul>
+</li>
+<li>封装变化点<ul>
+<li>封装来创建对象之间的分解层。让设计者可以在一侧修改。而不对另一侧造成影响</li>
+</ul>
+</li>
+<li>针对接口编程，不是针对实现编程<ul>
+<li>不将变量类型声明为某个特定的具体类，而是声明为某个接口</li>
+<li>客户程序无需获知对象的具体类型，只需要知道对象所具有的接口</li>
+<li>减少系统中各部分的依赖关系，实现”高内聚，松（低）耦合“</li>
+</ul>
+</li>
+</ol>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><p>设计习语（Design Idioms）</p>
+<p>  描述特定编程语言相关的底层模式，技巧习惯用法</p>
+</li>
+<li><p>设计模式（Design Patterns）</p>
+<p>  类与相互通信的对象之间的组织协作关系</p>
+</li>
+<li><p>架构模式（Architectural Patterns）</p>
+<p>  系统与基本组织结构关系密切的高层模式，包括子系统划分，职责，以及如何组织</p>
+</li>
+</ul>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><h5 id="GOF-23模式分类"><a href="#GOF-23模式分类" class="headerlink" title="GOF-23模式分类"></a>GOF-23模式分类</h5><ul>
+<li><p>从目的来看</p>
+<ol>
+<li>创建型（Creational）模式：将对象的部分创建工作用子类或者其他对象</li>
+<li>结构型（Structural）模式：通过类继承或者对象组合，应对需求变化为对象结构带来的冲击</li>
+<li>行为型（Behavioral）迷失：通过类继承或者对象组合，交互中的责任划分</li>
+</ol>
+</li>
+<li><p>从范围来看：</p>
+<ol>
+<li>类模式处理类与子类的静态关系</li>
+<li>对象模式处理对象间的动态关系</li>
+</ol>
+</li>
+</ul>
+<h5 id="封装变化角度模式分类"><a href="#封装变化角度模式分类" class="headerlink" title="封装变化角度模式分类"></a>封装变化角度模式分类</h5><ul>
+<li><p>组件协作：通过晚绑定，实现框架和应用程序之间的松耦合，是二者协作时</p>
+<p>  Template Method</p>
+<p>  Strategy</p>
+<p>  Observer/Event</p>
+</li>
+<li><p>单一职责</p>
+</li>
+<li><p>对象创建</p>
+</li>
+<li><p>对象性能</p>
+</li>
+<li><p>接口隔离</p>
+</li>
+<li><p>数据结构</p>
+</li>
+<li><p>行为变化</p>
+</li>
+<li><p>领域问题</p>
+</li>
+</ul>
+<h3 id="通过重构使用设计模式"><a href="#通过重构使用设计模式" class="headerlink" title="通过重构使用设计模式"></a>通过重构使用设计模式</h3><p><strong>重构关键技法</strong></p>
+<ul>
+<li>静态  —- 动态</li>
+<li>早绑定 —- 晚绑定</li>
+<li>继承  —-  组合</li>
+<li>编译时依赖 —- 运行时依赖</li>
+<li>紧耦合 —- 松耦合</li>
+</ul>
+<h2 id="模板方法（Template-Method）"><a href="#模板方法（Template-Method）" class="headerlink" title="模板方法（Template Method）"></a>模板方法（Template Method）</h2><ul>
+<li><p>定义</p>
+<p>  定义一个操作种的算法的骨架，而将一些步骤延迟到子类中。 Template Method使得子类可以不改变算法的结构即可重定义（override），晚绑定</p>
+</li>
+<li><p>使用动机：</p>
+<p>  某项任务，有稳定的整体，子步骤有很多改变需求</p>
+</li>
+<li><p>总结</p>
+<ul>
+<li>非常基础性的设计模式，机制简洁（虚函数）</li>
+<li>反向控制价结构</li>
+<li>虚方法可以有也可以没有实现，设计为protected最佳</li>
+</ul>
+</li>
+</ul>
+<h2 id="策略模式（Strategy）"><a href="#策略模式（Strategy）" class="headerlink" title="策略模式（Strategy）"></a>策略模式（Strategy）</h2><ul>
+<li><p>动机</p>
+<p>  某系对象使用的算法可能多种多样，经常改变</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/07/17/Design/" data-id="cl5p1ft6b000jtks67bym1eqp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/phoenixwxy.github.io/tags/Program/" rel="tag">Program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/phoenixwxy.github.io/tags/c/" rel="tag">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/phoenixwxy.github.io/tags/learn/" rel="tag">learn</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/phoenixwxy.github.io/2022/07/17/CommonCommands/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          常用命令备份
+        
+      </div>
+    </a>
+  
+  
+    <a href="/phoenixwxy.github.io/2022/07/17/Effective-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Effective</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/Program/">Program</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/">program</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/CMake/">CMake</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/doc/">doc</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/git/">git</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/%E6%9F%A5%E8%AF%A2/">查询</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/%E7%BC%96%E7%A8%8B/">编程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/CMake/" rel="tag">CMake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/Effective/" rel="tag">Effective</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/Program/" rel="tag">Program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/backup/" rel="tag">backup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/c/" rel="tag">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/learn/" rel="tag">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/shell/" rel="tag">shell</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/phoenixwxy.github.io/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/phoenixwxy.github.io/tags/C/" style="font-size: 13.33px;">C</a> <a href="/phoenixwxy.github.io/tags/CMake/" style="font-size: 10px;">CMake</a> <a href="/phoenixwxy.github.io/tags/Effective/" style="font-size: 10px;">Effective</a> <a href="/phoenixwxy.github.io/tags/Program/" style="font-size: 20px;">Program</a> <a href="/phoenixwxy.github.io/tags/backup/" style="font-size: 13.33px;">backup</a> <a href="/phoenixwxy.github.io/tags/c/" style="font-size: 10px;">c</a> <a href="/phoenixwxy.github.io/tags/c/" style="font-size: 16.67px;">c++</a> <a href="/phoenixwxy.github.io/tags/git/" style="font-size: 10px;">git</a> <a href="/phoenixwxy.github.io/tags/learn/" style="font-size: 20px;">learn</a> <a href="/phoenixwxy.github.io/tags/shell/" style="font-size: 10px;">shell</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/phoenixwxy.github.io/archives/2022/07/">July 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/regex/">Regex 正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/">内存对齐</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/">输出函数比较</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/git_submodule/">Git submodule</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/getopt/">getopt</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Phoenix<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/phoenixwxy.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/phoenixwxy.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/phoenixwxy.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/phoenixwxy.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/phoenixwxy.github.io/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

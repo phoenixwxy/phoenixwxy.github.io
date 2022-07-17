@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++ | Phoenix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="c++[TOC]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++">
+<meta property="og:url" content="http://yoursite.com/2022/07/17/c++/index.html">
+<meta property="og:site_name" content="Phoenix">
+<meta property="og:description" content="c++[TOC]">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-17T07:54:04.109Z">
+<meta property="article:modified_time" content="2022-07-17T07:54:04.109Z">
+<meta property="article:author" content="Phoenix">
+<meta property="article:tag" content="learn">
+<meta property="article:tag" content="Program">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/phoenixwxy.github.io/atom.xml" title="Phoenix" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/phoenixwxy.github.io/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/phoenixwxy.github.io/" id="logo">Phoenix</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/phoenixwxy.github.io/">Home</a>
+        
+          <a class="main-nav-link" href="/phoenixwxy.github.io/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/phoenixwxy.github.io/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-c++" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/phoenixwxy.github.io/2022/07/17/c++/" class="article-date">
+  <time datetime="2022-07-17T07:54:04.109Z" itemprop="datePublished">2022-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/phoenixwxy.github.io/categories/program/">program</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="c"><a href="#c" class="headerlink" title="c++"></a>c++</h1><p>[TOC]</p>
+<span id="more"></span>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><p>alignas (since C++11)<br>alignof (since C++11)<br>and<br>and_eq<br>asm<br>atomic_cancel (TM TS)<br>atomic_commit (TM TS)<br>atomic_noexcept (TM TS)<br>auto (1)<br>bitand<br>bitor<br>bool<br>break<br>case<br>catch<br>char<br>char8_t (since C++20)<br>char16_t (since C++11)<br>char32_t (since C++11)<br>class (1)<br>compl<br>concept (since C++20)<br>const<br>consteval (since C++20)</p>
+<h3 id="constexpr-since-C-11"><a href="#constexpr-since-C-11" class="headerlink" title="constexpr (since C++11)"></a>constexpr (since C++11)</h3><p>指定变量或函数的值可以在<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/constant_expression" title="cpp/language/constant expression">常量表达式</a>中出现</p>
+<p>constinit (since C++20)</p>
+<h3 id="const-cast"><a href="#const-cast" class="headerlink" title="const_cast"></a>const_cast</h3><p><strong>const_cast<type> (expr)</strong></p>
+<p>用于修改类型的 const / volatile 属性。除了 const 或 volatile 属性之外，目标类型必须与源类型相同。这种类型的转换主要是用来操作所传对象的 const 属性，可以加上 const 属性，也可以去掉 const 属性。continue<br>co_await (since C++20)<br>co_return (since C++20)<br>co_yield (since C++20)</p>
+<h3 id="decltype-since-C-11"><a href="#decltype-since-C-11" class="headerlink" title="decltype (since C++11)"></a>decltype (since C++11)</h3><p>检查实体的声明类型，或表达式的类型和值类别。</p>
+<p>对于变量，指定要从其初始化器自动推导出其类型。</p>
+<ol>
+<li><p>如果实参是没有括号的标识表达式或没有括号的类成员访问表达式，decltype产生以表达式命名的实体的类型，如果没有这种实体或实参指明了一组重载函数，那么程序非良构（重载函数，编译报错）。</p>
+</li>
+<li><p>如果实参是其他类型为T的任何表达式，且</p>
+<ol>
+<li><p>如果表达式的值类别是<strong>亡值</strong>，将会 decltype 产生 T&amp;&amp; (右值)</p>
+</li>
+<li><p>如果表达式的值类别是<strong>左值</strong>，将会 decltype 产生 T&amp; (左值)</p>
+</li>
+<li><p>如果表达式的值类别是<strong>纯右值</strong>，将会 decltype 产生 T </p>
+</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">decltype</span>(i) a; <span class="comment">// a is int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="type">size_t</span> = <span class="keyword">decltype</span>(<span class="built_in">sizeof</span>(<span class="number">0</span>))    <span class="comment">// sizeof(a) return type is size_t</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// auto return type</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> _Tx, <span class="keyword">typename</span> _Ty&gt;</span><br><span class="line"><span class="keyword">auto</span> <span class="built_in">multiply</span>(_Tx x, _Ty y)-&gt;<span class="keyword">decltype</span>(_Tx*_Ty)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> x*y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>default (1)<br>delete (1)<br>do<br>double</p>
+<h3 id="dynamic-cast"><a href="#dynamic-cast" class="headerlink" title="dynamic_cast"></a>dynamic_cast</h3><p><strong>dynamic_cast<type> (expr):</strong></p>
+<p>可以安全的将父类转化为子类，子类转化为父类都是安全的。所以你可以用于安全的将基类转化为继承类，而且可以知道是否成功，如果强制转换的是指针类型，失败会返回NULL指针，如果强制转化的是引用类型，失败会抛出异常。dynamic_cast 转换符只能用于含有虚函数的类。</p>
+<p>运行时执行转换，验证转换的有效性。如果转换未执行，则转换失败，表达式 expr 被判定为 null。dynamic_cast 执行动态转换时，type 必须是类的指针、类的引用或者 void*，如果 type 是类指针类型，那么 expr 也必须是一个指针，如果 type 是一个引用，那么 expr 也必须是一个引用。</p>
+<p>else<br>enum</p>
+<h3 id="explicit"><a href="#explicit" class="headerlink" title="explicit"></a>explicit</h3><ol>
+<li>指定构造函数或转换函数 (C++11起)为显式, 即它不能用于<a href="https://link.zhihu.com/?target=https%3A//zh.cppreference.com/w/cpp/language/implicit_conversion">隐式转换</a>和<a href="https://link.zhihu.com/?target=https%3A//zh.cppreference.com/w/cpp/language/copy_initialization">复制初始化</a>.</li>
+<li>explicit 指定符可以与常量表达式一同使用. 函数若且唯若该常量表达式求值为 true 才为显式. (C++20起)</li>
+</ol>
+<p>自己的理解就是，因为C++存在的隐式转换和复制初始化，导致声明对象时出现可预料的不正常操作。</p>
+<p>使用场景是只有一个参数需要在构造函数中初始化的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Explicit</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">explicit</span> <span class="title">Explicit</span><span class="params">(<span class="type">int</span> size)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot; the size is &quot;</span> &lt;&lt; size &lt;&lt; std::endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">explicit</span> <span class="title">Explicit</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str)</span></span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            std::string _str = str;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot; the str is &quot;</span> &lt;&lt; _str &lt;&lt; std::endl;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">Explicit</span>(<span class="type">const</span> Explicit&amp; ins)</span><br><span class="line">        &#123;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot; The Explicit is ins&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">Explicit</span>(<span class="type">int</span> a,<span class="type">int</span> b)</span><br><span class="line">        &#123;</span><br><span class="line">            std::cout &lt;&lt; <span class="string">&quot; the a is &quot;</span> &lt;&lt; a  &lt;&lt; <span class="string">&quot; the b is &quot;</span> &lt;&lt; b &lt;&lt; std::endl;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">Explicit <span class="title">test0</span><span class="params">(<span class="number">15</span>)</span></span>;</span><br><span class="line">    Explicit test1 = <span class="number">10</span>;<span class="comment">// 无法调用</span></span><br><span class="line"></span><br><span class="line">    <span class="function">Explicit <span class="title">test2</span><span class="params">(<span class="string">&quot;RIGHTRIGHT&quot;</span>)</span></span>;</span><br><span class="line">    Explicit test3 = <span class="string">&quot;BUGBUGBUG&quot;</span>; <span class="comment">// 无法调用</span></span><br><span class="line"></span><br><span class="line">    <span class="function">Explicit <span class="title">test4</span><span class="params">(<span class="number">1</span>, <span class="number">10</span>)</span></span>;</span><br><span class="line">    Explicit test5 = test0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>export (1) (3)<br>extern (1)<br>false</p>
+<h3 id="final"><a href="#final" class="headerlink" title="final"></a>final</h3><p>c++11, 若一个类标记为final则不可继承。函数标记final则禁止子类重写该方法</p>
+<p>float<br>for</p>
+<h3 id="friend"><a href="#friend" class="headerlink" title="friend"></a>friend</h3><p>友元声明出现在类体中，并向另一个函数或者类授予包含友元声明的类的私有(private)及受保护类成员(protected)的访问权。</p>
+<p>优点：可以避免类对类成员变量和函数的频繁调用，节约开销，提高效率。</p>
+<p>缺点：破坏类的封装性。</p>
+<p>goto<br>if<br>inline (1)<br>int<br>long<br>mutable (1)<br>namespace<br>new</p>
+<h3 id="noexcept-since-C-11"><a href="#noexcept-since-C-11" class="headerlink" title="noexcept (since C++11)"></a>noexcept (since C++11)</h3><p><code>noexcept</code> 运算符进行编译时检查，如果表达式不会抛出任何异常则返回 true。</p>
+<p>not<br>not_eq<br>nullptr (since C++11)</p>
+<h3 id="override"><a href="#override" class="headerlink" title="override"></a>override</h3><p>作用：在成员函数声明或定义中， override 确保该函数为虚函数并覆写来自基类的虚函数。</p>
+<p>位置：函数调用运算符之后，函数体或纯虚函数标识 “= 0” 之前。</p>
+<p>好处:</p>
+<pre><code>1. 可以当注释用,方便阅读
+
+2. 告诉阅读你代码的人，这是方法的复写
+
+3. 编译器可以给你验证 override 对应的方法名是否是你父类中所有的，如果没有则报错
+</code></pre><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">base</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">fun1</span><span class="params">(<span class="type">void</span>)</span></span>=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">derived</span> : <span class="keyword">public</span> base</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 1 <span class="comment">//OK</span></span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">fun1</span><span class="params">(<span class="type">void</span>)</span> <span class="keyword">override</span> </span>&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;a fun1&quot;</span> &lt;&lt; std::endl; </span><br></pre></td></tr></table></figure>
+<p>operator<br>or<br>or_eq<br>private<br>protected<br>public<br>reflexpr (reflection TS)<br>register (2)</p>
+<h3 id="reinterpret-cast"><a href="#reinterpret-cast" class="headerlink" title="reinterpret_cast"></a>reinterpret_cast</h3><p><strong>reinterpret_cast<type> (expr)</strong></p>
+<p>重新解释（无理）转换。即要求编译器将两种无关联的类型作转换。</p>
+<p>把某种指针改为其他类型的指针。它可以把一个指针转换为一个整数，也可以把一个整数转换为一个指针。requires (since C++20)<br>return<br>short<br>signed<br>sizeof (1)<br>static<br>static_assert (since C++11)</p>
+<h3 id="static-cast"><a href="#static-cast" class="headerlink" title="static_cast"></a>static_cast</h3><p><strong>static_cast<type> (expr)</strong></p>
+<p>执行非动态转换，没有运行时类检查来保证转换的安全性。编译期转换</p>
+<p>struct (1)<br>switch<br>synchronized (TM TS)<br>template<br>this<br>thread_local (since C++11)<br>throw<br>true<br>try<br>typedef</p>
+<h3 id="typeid"><a href="#typeid" class="headerlink" title="typeid"></a>typeid</h3><p>获取一个表达式的类型，返回表达式的类型</p>
+<p>表达式可以是类型名称、变量名、数字、字符串、指针、结构体等</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">A</span> &#123;<span class="type">int</span> b;&#125;;</span><br><span class="line">A str;</span><br><span class="line">cout &lt;&lt; <span class="built_in">typeid</span>(str).<span class="built_in">name</span>() &lt;&lt; <span class="string">&quot; &quot;</span></span><br><span class="line">     &lt;&lt; <span class="built_in">typeid</span>(<span class="type">int</span>).<span class="built_in">name</span>() &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>typename<br>union<br>unsigned<br>using (1)<br>virtual<br>void<br>volatile<br>wchar_t<br>while<br>xor<br>xor_eq</p>
+<h2 id="中英文对照"><a href="#中英文对照" class="headerlink" title="中英文对照"></a>中英文对照</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br></pre></td><td class="code"><pre><span class="line">abstract                                抽象的</span><br><span class="line">abstraction                             抽象体</span><br><span class="line">access                                  存取，取用</span><br><span class="line">access function                         存取函数</span><br><span class="line">address-of operator                     取地址运算符 &amp;</span><br><span class="line">algorithm                               算法</span><br><span class="line">argument                                实参</span><br><span class="line">array                                   数组</span><br><span class="line">arrow operator arrow                    运算符 -&gt;</span><br><span class="line">assignment                              赋值</span><br><span class="line">assignment operator                     赋值运算符</span><br><span class="line">associated                              相应的，相关的</span><br><span class="line">associative container                   关联式容器（对应于sequential container）</span><br><span class="line">base class                              基类</span><br><span class="line">best viable function                    最佳可行函数（从 viable functions 中挑出最佳温和者）</span><br><span class="line">binding                                 绑定</span><br><span class="line">bit                                     位</span><br><span class="line">bitwise                                 “以bit为单元的。。。” bitwise copy</span><br><span class="line">block                                   块</span><br><span class="line">boolean                                 布尔值（真假值，true, false）</span><br><span class="line">byte                                    字节（8bits 所组成的一个单元）</span><br><span class="line">call operator   call                    运算符() (与function call operator 同)</span><br><span class="line">chain                                   链(chain of function calls)</span><br><span class="line">child class                             子类（或称 derived class, subtype）</span><br><span class="line">class                                   类</span><br><span class="line">class body                              类本身</span><br><span class="line">class declaration                       类声明， 类声明式</span><br><span class="line">class definition                        类定义， 类定义式子</span><br><span class="line">class derivation list                   类派生列</span><br><span class="line">class head                              类表头</span><br><span class="line">class template                          类模板</span><br><span class="line">class template partial specializations  类模板局部特殊化</span><br><span class="line">class template specializaiton           类模板特殊化</span><br><span class="line">cleanup                                 清理</span><br><span class="line">candidate function                      候选函数(在暗示重载解析程序中出现的候选函数)</span><br><span class="line">command line                            命令行</span><br><span class="line">compiler                                编译器</span><br><span class="line">component                               组件</span><br><span class="line">concrete                                具体的</span><br><span class="line">container                               容器（可存放数据的一种结果，例如list, map, set)</span><br><span class="line">context                                 上下文， 背景关系，上下脉络</span><br><span class="line">const                                   常量（constant 的缩写，相对于变数 variable）</span><br><span class="line">constant                                不变的，相对于mutable（易变的）</span><br><span class="line">constructor                             构造函数（与class同名的一种member function） ctor</span><br><span class="line">data member                             数据成员，成员变量</span><br><span class="line">declaration                             声明，声明式</span><br><span class="line">deduction                               推导(例：template argument deduction)</span><br><span class="line">definition                              定义</span><br><span class="line">dereference                             提领（取出指标所指物体的内容）</span><br><span class="line">dereference operator                    提领预算法 *</span><br><span class="line">derived class                           派生类</span><br><span class="line">destructor (dtor)                       析构函数</span><br><span class="line">directive                               指令（例：using directive）</span><br><span class="line">dot operator dot                        运算符</span><br><span class="line">dynamic binding                         动态绑定</span><br><span class="line">entity                                  实体</span><br><span class="line">encapsulation                           封装</span><br><span class="line">enclosing class                         外围类</span><br><span class="line">enum(enumeration)                       枚举</span><br><span class="line">enumerators                             枚举成员</span><br><span class="line">equality operator                       等号运算符==</span><br><span class="line">evaluate                                评估，求值，核定</span><br><span class="line">exception                               异常，异常情况</span><br><span class="line">exception declaration                   异常声明</span><br><span class="line">exception handing                       异常处理，异常处理机制</span><br><span class="line">exception specification                 异常规格</span><br><span class="line">exit                                    退出</span><br><span class="line">explicit                                显式，明显的，明白的</span><br><span class="line">export                                  导出</span><br><span class="line">expression                              表达式</span><br><span class="line">facility                                机制</span><br><span class="line">flush                                   清理，扫清</span><br><span class="line">formal parameter                        形式参数</span><br><span class="line">forward declaration                     前置声明</span><br><span class="line">function                                函数</span><br><span class="line">function call operator                  与operator 同</span><br><span class="line">function object                         函数对象</span><br><span class="line">function overloaded resolustion         函数重载决议程序</span><br><span class="line">function signature                      函数签名</span><br><span class="line">function template                       函数模板</span><br><span class="line">generic                                 泛型，一般化的</span><br><span class="line">generic algorithm                       泛型算法</span><br><span class="line">global                                  全局的</span><br><span class="line">global scope resolution operator        全局生存空间运算符::</span><br><span class="line">handler                                 句柄</span><br><span class="line">header file                             头文件（放置各种类型定义，数据结构，函数声明的文件）</span><br><span class="line">hierarchy                               层次体系（base class 和derived class 派生类）</span><br><span class="line">implement                               实现</span><br><span class="line">implementation                          实现品，实现物，编译器</span><br><span class="line">implicit                                隐式，暗自的(explicit 显式)</span><br><span class="line">increment operator                      自增运算符++</span><br><span class="line">inheritance                             继承，继承机制</span><br><span class="line">inline                                  内敛</span><br><span class="line">inline expansion                        内敛扩展</span><br><span class="line">initialization                          初始化（操作）</span><br><span class="line">initialization list                     初值列</span><br><span class="line">initialize                              初始化</span><br><span class="line">intance                                 实体（常指根据class而产生出来的object）</span><br><span class="line">instantiated                            具体化（应用于template）</span><br><span class="line">invoke                                  调用，唤起</span><br><span class="line">iterate                                 迭代（回圈一个轮回一个轮回地进行）</span><br><span class="line">iterator                                迭代器</span><br><span class="line">iteration                               迭代（回圈中的每一次轮回称之为igeinteration）</span><br><span class="line">lifetime                                生命期，生命周期</span><br><span class="line">linker                                  连接器</span><br><span class="line">literal constant                        文字常量</span><br><span class="line">list                                    链表</span><br><span class="line">local                                   局部的</span><br><span class="line">lvalue                                  左值</span><br><span class="line">manipulator                             操作器</span><br><span class="line">mechanism                               机制</span><br><span class="line">member                                  成员</span><br><span class="line">member access operator                  成员取用运算符（dot, arrow）</span><br><span class="line">member function                         成员函数</span><br><span class="line">member initialization list              成员初始化列表</span><br><span class="line">memberwise                              以 member 为单元的。。例 memberwise copy</span><br><span class="line">mutable                                 可变的，易变的 相对于 constant 不变的</span><br><span class="line">most derived class                      最末层的派生类</span><br><span class="line">namespace                               命名空间</span><br><span class="line">nested class                            嵌套类</span><br><span class="line">operand                                 操作数</span><br><span class="line">operation                               操作行为</span><br><span class="line">operator                                运算符</span><br><span class="line">option                                  选项</span><br><span class="line">overflow                                上限溢位（相对于 underflow）</span><br><span class="line">overhead                                额外负担</span><br><span class="line">overload                                重载</span><br><span class="line">overloaded function                     重载函数</span><br><span class="line">overloaded operator                     重载运算符</span><br><span class="line">overloaded set                          重载集合</span><br><span class="line">override                                改写。意指在derived class 中重新定义virtual function</span><br><span class="line">parameter list                          参数表</span><br><span class="line">parent class                            父类</span><br><span class="line">parse                                   解析</span><br><span class="line">partial specialization                  局部特殊化定义</span><br><span class="line">pass by address                         传址</span><br><span class="line">pass by reference                       传址</span><br><span class="line">pass by value                           传值</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">platform                                平台</span><br><span class="line">pointer                                 指针</span><br><span class="line">polymorphism                            多态</span><br><span class="line">preprocessor                            预处理器</span><br><span class="line">programming                             编程，程序设计，程序化</span><br><span class="line">project                                 工程</span><br><span class="line">qualified                               限定的</span><br><span class="line">qualifier                               限定词</span><br><span class="line">raise                                   发生(常同来表示发出一个 exception)</span><br><span class="line">rank                                    等级，分类</span><br><span class="line">raw                                     未经处理的</span><br><span class="line">reference  C++                          之中类似 pointer 指针的东西，意义相当于“化身”</span><br><span class="line">represent                               表述，表现</span><br><span class="line">resolve                                 决议。为表达式中的符号名称寻找对应声明的过程。</span><br><span class="line">resolution                              决议程序，决议过程</span><br><span class="line">rvalue                                  右值</span><br><span class="line">scope                                   生存空间</span><br><span class="line">scope operator                          生存空间运算符</span><br><span class="line">scope resolution operator               生存空间决议运算符（与scope operator 同）</span><br><span class="line">sequential  container                   循环容器</span><br><span class="line">signature                               见function signature</span><br><span class="line">specialization                          特殊化，特殊化定义，特殊化声明</span><br><span class="line">stack                                   堆栈</span><br><span class="line">stack unwinding                         堆栈展开</span><br><span class="line">statement                               语句</span><br><span class="line">stream                                  流</span><br><span class="line">string                                  字符串</span><br><span class="line">subscript operator                      下标运算符</span><br><span class="line">subtype                                 子型别</span><br><span class="line">target                                  目标</span><br><span class="line">template                                模板</span><br><span class="line">template argument deduction             模板变量推导</span><br><span class="line">template explicit specialization        范本明白特殊化</span><br><span class="line">template parameter                      模板参数</span><br><span class="line">text file                               程序代码文件</span><br><span class="line">throw                                   抛出</span><br><span class="line">token                                   词法单元</span><br><span class="line">type                                    型别</span><br><span class="line">underflow                               下溢</span><br><span class="line">unqualified                             未经资格修饰（而直接取用）</span><br><span class="line">unwinding                               见stack unwinding</span><br><span class="line">variable                                变量</span><br><span class="line">vector                                  向量</span><br><span class="line">viable                                  可实行的</span><br><span class="line">viable  function                        可行函数</span><br><span class="line">volatile                                易变的</span><br></pre></td></tr></table></figure>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="virtual-public的含义和作用"><a href="#virtual-public的含义和作用" class="headerlink" title="virtual public的含义和作用"></a>virtual public的含义和作用</h3><p><strong>虚基类</strong></p>
+<p>含义为 ，虚基类是指：class SubClass : virtual public BaseClass 中以virtual声明的基类</p>
+<p>因为C++支持多重继承。可能会出现派生类的多个父类的父类相同，导致构造时出现二义性。此时使用 虚基类 来基类生成一块内存区域，这样最终的派生类只含有一个基类。</p>
+<h2 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h2><h3 id="std-make-unique-C-14"><a href="#std-make-unique-C-14" class="headerlink" title="std::make_unique(C++14)"></a>std::make_unique(C++14)</h3><h3 id="std-make-shared-C-11"><a href="#std-make-shared-C-11" class="headerlink" title="std::make_shared(C++11)"></a>std::make_shared(C++11)</h3><p>通过make方法构造一个使用智能指针的对象</p>
+<p>1.同直接使用new相比，make函数减小了代码重复，提高了异常安全，并且对于std::make_shared和std::allcoated_shared，生成的代码会更小更快。</p>
+<p>2.不能使用make函数的情况包括我们需要定制删除器和期望直接传递大括号初始化器。</p>
+<p>3.对于std::shared_ptr，额外的不建议使用make函数的情况包括：</p>
+<p>  （1）定制内存管理的类，</p>
+<p>  （2）关注内存的系统，非常大的对象，以及生存期比 std::shared_ptr长的std::weak_ptr。</p>
+<h3 id="std-move"><a href="#std-move" class="headerlink" title="std::move"></a>std::move</h3><p>将一个左值强制转化为右值引用，继而可以通过右值引用使用该值，以用于移动语义。</p>
+<p>从实现上讲，std::move基本等同于一个类型转换：<code>static_cast&lt;T&amp;&amp;&gt;(lvalue);</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> _Tp&gt;</span><br><span class="line">   <span class="keyword">constexpr</span> <span class="keyword">typename</span> std::remove_reference&lt;_Tp&gt;::<span class="function">type&amp;&amp;</span></span><br><span class="line"><span class="function">   <span class="title">move</span><span class="params">(_Tp&amp;&amp; <span class="type">__t</span>)</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function">   </span>&#123; <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">typename</span> std::remove_reference&lt;_Tp&gt;::type&amp;&amp;&gt;(<span class="type">__t</span>); &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="std-variant"><a href="#std-variant" class="headerlink" title="std::variant"></a>std::variant</h3><p>表示一个类型安全的<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/union" title="cpp/language/union">联合体</a>。 <code>std::variant</code> 的一个实例在任意时刻要么保有其一个可选类型之一的值，要么在错误情况下无值</p>
+<ol>
+<li>通过可变的模板参数（variable template，variadic template）你可以指定一组可选类型，它们将是这个实例类型所支持的值类型表。例如 <code>std::variant&lt;int, boo&gt;</code> 允许你放入 int 或者 bool 的值并安全的抽出它。</li>
+<li>其实例在任意时刻要么包含一个其可选类型之一的值，要么处于病式状态。</li>
+<li>其实例的默认值为其首个可选类型的默认构造值。即 <code>std::variant&lt;int, bool&gt; a;</code> 语句中，<code>a</code> 具有 <code>(int)(0)</code> 值。如果首个可选类型没有默认的构造器，那么你需要显式地提供初始化表达式。</li>
+<li>不支持引用类型，数组，void 等作为其可选类型。</li>
+</ol>
+<h3 id="std-memory-order-relaxed"><a href="#std-memory-order-relaxed" class="headerlink" title="std::memory_order_relaxed"></a>std::memory_order_relaxed</h3><p>std::memory_order 指定如何围绕原子操作对内存访问（包括常规的非原子内存访问）进行排序。在多核系统上没有任何限制，当多个线程同时读取和写入多个变量时，一个线程可以观察到值的变化顺序与另一个线程写入它们的顺序不同。事实上，变化的明显顺序在多个阅读器线程之间甚至可能不同。由于内存模型允许的编译器转换，即使在单处理器系统上也会出现一些类似的效果</p>
+<p>属于C++的六种内存顺序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">std::memory_order_relaxed</span><br><span class="line">std::memory_order_consume</span><br><span class="line">std::memory_order_acquire</span><br><span class="line">std::memory_order_release</span><br><span class="line">std::memory_order_acq_rel</span><br><span class="line">std::memory_order_seq_cst</span><br></pre></td></tr></table></figure>
+<h3 id="std-underlying-type"><a href="#std-underlying-type" class="headerlink" title="std::underlying_type"></a>std::underlying_type</h3><p>获取一个枚举类型的基本类型（即枚举成员的类型）</p>
+<p>template&lt; class T &gt;<br>struct underlying_type;</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum class</span> <span class="title class_">A</span> &#123;white, blue, red&#125;;</span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">B</span> &#123;&#125;;</span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">C</span> &#123;A, B, C&#125;;</span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">D</span> : <span class="type">short</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; <span class="string">&quot;A is &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(underlying_type&lt;A&gt;::type).<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;B is &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(underlying_type&lt;B&gt;::type).<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;B is &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(underlying_type&lt;B&gt;::type).<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;D is &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(underlying_type&lt;D&gt;::type).<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;int is &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(<span class="type">int</span>).<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// output</span></span><br><span class="line">A is i</span><br><span class="line">B is j</span><br><span class="line">B is j</span><br><span class="line">D is s</span><br><span class="line"><span class="type">int</span> is i</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">类型对照表</span><br><span class="line"><span class="function"><span class="type">bool</span>                                   b</span></span><br><span class="line"><span class="function"><span class="type">char</span>                                   c</span></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="type">char</span>                            a</span></span><br><span class="line"><span class="function"><span class="type">unsigned</span> <span class="type">char</span>                          <span class="title">h</span></span></span><br><span class="line"><span class="function"><span class="params">(<span class="type">signed</span>)</span> <span class="title">short</span> <span class="params">(<span class="type">int</span>)</span>                   s</span></span><br><span class="line"><span class="function"><span class="type">unsigned</span> <span class="title">short</span> <span class="params">(<span class="type">int</span>)</span>                   <span class="title">t</span></span></span><br><span class="line"><span class="function"><span class="params">(<span class="type">signed</span>)</span> <span class="params">(<span class="type">int</span>)</span>                         i</span></span><br><span class="line"><span class="function"><span class="title">unsigned</span> <span class="params">(<span class="type">int</span>)</span>                         <span class="title">j</span></span></span><br><span class="line"><span class="function"><span class="params">(<span class="type">signed</span>)</span> <span class="title">long</span> <span class="params">(<span class="type">int</span>)</span>                    l</span></span><br><span class="line"><span class="function"><span class="type">unsigned</span> <span class="title">long</span> <span class="params">(<span class="type">int</span>)</span>                    <span class="title">m</span></span></span><br><span class="line"><span class="function"><span class="params">(<span class="type">signed</span>)</span> <span class="type">long</span> <span class="title">long</span> <span class="params">(<span class="type">int</span>)</span>               x</span></span><br><span class="line"><span class="function"><span class="type">unsigned</span> <span class="type">long</span> <span class="title">long</span> <span class="params">(<span class="type">int</span>)</span>               y</span></span><br><span class="line"><span class="function"><span class="type">float</span>                                  f</span></span><br><span class="line"><span class="function"><span class="type">double</span>                                 d</span></span><br><span class="line"><span class="function"><span class="type">long</span> <span class="type">double</span>                            e</span></span><br></pre></td></tr></table></figure>
+<h3 id="std-funcion"><a href="#std-funcion" class="headerlink" title="std::funcion"></a>std::funcion</h3><p>头文件 <code>&lt;functional&gt;</code></p>
+<p>类模版std::function是一种通用、多态的函数封装。std::function的实例可以对任何可以调用的目标实体进行存储、复制、和调用操作，这些目标实体包括普通函数、Lambda表达式、函数指针、以及其它函数对象等。std::function对象是对C++中现有的可调用实体的一种类型安全的包裹（我们知道像函数指针这类可调用实体，是类型不安全的）。</p>
+<p>最大用处就是实现函数回调，但是之恶能用来检查NULL或者nullptr的相等比较</p>
+<p><strong>std::function是一个可调用对象包装器，是一个类模板，可以容纳除了类成员函数指针之外的所有可调用对象，它可以用统一的方式处理函数、函数对象、函数指针，并允许保存和延迟它们的执行</strong>。</p>
+<p><strong>作用</strong></p>
+<ol>
+<li><p>std::function对C++中各种可调用实体(普通函数、Lambda表达式、函数指针、以及其它函数对象等)的封装，形成一个新的可调用的std::function对象，简化调用</p>
+</li>
+<li><p>std::function对象是对C++中现有的可调用实体的一种类型安全的包裹(如：函数指针这类可调用实体，是类型不安全的)。</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">double</span> <span class="title">f</span><span class="params">(<span class="type">int</span> x, <span class="type">char</span> y, <span class="type">double</span> z)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y + z;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::function&lt;<span class="type">double</span>(<span class="type">int</span>, <span class="type">char</span>, <span class="type">double</span>)&gt; func_display = f;</span><br><span class="line">    std::cout &lt;&lt; <span class="built_in">func_display</span>(<span class="number">3</span>, <span class="string">&#x27;a&#x27;</span>, <span class="number">1.7</span>) &lt;&lt; <span class="string">&quot;\n&quot;</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通用多态函数包装器。 <code>std::function</code> 的实例能存储、复制及调用任何<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/named_req/CopyConstructible" title="cpp/named req/CopyConstructible">可复制构造 (CopyConstructible)</a> 的<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/named_req/Callable" title="cpp/named req/Callable">可调用 (Callable)</a> <em>目标</em>——函数、 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/lambda" title="cpp/language/lambda">lambda 表达式</a>、 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/utility/functional/bind" title="cpp/utility/functional/bind">bind 表达式</a>或其他函数对象，还有指向成员函数指针和指向数据成员指针。</p>
+<p>存储的可调用对象被称为 <code>std::function</code> 的<em>目标</em>。若 <code>std::function</code> 不含目标，则称它为<em>空</em>。调用<em>空</em> <code>std::function</code> 的<em>目标</em>导致抛出 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/utility/functional/bad_function_call" title="cpp/utility/functional/bad function call">std::bad_function_call</a> 异常。</p>
+<h3 id="std-bind"><a href="#std-bind" class="headerlink" title="std::bind"></a>std::bind</h3><p>头文件<code>&lt;fuctional&gt;</code></p>
+<p>函数模版bind用于生成 f 的转发调用包装器，</p>
+<p><strong>它接受一个可调用对象，生成一个新的可调用对象来适应原对象的参数列表</strong>。</p>
+<ul>
+<li><strong>将可调用对象和其参数绑定成一个仿函数</strong>；</li>
+<li><strong>只绑定部分参数，减少可调用对象传入的参数</strong>。</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">F</span>, <span class="keyword">class</span>... Args&gt;</span><br><span class="line"><span class="built_in">bind</span>(F&amp;&amp; f, Args&amp;&amp;... args);</span><br></pre></td></tr></table></figure>
+<p><strong>参数</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>f</th>
+<th>-</th>
+<th><a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/named_req/Callable">C++ 具名要求：可调用 (Callable) - cppreference.com</a> 对象（函数对象、指向函数指针、到函数引用、指向成员函数指针或指向数据成员指针）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>args</td>
+<td>-</td>
+<td>要绑定的参数列表，未绑定参数为命名空间 <code>std::placeholders</code> 的占位符 <code>_1, _2, _3...</code> 所替换</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>返回值</strong></p>
+<p>未指定类型 <code>T</code> 的函数对象，满足 <a target="_blank" rel="noopener" href="http://zh.cppreference.com/w/cpp/utility/functional/is_bind_expression">std::is_bind_expression</a>::value == true 。它有下列属性：</p>
+<h3 id="std-packaged-task"><a href="#std-packaged-task" class="headerlink" title="std::packaged_task"></a>std::packaged_task</h3><p>用于包装任何 可调用(Callable) 目标(函数，Lambda，bind表达式)，使得能异步调用，其返回值或所抛异常被存储于能通过 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/future" title="cpp/thread/future">std::future</a> 对象访问的共享状态中。</p>
+<h3 id="std-feature"><a href="#std-feature" class="headerlink" title="std::feature"></a>std::feature</h3><p>头文件<code>future</code></p>
+<p>类模板 <code>std::future</code> 提供访问异步操作结果的机制：</p>
+<ul>
+<li><p>（通过 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/async" title="cpp/thread/async">std::async</a> 、 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/packaged_task" title="cpp/thread/packaged task">std::packaged_task</a> 或 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/promise" title="cpp/thread/promise">std::promise</a> 创建的）异步操作能提供一个 <code>std::future</code> 对象给该异步操作的创建者。</p>
+</li>
+<li><p>然后，异步操作的创建者能用各种方法查询、等待或从 <code>std::future</code> 提取值。若异步操作仍未提供值，则这些方法可能阻塞。</p>
+</li>
+<li><p>异步操作准备好发送结果给创建者时，它能通过修改链接到创建者的 <code>std::future</code> 的<em>共享状态</em>（例如 <a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/thread/promise/set_value" title="cpp/thread/promise/set value">std::promise::set_value</a> ）进行。</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt; <span class="keyword">class</span> <span class="title class_">T</span> &gt; <span class="keyword">class</span> <span class="title class_">future</span>;</span><br><span class="line">(<span class="number">1</span>)    (C++<span class="number">11</span> 起)</span><br><span class="line"><span class="keyword">template</span>&lt; <span class="keyword">class</span> <span class="title class_">T</span> &gt; <span class="keyword">class</span> <span class="title class_">future</span>&lt;T&amp;&gt;;</span><br><span class="line">(<span class="number">2</span>)    (C++<span class="number">11</span> 起)</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;          <span class="keyword">class</span> <span class="title class_">future</span>&lt;<span class="type">void</span>&gt;;</span><br><span class="line">(<span class="number">3</span>)    (C++<span class="number">11</span> 起)</span><br></pre></td></tr></table></figure>
+<h3 id="std-forward"><a href="#std-forward" class="headerlink" title="std::forward"></a>std::forward</h3><p>头文件<code>&lt;utility&gt;</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt; <span class="keyword">class</span> T &gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">( <span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp; t )</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">(since C++<span class="number">11</span>)</span><br><span class="line">(until C++<span class="number">14</span>)</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt; <span class="keyword">class</span> T &gt;</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> T&amp;&amp; <span class="title">forward</span><span class="params">( std::<span class="type">remove_reference_t</span>&lt;T&gt;&amp; t )</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">(since C++<span class="number">14</span>)</span><br><span class="line">(<span class="number">2</span>)	</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt; <span class="keyword">class</span> T &gt;</span></span><br><span class="line"><span class="function">T&amp;&amp; <span class="title">forward</span><span class="params">( <span class="keyword">typename</span> std::remove_reference&lt;T&gt;::type&amp;&amp; t )</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">(since C++<span class="number">11</span>)</span><br><span class="line">(until C++<span class="number">14</span>)</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt; <span class="keyword">class</span> T &gt;</span></span><br><span class="line"><span class="function"><span class="keyword">constexpr</span> T&amp;&amp; <span class="title">forward</span><span class="params">( std::<span class="type">remove_reference_t</span>&lt;T&gt;&amp;&amp; t )</span> <span class="keyword">noexcept</span></span>;</span><br><span class="line">(since C++<span class="number">14</span>)</span><br></pre></td></tr></table></figure>
+<p>1) 转发左值为左值或右值，依赖于 T</p>
+<p>当 <code>t</code> 是<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/reference#.E8.BD.AC.E5.8F.91.E5.BC.95.E7.94.A8" title="cpp/language/reference">转发引用</a>（作为到无 cv 限定函数模板形参的右值引用的函数实参），此重载将参数以在传递给调用方函数时的<a target="_blank" rel="noopener" href="https://zh.cppreference.com/w/cpp/language/value_category" title="cpp/language/value category">值类别</a>转发给另一个函数。</p>
+<p>2) 转发右值为右值并禁止右值的转发为左值</p>
+<p>此重载令转发表达式（如函数调用）的结果可行，结果可以是右值或左值，同转发引用参数的原始值类别。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/07/17/c++/" data-id="cl5p1ft6j001btks6aoszcwwd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/phoenixwxy.github.io/tags/Program/" rel="tag">Program</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/phoenixwxy.github.io/tags/learn/" rel="tag">learn</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/phoenixwxy.github.io/2022/07/17/c++_left&right_vale/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          c++ 左值右值
+        
+      </div>
+    </a>
+  
+  
+    <a href="/phoenixwxy.github.io/2022/07/17/c++%20Lambda/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">c++ Lambda表达式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/Program/">Program</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/">program</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/CMake/">CMake</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/doc/">doc</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/program/git/">git</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/%E6%9F%A5%E8%AF%A2/">查询</a></li><li class="category-list-item"><a class="category-list-link" href="/phoenixwxy.github.io/categories/%E7%BC%96%E7%A8%8B/">编程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/Android/" rel="tag">Android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/CMake/" rel="tag">CMake</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/Effective/" rel="tag">Effective</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/Program/" rel="tag">Program</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/backup/" rel="tag">backup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/c/" rel="tag">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/learn/" rel="tag">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/phoenixwxy.github.io/tags/shell/" rel="tag">shell</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/phoenixwxy.github.io/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/phoenixwxy.github.io/tags/C/" style="font-size: 13.33px;">C</a> <a href="/phoenixwxy.github.io/tags/CMake/" style="font-size: 10px;">CMake</a> <a href="/phoenixwxy.github.io/tags/Effective/" style="font-size: 10px;">Effective</a> <a href="/phoenixwxy.github.io/tags/Program/" style="font-size: 20px;">Program</a> <a href="/phoenixwxy.github.io/tags/backup/" style="font-size: 13.33px;">backup</a> <a href="/phoenixwxy.github.io/tags/c/" style="font-size: 10px;">c</a> <a href="/phoenixwxy.github.io/tags/c/" style="font-size: 16.67px;">c++</a> <a href="/phoenixwxy.github.io/tags/git/" style="font-size: 10px;">git</a> <a href="/phoenixwxy.github.io/tags/learn/" style="font-size: 20px;">learn</a> <a href="/phoenixwxy.github.io/tags/shell/" style="font-size: 10px;">shell</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/phoenixwxy.github.io/archives/2022/07/">July 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/regex/">Regex 正则表达式</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/">内存对齐</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/%E8%BE%93%E5%87%BA%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83/">输出函数比较</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/git_submodule/">Git submodule</a>
+          </li>
+        
+          <li>
+            <a href="/phoenixwxy.github.io/2022/07/17/getopt/">getopt</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Phoenix<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/phoenixwxy.github.io/" class="mobile-nav-link">Home</a>
+  
+    <a href="/phoenixwxy.github.io/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/phoenixwxy.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/phoenixwxy.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/phoenixwxy.github.io/js/script.js"></script>
+
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
