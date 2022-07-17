@@ -1,0 +1,3 @@
+[submodule "themes/hexo-theme-prince"]
+	path = themes/hexo-theme-prince
+	url = https://github.com/yiliashaw/hexo-theme-prince
